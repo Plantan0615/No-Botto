@@ -1,0 +1,17 @@
+// else if (updatedLevel= 6) {
+                    //         message.member.roles.add("736676248884871231");//soyboys
+                    //         message.member.roles.remove("736668508129198170");//iphone
+                    //         message.channel.send(`${message.member} Soy Boys role Get! iPhone Photographers role Removed.`);
+                    //         }
+                    // else if (updatedLevel= 11) {
+                    //         message.member.roles.add("736676760971640892");//crafty crew
+                    //         message.member.roles.remove("736676248884871231");//soyboys
+                    //         message.channel.send(`${message.member} Crafty Crew role Get! Soy Boys role Removed.`);
+                    //         }
+                    // else if (updatedLevel= 16) {
+                    //         message.member.roles.add("736676859596767413");//epic gamers
+                    //         message.member.roles.remove("736676760971640892");//crafty crew
+                    //         message.channel.send(`${message.member} Epic Gamers role Get! Crafty Crew role Removed.`);
+                    //         }
+"userXP": 1600,
+"userLevel": 2,
