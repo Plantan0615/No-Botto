@@ -14,6 +14,7 @@ module.exports.run = async(client, message, args) => {
                 let currentLevel = guildXpObject["userLevel"];
                 const statsEmbed = new MessageEmbed()
                 .setColor('GREEN')
+                .setColor('RED')
                 .setTitle('Stats')
                 .setDescription(`User Stats for ${message.author.username}`)
                 .addFields(
@@ -25,4 +26,3 @@ module.exports.run = async(client, message, args) => {
             message.channel.send(statsEmbed);
             }
     }
-}

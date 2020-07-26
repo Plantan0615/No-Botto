@@ -9,8 +9,8 @@ module.exports.run = async(client, message, args) => {
             let guildXpObject = userXpObject[message.guild.id];
             let currentMoneys = guildXpObject["userMoneys"];
             let newMoneys = 200
-            let updatedMoneys = currentMoneys + newMoneys;
-            
+            let updatedMoneys = currentMoneys + newMoneys;       
  }
 }
 }
+
