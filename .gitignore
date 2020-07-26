@@ -2,3 +2,5 @@
 * text=auto
 #enviroment varibles
 *.env
+# Dependency directories
+node_modules/
