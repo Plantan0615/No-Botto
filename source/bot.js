@@ -40,7 +40,7 @@ for(let file of files) { // load every file name into varible inside events fold
             let eventName = file.substring(0, file.indexOf(".js")); //declare eventname variable
             try{
             let eventModule = require(path.join(__dirname, dir, file)); //declare eventModule
-            client.on(eventName, eventModule.bind(null, client)); //start listening for events (commands)
+            client.on(eventName, eventModule.bind(null, client)); //start listening for events
             }
             catch (err) {
                 console.log(err); //log console
