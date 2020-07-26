@@ -1,7 +1,8 @@
 const discord = require("discord.js");
 module.exports = async(client) => {
 //    
-// role collection
+// role collection (@everyone role has same id as guild???)
+//
 //
 // let guildRoles = discord.guild.fetch()
 //   .then(console.log(guildRoles))
