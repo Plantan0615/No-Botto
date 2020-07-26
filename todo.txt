@@ -1,0 +1,1 @@
+findcopy.js get channel names automatically instead of implicitly

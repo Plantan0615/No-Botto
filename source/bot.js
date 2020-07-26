@@ -28,23 +28,22 @@ for(let file of files) {
     }
 }
 })();
-
-//event hanlding
-(async function registerEvents(dir = "events") {
-let files = await fs.readdir(path.join(__dirname, dir));
-for(let file of files) {
-    let stat = await fs.lstat(path.join(__dirname, dir, file));
-    if(stat.isDirectory())
-    registerEvents(path.join(dir, file));
-    else {
-        if(file.endsWith(".js")){
-            let eventName = file.substring(0, file.indexOf(".js"));
+//event handling
+(async function registerEvents(dir = "events") { //create async function
+let files = await fs.readdir(path.join(__dirname, dir)); // declare files variable
+for(let file of files) { // load every file name into varible inside events folder
+    let stat = await fs.lstat(path.join(__dirname, dir, file)); //declare stat variable
+    if(stat.isDirectory()) //if stat varible = directory then:
+    registerEvents(path.join(dir, file)); //call the async function that looks in the events folder
+    else { //otherwise:
+        if(file.endsWith(".js")){ //if its a .js file
+            let eventName = file.substring(0, file.indexOf(".js")); //declare eventname variable
             try{
-            let eventModule = require(path.join(__dirname, dir, file));
-            client.on(eventName, eventModule.bind(null, client));
+            let eventModule = require(path.join(__dirname, dir, file)); //declare eventModule
+            client.on(eventName, eventModule.bind(null, client)); //start listening for events (commands)
             }
             catch (err) {
-                console.log(err);
+                console.log(err); //log console
             }
     }
     }
