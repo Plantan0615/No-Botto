@@ -1,3 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+<<<<<<< Updated upstream
 **.env
+=======
+#enviroment variables
+*.env
+>>>>>>> Stashed changes

@@ -3,6 +3,9 @@ module.exports = (client, reaction, user) => {
     if (!reaction.message.guild) return;
     if(reaction.message.partial) reaction.message.fetch();
     if(reaction.partial) reaction.fetch();
+    //
+    //tthe emoji IDs and channel ID must be hardcoded for this to work as it is adding roles based on what emoji was selected
+    //
     if (reaction.message.channel.id === "734791204880777308") { 
     try{
     let member = reaction.message.guild.members.cache.find(member => member.id === user.id);
