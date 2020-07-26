@@ -4,4 +4,3 @@
 *.env
 #discord js
 node_modules/
-*.env
