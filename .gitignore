@@ -6,3 +6,5 @@
 #enviroment variables
 *.env
 >>>>>>> Stashed changes
+#discord js
+node_modules/
