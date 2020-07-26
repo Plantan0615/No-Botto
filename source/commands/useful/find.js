@@ -3,6 +3,9 @@ module.exports.run = async(client, message, args) => {
     let user = message.author
     let announcement = `${user} This is the channel you were looking for`
     //declare channnels
+    //
+    // You will need to declare each channel here and change the variable names in the if else statements
+    //
     let generalChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "general")
     let test1Channel = client.channels.cache.find(channel => channel.name.toLowerCase() === "test-1");
     let test2Channel = client.channels.cache.find(channel => channel.name.toLowerCase() === "test-2");

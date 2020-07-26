@@ -4,6 +4,9 @@ module.exports.run = async(client, message, args) => {
 let { cache } = message.guild.roles;
 let role = cache.find(role => role.name === "I Need to Read the Rules");
 let passwordGuess = message.content.substring(10);
+//
+//you can change the password to whatever
+//
 const password = "meow"
 let newRole = cache.find(role => role.name === "Noobz");
 if(role) {

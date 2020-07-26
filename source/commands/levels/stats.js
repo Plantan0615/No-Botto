@@ -1,3 +1,6 @@
+const userxp = require("/Users/chase/Desktop/Coding/No Botto/source/userXP.json");
+const { MessageEmbed } = require("discord.js");
+const fs = require("fs").promises;
 module.exports.run = async(client, message, args) => {
     let xpFile = await fs.readFile("userXP.json", "utf8");
     let xpObject = JSON.parse(xpFile);
@@ -10,6 +13,7 @@ module.exports.run = async(client, message, args) => {
                 let currentMoneys = guildXpObject["userMoneys"];
                 let currentLevel = guildXpObject["userLevel"];
                 const statsEmbed = new MessageEmbed()
+                .setColor('GREEN')
                 .setColor('RED')
                 .setTitle('Stats')
                 .setDescription(`User Stats for ${message.author.username}`)
@@ -22,5 +26,3 @@ module.exports.run = async(client, message, args) => {
             message.channel.send(statsEmbed);
             }
     }
-}
-

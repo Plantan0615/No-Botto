@@ -1,3 +1,5 @@
+const userxp = require("/Users/chase/Desktop/Coding/No Botto/source/userXP.json");
+const fs = require("fs").promises;
 module.exports.run = async(client, message, args) => {
     let xpFile = await fs.readFile("userXP.json", "utf8");
     let xpObject = JSON.parse(xpFile);
@@ -7,8 +9,8 @@ module.exports.run = async(client, message, args) => {
             let guildXpObject = userXpObject[message.guild.id];
             let currentMoneys = guildXpObject["userMoneys"];
             let newMoneys = 200
-            let updatedMoneys = currentMoneys + newMoneys;
-
+            let updatedMoneys = currentMoneys + newMoneys;       
  }
 }
 }
+
