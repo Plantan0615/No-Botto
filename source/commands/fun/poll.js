@@ -10,6 +10,7 @@ let msgCollectorFilter = (newMsg, originalMsg) => {
     if(!emojiName) return false;
     let emoji = cache.find(emoji => emoji.name.toLowerCase() === emojiName.toLowerCase());
     if(!emoji) {
+        originalMsg.delete({timeout : 2000})
         originalMsg.channel.send("Emoji does not exist")
             .then (msg => msg.delete({ timeout: 2000}))
             .catch (err => console.log(err));
@@ -41,6 +42,9 @@ run: async(client, message, args) => {
                     }
                     else if (emojiName.toLowerCase() == "stop poll") {
                     msg.delete({ timeout: 2000 })
+                    msg.channel.send("Poll Complete")
+                        .then (msg => msg.delete({ timeout: 2000}))
+                        .catch (err => console.log(err));
                     collector.stop();
                     }
                 });

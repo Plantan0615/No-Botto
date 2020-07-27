@@ -33,42 +33,36 @@ module.exports = async(client, message) => {
                 let updatedMoneys = newMoneys + currentMoneys;
                 let currentLevel = guildXpObject["userLevel"];
                 let updatedLevel = updateLevel(updatedXP);
+                //update json file 
+                    xpObject[message.author.id][message.guild.id]["userXP"] = updatedXP;
+                    xpObject[message.author.id][message.guild.id]["userMoneys"] = updatedMoneys;
+                    xpObject[message.author.id][message.guild.id]["userLevel"] = updatedLevel;
+                    await fs.writeFile("userXP.json", JSON.stringify (xpObject, null, 4), "utf8").catch(err=> console.log(err));
         //if levelled up
                 if (currentLevel != updatedLevel){
-                    xpObject[message.author.id][message.guild.id]["userLevel"] = updatedLevel;
-                    if(currentLevel = 2){
+                    if(currentLevel === 2){
                         message.member.roles.remove("735218837057962058");
                         message.member.roles.add("736668508129198170");
-                        // message.channel.send(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`);
+                        message.channel.send(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`);
                     }
-                    //
-                    //need to fix these role assignments, level is being added to the json file
-                    //
-                    else if(currentLevel = 5){
+                    else if(currentLevel === 5){
                         message.member.roles.remove("736668508129198170");
                         message.member.roles.add("736676248884871231");
-                        // message.channel.send(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`);
+                        message.channel.send(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`);
                     }
-                   else if(currentLevel = 10){
+                   else if(currentLevel === 10){
                         message.member.roles.remove("736676248884871231");
                         message.member.roles.add("736676760971640892");
-                        // message.channel.send(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`);
+                        message.channel.send(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`);
                         
                     }
-                    else if(currentLevel = 15){
+                    else if(currentLevel === 15){
                         message.member.roles.remove("736676760971640892");
                         message.member.roles.add("736676859596767413");
-                        // message.channel.send(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`);
+                        message.channel.send(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`);
                     }
                     else{ message.channel.send(`${message.member} has levelled up.`)};
-            }
-            else console.log(currentLevel);
-        //update json file 
-                xpObject[message.author.id][message.guild.id]["userXP"] = updatedXP;
-                xpObject[message.author.id][message.guild.id]["userMoneys"] = updatedMoneys;
-                
-                
-                await fs.writeFile("userXP.json", JSON.stringify (xpObject, null, 4), "utf8").catch(err=> console.log(err));
+                }
             }
         //if same person in another guild sends a message for the first time
             else{
