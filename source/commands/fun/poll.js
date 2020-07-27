@@ -1,16 +1,15 @@
 const { MessageCollector } = require("discord.js");
-
 let msgCollectorFilter = (newMsg, originalMsg) => {
     let { cache } = originalMsg.guild.emojis;
     if(newMsg.author.id !== originalMsg.author.id) return false;
-    let emojiName = originalMsg.content
-    if (emojiName = "stop poll") {
-    return true;
+    let emojiName = originalMsg.content.substring(0);
+    if (emojiName === "stop poll") {
+        newMsg.delete({timeout: 2000})
+        return true;
     }
-    if(!emojiName) return false;
     let emoji = cache.find(emoji => emoji.name.toLowerCase() === emojiName.toLowerCase());
     if(!emoji) {
-        originalMsg.delete({timeout : 2000})
+        originalMsg.delete({ timeout: 2000 })
         originalMsg.channel.send("Emoji does not exist")
             .then (msg => msg.delete({ timeout: 2000}))
             .catch (err => console.log(err));
@@ -28,7 +27,7 @@ run: async(client, message, args) => {
         try {
             let fetchedMessage = await message.channel.messages.fetch(args);
             if (fetchedMessage) {
-                await message.channel.send("Please provide an emoji name for each poll option, one by one");
+                let sentMessage= await message.channel.send("Please provide an emoji name for each poll option, one by one");
                 let collector = new MessageCollector(message.channel, msgCollectorFilter.bind(null, message));
                 collector.on("collect", msg =>{
                     let { cache } = msg.guild.emojis;
@@ -40,7 +39,8 @@ run: async(client, message, args) => {
                         .then(msg.delete({ timeout: 2000 }))
                         .catch(err => console.log(err));
                     }
-                    else if (emojiName.toLowerCase() == "stop poll") {
+                    else if (emojiName.toLowerCase() === "stop poll") {
+                    sentMessage.delete({ timeout: 2000});
                     msg.delete({ timeout: 2000 })
                     msg.channel.send("Poll Complete")
                         .then (msg => msg.delete({ timeout: 2000}))

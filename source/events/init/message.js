@@ -25,7 +25,7 @@ module.exports = async(client, message) => {
             let userXpObject = xpObject[message.author.id];
             if (userXpObject.hasOwnProperty(message.guild.id)){
             let guildXpObject = userXpObject[message.guild.id];
-                let newXP = 1000
+                let newXP = 2
                 let currentXp = guildXpObject["userXP"];
                 let updatedXP = newXP + currentXp;
                 let newMoneys = 1
