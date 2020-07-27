@@ -24,8 +24,24 @@ module.exports = (client, reaction, user) => {
         if (reaction.emoji.id === '734791627830460456'){
             member.roles.remove("734792775580516363");
             console.log("Role Removed");  
+            }
+        //blue 
+        if (reaction.emoji.name === '🔵'){
+            member.roles.remove("734100916923400193");
+            console.log("Role Removed");  
             } 
-        }
+        //red 
+        if (reaction.emoji.name === '🔴'){
+            member.roles.remove("734100891325562902");
+            console.log("Role Removed");  
+            }
+        // purple
+        if (reaction.emoji.name === '🟣'){
+            member.roles.remove("734100864569966622");
+            console.log("Role Removed");  
+            } 
+}
+        
     catch (err) {
             console.log(err);
         }

@@ -24,7 +24,22 @@ module.exports = (client, reaction, user) => {
     if (reaction.emoji.id === '734791627830460456'){
         member.roles.add("734792775580516363");
         console.log("Role Added");  
-    } 
+    }
+    //blue 
+    if (reaction.emoji.name === '🔵'){
+        member.roles.add("734100916923400193");
+        console.log("Role Added");  
+        } 
+    //red 
+    if (reaction.emoji.name === '🔴'){
+        member.roles.add("734100891325562902");
+        console.log("Role Added");  
+        }
+    // purple
+    if (reaction.emoji.name === '🟣'){
+        member.roles.add("734100864569966622");
+        console.log("Role Added");  
+        } 
 }
 catch (err) {
         console.log(err);

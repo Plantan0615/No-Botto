@@ -2,7 +2,8 @@ const { MessageCollector } = require("discord.js");
 let msgCollectorFilter = (newMsg, originalMsg) => {
     let { cache } = originalMsg.guild.emojis;
     if(newMsg.author.id !== originalMsg.author.id) return false;
-    let [ emojiName, roleName ] = originalMsg.content.split(/,\s+/);
+    let [ emojiName, roleName ] = originalMsg.cleanContent.split(/,\s+/);
+    console.log(emojiName, roleName);
     if (emojiName === "stop" && roleName === "menu") {
         newMsg.delete({timeout: 2000})
         return true;

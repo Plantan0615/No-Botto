@@ -2,14 +2,15 @@ const { MessageCollector } = require("discord.js");
 let msgCollectorFilter = (newMsg, originalMsg) => {
     let { cache } = originalMsg.guild.emojis;
     if(newMsg.author.id !== originalMsg.author.id) return false;
-    let emojiName = originalMsg.content.substring(0);
-    if (emojiName === "stop poll") {
+    let emojiName = originalMsg.content;
+    if (emojiName = "stop poll") {
         newMsg.delete({timeout: 2000})
         return true;
     }
+    if(!emojiName) return false;
     let emoji = cache.find(emoji => emoji.name.toLowerCase() === emojiName.toLowerCase());
     if(!emoji) {
-        originalMsg.delete({ timeout: 2000 })
+        originalMsg.delete({timeout : 2000})
         originalMsg.channel.send("Emoji does not exist")
             .then (msg => msg.delete({ timeout: 2000}))
             .catch (err => console.log(err));
@@ -39,7 +40,7 @@ run: async(client, message, args) => {
                         .then(msg.delete({ timeout: 2000 }))
                         .catch(err => console.log(err));
                     }
-                    else if (emojiName.toLowerCase() === "stop poll") {
+                    else if (emojiName.toLowerCase() == "stop poll") {
                     sentMessage.delete({ timeout: 2000});
                     msg.delete({ timeout: 2000 })
                     msg.channel.send("Poll Complete")
