@@ -2,9 +2,9 @@
     "315268202168844288": {
         "722490299368210503": {
             "username": "Plantan",
-            "userXP": 4100,
-            "userLevel": 5,
-            "userMoneys": 147
+            "userXP": 1100,
+            "userLevel": 2,
+            "userMoneys": 3402
         }
     },
     "415638460649701376": {
@@ -18,25 +18,25 @@
     "573964285584211969": {
         "722490299368210503": {
             "username": "Stitchy",
-            "userXP": 0,
+            "userXP": 2,
             "userLevel": 1,
-            "userMoneys": 0
+            "userMoneys": 1
         }
     },
     "735157583010332723": {
         "722490299368210503": {
             "username": "PlantanAlt0615",
-            "userXP": 1600,
+            "userXP": 1100,
             "userLevel": 2,
-            "userMoneys": 12
+            "userMoneys": 2054
         }
     },
     "315267588688969730": {
         "722490299368210503": {
             "username": "SpeedySquid",
-            "userXP": 0,
+            "userXP": 2,
             "userLevel": 1,
-            "userMoneys": 0
+            "userMoneys": 1
         }
     }
 }
