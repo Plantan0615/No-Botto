@@ -14,26 +14,35 @@ run: async(client, message, args) => {
         try {
             let fetchedMessage = await message.channel.messages.fetch(args);
             if (fetchedMessage) {
+            await message.channel.send("Please provide the number of poll options you wish to have.");
+            let optNum = channel.awaitMessages({max: 1})
+                .then(console.log(optNum))
+                .catch(err => console.log(err));
+                if (optNum){
                 await message.channel.send("Please provide an emoji name for each poll option, one by one");
-                let collector = new MessageCollector(message.channel, msgCollectorFilter.bind(null, message));
-                collector.on("collect", msg =>{
-                    let { cache } = msg.guild.emojis;
-                    let emoji = null
-                    let emojiName = msg.content
-                    emoji = cache.find(e => e.name.toLowerCase() === emojiName.toLowerCase());
-                    if (emoji){
-                       fetchedMessage.react(emoji)
-                        .then(emoji => console.log("Reacted"))
-                        .then(msg.delete({ timeout: 2000 }))
-                        .catch(err => console.log(err));
+                    var i;
+                    for (i = 0; i < optNum; i++){
+                        let collector = new MessageCollector(message.channel, msgCollectorFilter.bind(null, message));
+                        collector.on("collect", msg =>{
+                            let { cache } = msg.guild.emojis;
+                            let emoji = null
+                            let emojiName = msg.content
+                            emoji = cache.find(e => e.name.toLowerCase() === emojiName.toLowerCase());
+                            if (emoji){
+                            fetchedMessage.react(emoji)
+                                .then(emoji => console.log("Reacted"))
+                                .then(msg.delete({ timeout: 2000 }))
+                                .catch(err => console.log(err));
+                            }
+                            if(!emoji) {
+                                fetchedMessage.delete({timeout : 2000})
+                                fetchedMessage.channel.send("Emoji does not exist")
+                                    .then (msg => msg.delete({ timeout: 2000}))
+                                    .catch (err => console.log(err));
+                            }
+                        });
                     }
-                    if(!emoji) {
-                        fetchedMessage.delete({timeout : 2000})
-                        fetchedMessage.channel.send("Emoji does not exist")
-                            .then (msg => msg.delete({ timeout: 2000}))
-                            .catch (err => console.log(err));
-                    }
-                });
+                }
             }
         }
         catch(err) {
