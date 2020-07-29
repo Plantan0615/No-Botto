@@ -3,6 +3,8 @@ let msgCollectorFilter = (newMsg, originalMsg) => {
     let { cache } = originalMsg.guild.emojis;
     if(newMsg.author.id !== originalMsg.author.id) return false;
     let emojiName = originalMsg.content;
+    let unicodeEmoji = "🔵"||"🔴"||"🟣"
+    if (emojiName = unicodeEmoji){return true;}
     if (emojiName = "stop poll") {
         newMsg.delete({timeout: 2000})
         return true;
@@ -32,8 +34,13 @@ run: async(client, message, args) => {
                 let collector = new MessageCollector(message.channel, msgCollectorFilter.bind(null, message));
                 collector.on("collect", msg =>{
                     let { cache } = msg.guild.emojis;
+                    let emoji = null
                     let emojiName = msg.content
-                    let emoji = cache.find(emoji => emoji.name.toLowerCase() === emojiName.toLowerCase());
+                        if (["🔵","🔴","🟣"].includes(emojiName)) {
+                        emoji = emojiName  
+                        } else {
+                        emoji = cache.find(e => e.name.toLowerCase() === emojiName.toLowerCase());
+                        }
                     if (emoji){
                        fetchedMessage.react(emoji)
                         .then(emoji => console.log("Reacted"))
