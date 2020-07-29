@@ -1,4 +1,4 @@
-module.exports = (client, reaction, user) => {
+module.exports = async (client, reaction, user) => {
     if (user.bot) return;
     if (!reaction.message.guild) return;
     if(reaction.message.partial) reaction.message.fetch();
@@ -45,5 +45,26 @@ module.exports = (client, reaction, user) => {
     catch (err) {
             console.log(err);
         }
-    } 
+    }
+//STARBOARD
+const handleStarboard = async() => {
+    const starboard = client.channels.cache.find(channel => channel.name.toLowerCase() === "starboard")
+    const msgs = await starboard.messages.fetch({ limit: 100});
+    const existingMsg = msgs.find(msg => msg.embeds.length === 1 
+        ? (msg.embeds[0].footer.text.startsWith(reaction.message.id) ? true : false) : false);
+    if(existingMsg){existingMsg.edit(`${reaction.count} - ⭐`);
+    if (`${reaction.count}` === "0") {existingMsg.delete();}
+    }
+}
+if(reaction.emoji.name === "⭐") {
+    await reaction.fetch();
+    if(reaction.message.channel.name.toLowerCase() === "starboard") return;
+    if(reaction.message.partial) {
+        await reaction.message.fetch();
+        handleStarboard();
+    }
+   else{
+        handleStarboard();
+    }
+}
 }
