@@ -1,6 +1,5 @@
 const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 const { MessageEmbed } = require("discord.js");
-const fs = require("fs").promises;
 module.exports.run = async(client, message, args) => {
     let userID = message.author.id
     let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
