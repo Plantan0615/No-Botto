@@ -11,6 +11,8 @@ module.exports.run = async(client, message, args) => {
     let funChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "fun-stuff");
     let pollsChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "polls");
     let roleMenu = client.channels.cache.find(channel => channel.name.toLowerCase() === "role-menu");
+    let testingChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "testing-channel");
+    let starboardChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "starboard");
     let antChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "ant");
     //send message based on request
     let request = message.content.toLowerCase().substring(6);
@@ -33,6 +35,14 @@ module.exports.run = async(client, message, args) => {
     else if(request === "role menu"){
         message.delete();
         roleMenu.send(announcement).then(msg => msg.delete({timeout: 15000})).catch(console.error);
+    }
+    else if(request === "testing channel"){
+        message.delete();
+        testingChannel.send(announcement).then(msg => msg.delete({timeout: 15000})).catch(console.error);
+    }
+    else if(request === "starboard"){
+        message.delete();
+        starboardChannel.send(announcement).then(msg => msg.delete({timeout: 15000})).catch(console.error);
     }
     else if(request === "ant"){
         message.delete();

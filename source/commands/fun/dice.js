@@ -1,4 +1,4 @@
-const fs = require("fs").promises;
+const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 module.exports.run = async(client, message, args) => {
     function rollDie() {
         return (Math.floor(Math.random() *6) + 1)
@@ -29,27 +29,22 @@ let wager = (msgArray[1]);
                 .catch(err => console.log(err));
             }
     else {
-        let xpFile = await fs.readFile("userXP.json", "utf8");
-        let xpObject = JSON.parse(xpFile);
-        if(xpObject.hasOwnProperty(message.author.id)){
-            let userXpObject = xpObject[message.author.id];
-            if (userXpObject.hasOwnProperty(message.guild.id)){
-            let guildXpObject = userXpObject[message.guild.id];
-            let newMoneys = parseInt(wager);
-            let currentMoneys = guildXpObject["userMoneys"];
+    let userID = message.author.id
+    let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
+    let userXpObject= prepareStatement.get(`${userID}`)
+        let newMoneys = parseInt(wager);
+        let currentMoneys = userXpObject["userMoneys"];
     if (evenOdd === compare){
-        let updatedMoneys = newMoneys + currentMoneys;
-        xpObject[message.author.id][message.guild.id]["userMoneys"] = updatedMoneys;
-        await fs.writeFile("userXP.json", JSON.stringify (xpObject, null, 4), "utf8").catch(err=> console.log(err));
+        let finalMoneys = newMoneys + currentMoneys
+        let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
+        prepareUpdate.run(finalMoneys, userID);
         message.reply("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare + " You Win " + wager + " Moneys!");
     }
     else if (evenOdd !== compare){
-        let updatedMoneys = currentMoneys - newMoneys;
-        xpObject[message.author.id][message.guild.id]["userMoneys"] = updatedMoneys;
-        await fs.writeFile("userXP.json", JSON.stringify (xpObject, null, 4), "utf8").catch(err=> console.log(err));
+        let finalMoneys = currentMoneys - newMoneys;
+        let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
+        prepareUpdate.run(finalMoneys, userID);
         message.reply("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare + " You Lost " + wager + " Moneys!");
                 }
             }
-        }
-    }
-};
+        };
