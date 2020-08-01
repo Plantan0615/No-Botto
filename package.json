@@ -14,7 +14,9 @@
   "author": "Chase Smith",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^7.1.0",
     "discord.js": "^12.2.0",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "node-gyp": "^7.0.0"
   }
 }

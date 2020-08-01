@@ -1,4 +1,5 @@
 const fs = require("fs").promises;
+const sqlite = require("sqlite3").verbose();
 //
 // If you want to figure out how to reference the .env file the prefix declaration is where to do it
 //
@@ -15,9 +16,10 @@ module.exports = async(client, message) => {
     //
     //You need to set up the path so it references the userxpJSON file on your pc
     //
+
     const userxp = require("/Users/chase/Desktop/Coding/No Botto/source/userXP.json");
     //xp
-    if(!message.content.startsWith(PREFIX)){
+    if(!message.content.startsWith(PREFIX)){    
         //declare and check stuff
         let xpFile = await fs.readFile("userXP.json", "utf8");
         let xpObject = JSON.parse(xpFile);

@@ -56,8 +56,8 @@ const handleStarboard = async () => {
         .setColor("YELLOW")
         .setAuthor(reaction.message.author.tag, reaction.message.author.displayAvatarURL())
         .addField("Message:", reaction.message.content)
-        .setDescription(reaction.message.url)
-        .setFooter(reaction.message.id + " - " + new Date(reaction.message.createdTimestamp) + "Message ID and Post Date");
+        .setDescription(`[React to me here](${reaction.message.url})`)
+        .setFooter(reaction.message.id + " - " + new Date(reaction.message.createdTimestamp) + " - Message ID and Post Date");
         if (starboard){starboard.send(" 1- ⭐", embed);}
     }
 }
