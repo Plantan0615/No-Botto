@@ -59,7 +59,7 @@ module.exports = {
 
                 for (let i = 0; i < convertedNum; i++) {
                    let optMsg = await message.channel.send(`Please provide an emoji for poll option ${(i + 1)}, one emoji please`);
-                    optMsg.delete({ timeout: 10000});
+                    optMsg.delete({ timeout: 2000});
                     let msgCollectorFilter = async m => {
                         const result = m.cleaContent
                         let regex = /:([a-zA=Z_]+):/g
@@ -113,9 +113,8 @@ module.exports = {
                         })
                     } else {
                         await fetchedMessage.react(emojiCache)
-                    }
-
-                }
+                    } 
+                } await message.channel.bulkDelete(emojiArr.length + 2).catch(err => console.log(err))
             }
         }
     },

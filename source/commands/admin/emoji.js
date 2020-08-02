@@ -45,7 +45,7 @@ module.exports = {
         }
         let isValid = fetchedMessage != undefined ? fetchedMessage.author.id == message.author.id : false
         if (fetchedMessage != undefined && isValid == true) {
-            let optNumMsg = await message.channel.send("Please provide the number of poll options you wish to have.");
+            let optNumMsg = await message.channel.send("Please provide the number of role menu options you wish to have.");
                 optNumMsg.delete({ timeout: 10000});
             let filterMsg = (msg) => {
                 return message.author.id == msg.author.id && msg.content.length >= 1 && msg.content.length <= 2 && (!isNaN(msg.content) && parseInt(msg.content) >= 1 && parseInt(msg.content) <= 12)
@@ -64,8 +64,8 @@ module.exports = {
                 let emojiArr = []
 
                 for (let i = 0; i < convertedNum; i++) {
-                   let optMsg = await message.channel.send(`Please provide an emoji for poll option ${(i + 1)}, one emoji please`);
-                    optMsg.delete({ timeout: 10000});
+                   let optMsg = await message.channel.send(`Please provide an emoji for role menu option ${(i + 1)}, one emoji please`);
+                    optMsg.delete({ timeout: 2000});
                     let msgCollectorFilter = async m => {
                         const result = m.cleaContent
                         let regex = /:([a-zA=Z_]+):/g
@@ -119,14 +119,9 @@ module.exports = {
                         })
                     } else {
                         await fetchedMessage.react(emojiCache)
-                    }
-
-                }
+                    } 
+                } await message.channel.bulkDelete(emojiArr.length + 2).catch(err => console.log(err))
             }
         }
     },
 }
-
-
-
-

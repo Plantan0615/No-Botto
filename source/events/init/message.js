@@ -47,10 +47,9 @@ module.exports = async(client, message) => {
 
         if (userXpObject == undefined) {
             // Does not exist
-            let prepareInsert = sql.prepare(`INSERT INTO data (userID, guildID, username, userXP, userLevel, userMoneys) VALUES (?, ?, ?, ?, ?, ?)`)
-            prepareInsert.run(userID, message.guild.id, username, 2, 1, 1)
+            let prepareInsert = sql.prepare(`INSERT INTO data (userID, guildID, username, userXP, userLevel, userMoneys, warnNum, warnReason) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+            prepareInsert.run(userID, message.guild.id, username, 2, 1, 1, 0, "N/A")
         } else {
-            console.log(userXpObject)
             let newXp = 2;
             let currentXp = userXpObject["userXP"]
             let newMoneys = 1

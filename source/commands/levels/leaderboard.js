@@ -1,28 +1,25 @@
 const discord = require("discord.js");
 const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 module.exports.run = async(client, message, args) => {
-    let guildID = message.guild.id
-    let userID = message.author.id
-    let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
-    let guildXpObject= prepareStatement.get(`${guildID}`)
-    let userxpObject = prepareStatement.get(`${userID}`)
-
-
-
-//                     let currentXp = guildXpObject["userXP"];//1 userXP
-//                     let username = guildXpObject["username"];//1 username
-//                     var userObject = {currentXp, username}
-//         console.log(userObject);
-
-
-    
- //send leaderboard array in embed
+let prepareStatement = sql.prepare("SELECT username, userXP FROM data ORDER BY userXP DESC")
+let userXpObject = prepareStatement.all()
+let leaderArray = userXpObject.map(Object.values);
+//send leaderboard array in embed
     const leaderEmbed = new discord.MessageEmbed()
-    .setTitle("Leaderboard")
-    .setDescription("PXTC XP Leaderboard")
+    .setTitle("XP Leaderboard")
+    .setDescription("Top 10:")
     .setColor("BLURPLE")
-    .addField("Rankings:", leaderArray);
-
-    message.delete();
-    message.reply(leaderEmbed);
+    .addFields(
+        {name: "1", value: leaderArray [0], inline: true},
+        {name: "2", value: leaderArray [1], inline: true},
+        {name: "3", value: leaderArray [2], inline: true},
+        {name: "4", value: leaderArray [3], inline: true},
+        {name: "5", value: leaderArray [4], inline: true},
+        {name: "6", value: leaderArray [5], inline: true},
+        {name: "7", value: leaderArray [6], inline: true},
+        {name: "8", value: leaderArray [7], inline: true},
+        {name: "9", value: leaderArray [8], inline: true},
+        {name: "10", value: leaderArray [9], inline: true}
+    );
+    message.channel.send(leaderEmbed);
  }
