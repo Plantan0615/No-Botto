@@ -1,6 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 module.exports.run = async(client, message, args) => {
-// navigating help
+//help
 const helpEmbed = new MessageEmbed()
     .setColor('#0099ff')
 	.setTitle('Navigating Help')
@@ -15,7 +15,7 @@ const helpEmbed = new MessageEmbed()
         { name: "~help economy", value: "Type this for help understanding PXTC's economy and level systems."},
         { name: "~help admin", value: "Type this to see what features I have for admins."}
     );
-//fun help
+//fun
 const funEmbed = new MessageEmbed()
     .setColor('#0099ff')
 	.setTitle('Fun Help')
@@ -30,19 +30,18 @@ const funEmbed = new MessageEmbed()
         { name: "~wyr", value: "Simply type the command and I will provide you with a Would You Rather scenario, and react with options A and B to allow for easy voting."},
         { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with the ⭐ and I will add the post to the Starboard channel for you."}
     );
-//poll help
+//poll
 const pollEmbed = new MessageEmbed()
     .setColor('#0099ff')
 	.setTitle('How to Create A Poll')
     .setDescription('Help With Using ~poll')
     .addFields(
-        { name: "Step 1", value: "Create the message you want me to react to. If you won't remember the names of the emojis you've included put their names somewhere in the poll itself (you can edit the poll after everything is sorted)"},
+        { name: "Step 1", value: "Create the message you want me to react to."},
         { name: "Step 2", value: "Copy the ID of the message you just sent (You will need developer tools on for this. Go to settings, then appearance, and turn it on). Type the poll command and paste the ID."},
-        { name: "Step 3", value: "You will then be prompted to provide the name of each emoji you want me to react with (one message at a time)."},
-        { name: "Step 4", value: "Once you have all of the reactions you need type 'stop poll'. If you don't, I will send a message saying 'invalid emoji', if it isn't an emoji anyways. (If it happens to be the name of an emoji in the server I will add it to your poll)."},
-        { name: "Step 5", value: "I will delete the messages you have sent (except for the poll itself). If you need to edit the poll, do so at this point."}
+        { name: "Step 3", value: "You will then be prompted to provide the emojis you want me to react with (one message at a time)."},
+        { name: "Step 4", value: "I will delete the messages you and I have sent (except for the poll itself). If you need to edit the poll, do so at this point."}
     );
-//random help
+//random
 const randomImageEmbed = new MessageEmbed()
     .setColor('#0099ff')
 	.setTitle('Get a random image, animal fact, or GIF')
@@ -64,16 +63,6 @@ const roleEmbed = new MessageEmbed()
         { name: "Reacting for Roles", value: "You can add roles to (and remove roles from) yourself by reacting (and unreacting) to the messages in #role-menu (I will only add the role if you react in that channel)."},
         { name: "Level Roles", value: "The Noobz, iPhone Photographers, Soy Boys, Crafty Crew, and Epic Gamers Roles are level roles (based on xp, earned by takling). You CANNOT add yourself to (or remove yourself from) these roles."}
     );
-//useful help
-const usefulEmbed = new MessageEmbed()
-    .setColor('#0099ff')
-	.setTitle('Useful Help')
-    .setDescription('Help With Useful Commands')
-    .addFields(
-        { name: "~find", value: "Type this followed by the channel you want me to find. I will ping you in that channel, then delete the messages after 15 seconds."},
-        { name: "~sanity", value: "Type this to see if I am still online."},
-        { name: "~password", value: "For newcomers to type the password after the command. Do not tell others the password."}
-    );
 //role list
 const roleListEmbed = new MessageEmbed()
     .setColor('#0099ff')
@@ -85,25 +74,39 @@ const roleListEmbed = new MessageEmbed()
         { name: "Category 3", value: "I Need to Read the Rules, Noobz, iPhone Photographers, Soy Boys, Crafty Crew, Epic Gamers"},
         { name: "Category 4", value: "Admin, No Botto, Bot"}
     );
-//economy help
+//useful
+const usefulEmbed = new MessageEmbed()
+.setColor('#0099ff')
+.setTitle('Useful Help')
+.setDescription('Help With Useful Commands')
+.addFields(
+    { name: "~find", value: "Type this followed by the channel you want me to find. I will ping you in that channel, then delete the messages after 15 seconds."},
+    { name: "~myWarnings", value: "Type this command to see how many warnings you have, and the reasons for those warnings."},
+    { name: "~sanity", value: "Type this to see if I am still online."},
+    { name: "~password", value: "For newcomers to type the password after the command. Do not tell others the password. If you have the role I Need to Read the Rules, you need to type this with the password."}
+);
+//economy
 const economyEmbed = new MessageEmbed()
     .setColor('#0099ff')
 	.setTitle('Economy Help')
     .setDescription('Help With Understanding PXTCs Economy and Levels Systems')
     .addFields(
         { name: "~daily", value: "Type this once a day to earn 200 Moneys"},
-        { name: "~stats", value: "Type this to see your current XP, Level, and Moneys"},
+        { name: "~leaderboard", value: "Type this to see the leaderboard of XP earners. At the moment you can only see the top 10."},
+        { name: "~stats", value: "Type this to see your current XP, Level, and Moneys."},
         { name: "How to Earn XP/Level Up", value: "Simply by talking! You will level up once you reach a certain amount of XP. Once you have reached a certain level, you will get a new Level Role"},
         { name: "How to Earn Moneys", value: "You can earn moneys by talking, and using the daily command!"}
     );
-//admin help
+//admin
     const adminEmbed = new MessageEmbed()
     .setColor('#0099ff')
     .setTitle('')
     .setDescription('Help With Admin Only Commands')
     .addFields(
-        { name: "~emoji", value: "For setting up role menus. Works similarly to poll, except each message in Step 3 should be formatted as 'emoji name, role name', and to stop the reactions to the role menu it's 'stop, menu'."},
-        { name: "~purge", value: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete."}
+        { name: "~emoji", value: "For setting up role menus. Works similarly to poll. Type ~help poll if you need help there."},
+        { name: "~purge", value: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete."},
+        {name: "~userWarns", value: "For viewing the warnings of members. Type this command followed by the username (NOT nickname)."},
+        {name: "~warn", value: "For warning members. Type the command followed by the username (NOT nickname) and the reason for the warning (separated with a comma)"}
     );
 //help menu navigation
 var helpType = message.content.toLowerCase().substring(6);
