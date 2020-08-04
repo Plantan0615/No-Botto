@@ -1,10 +1,17 @@
 module.exports.run = async (client, message, args) => {
-    if(!message.member.hasPermission("ADMINISTRATOR")) return message.reply("You cannot clear messages");
+    if(!message.member.hasPermission("ADMINISTRATOR")) {
+        message.channel.send("You cannot clear messages.").then(msg => msg.delete({timeout: 2000})).catch(err => console.log(err)); 
+        message.delete(); return;}
     let num = parseInt(args)
-    if(!num) return message.reply("Must provide number of messages to delete");
-    if (num > 99) return message.reply("Too many messages (max 99)");
+    if(!num){        
+        message.channel.send("Must provide number of messages to delete.").then(msg => msg.delete({timeout: 2000})).catch(err => console.log(err)); 
+        message.delete(); return;}
+    if (num > 99) {
+        message.channel.send("Too many messages. (maximum: 99)").then(msg => msg.delete({timeout: 2000})).catch(err => console.log(err)); 
+        message.delete(); return;
+    }
     message.channel.bulkDelete(num + 1)
     .then(() => {
-        message.channel.send(`Cleared the messages`).then(msg => msg.delete({timeout: 300}));
+        message.channel.send(`Cleared the messages`).then(msg => msg.delete({timeout: 700}));
     }).catch(console.error)
 }

@@ -7,16 +7,16 @@ module.exports.run = async(client, message, args) => {
         let role = cache.find(role => role.name.toLowerCase() === roleName.toLowerCase());
         if(role) {
             if(role.permissions.has("ADMINISTRATOR") || role.permissions.has("KICK_MEMBERS") || role.permissions.has("BAN_MEMBERS")){
-                message.channel.send("You cannot add yourself to this role");
+                message.channel.send("You cannot add yourself to this role").then(msg => msg.delete({timeout: 5000})).catch(err => console.log(err)) 
                 return;
             }
             else if (role.id === "735218837057962058" || role.id === "736668508129198170" || role.id === "736676248884871231" || role.id === "736676760971640892" || role.id === "736676859596767413"){
-                message.channel.send("You cannot add yourself to this role");
+                message.channel.send("You cannot add yourself to this role").then(msg => msg.delete({timeout: 5000})).catch(err => console.log(err)) 
                 return;
             }
             else if(message.member.roles.cache.has(role.id)) {
-                message.channel.send("You already have this role");
-                return;
+                message.channel.send("You already have this role").then(msg => msg.delete({timeout: 5000})).catch(err => console.log(err)) 
+               return;
             }
             else {
                 message.member.roles.add(role)
@@ -24,11 +24,14 @@ module.exports.run = async(client, message, args) => {
                  .catch(err => {
                     console.log(err)
                     message.channel.send("Something went wrong");
+                    return;
             });
         }
     }
         else {
-            message.channel.send("Role Not Found");
+            message.channel.send("Role Not Found.").then(msg => msg.delete({timeout: 5000})).catch(err => console.log(err));
+            return;
         }
     });
+    message.delete();
 }

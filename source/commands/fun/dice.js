@@ -1,4 +1,5 @@
 const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
     function rollDie() {
         return (Math.floor(Math.random() *6) + 1)
@@ -34,17 +35,34 @@ let wager = (msgArray[1]);
     let userXpObject= prepareStatement.get(`${userID}`)
         let newMoneys = parseInt(wager);
         let currentMoneys = userXpObject["userMoneys"];
+        if (wager > currentMoneys){
+            message.delete({ timeout: 2000 })
+            message.channel.send("Your wager is higher than the Moneys you have!")
+                .then(msg => msg.delete({timeout: 2000}))
+                .catch(err => console.log(err));
+                return;
+        }
     if (evenOdd === compare){
         let finalMoneys = newMoneys + currentMoneys
         let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
         prepareUpdate.run(finalMoneys, userID);
-        message.reply("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare + " You Win " + wager + " Moneys!");
+
+        const winEmbed = new discord.MessageEmbed()
+        .setTitle("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare)
+        .setDescription("You Win " + wager + " Moneys!")
+        .setColor("GREEN")
+        message.channel.send(winEmbed)
     }
     else if (evenOdd !== compare){
         let finalMoneys = currentMoneys - newMoneys;
         let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
         prepareUpdate.run(finalMoneys, userID);
-        message.reply("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare + " You Lost " + wager + " Moneys!");
+
+        const loseEmbed = new discord.MessageEmbed()
+        .setTitle("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare)
+        .setDescription("You Lost " + wager + " Moneys!")
+        .setColor("RED")
+        message.channel.send(loseEmbed)
                 }
             }
         };

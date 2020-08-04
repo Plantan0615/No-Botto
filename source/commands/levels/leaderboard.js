@@ -2,8 +2,7 @@ const discord = require("discord.js");
 const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 module.exports.run = async(client, message, args) => {
     let prepareStatement = sql.prepare(`SELECT userID, username, userXP, RANK() OVER ( ORDER BY userXP DESC ) Rank FROM data`);
-    let guildObject =prepareStatement.all();
-    let leaderArray = guildObject.map(Object.values);
+    let guildObject = prepareStatement.all();
     function getInfo(item){
         var info = [item.username, item.userXP]
         return info
@@ -63,8 +62,10 @@ const thirdEmbed = new discord.MessageEmbed()
     {name: "30", value: modArray [29], inline: true}
 );
 //send embed based on index
-let user = leaderArray[0].filter(v => v.userID = message.author.id)
-let userRank = user[3]
+let uID = message.author.id
+let user = guildObject.find(o => o.userID === `${uID}`)
+let userArr = Object.values(user)
+let userRank = userArr[3]
 if (userRank <= 9) {message.channel.send(leaderEmbed);}
 else if (userRank >= 10 && userRank <= 19) {message.channel.send(secondEmbed);}
 else if (userRank >= 20 && userRank <= 29) {message.channel.send(thirdEmbed);}

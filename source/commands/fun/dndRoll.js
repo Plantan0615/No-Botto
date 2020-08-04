@@ -1,3 +1,4 @@
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 var rollType = message.content.substring(9);
 if (rollType === "4"){
@@ -5,49 +6,70 @@ if (rollType === "4"){
         return (Math.floor(Math.random() *4) + 1)
     }
     let roll = rollFour();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 if (rollType === "6"){
     function rollSix() {
         return (Math.floor(Math.random() *6) + 1)
     }
     let roll = rollSix();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 if (rollType === "8"){
     function rollEight() {
         return (Math.floor(Math.random() *8) + 1)
     }
     let roll = rollEight();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 if (rollType === "10"){
     function rollTen() {
         return (Math.floor(Math.random() *10) + 1)
     }
     let roll = rollTen();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 if (rollType === "12"){
     function rollTwelve() {
         return (Math.floor(Math.random() *12) + 1)
     }
     let roll = rollTwelve();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 if (rollType === "20"){
     function rollTwenty() {
         return (Math.floor(Math.random() *20) + 1)
     }
     let roll = rollTwenty();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 if (rollType === "100"){
     function rollHundred() {
         return (Math.floor(Math.random() *100) + 1)
     }
     let roll = rollHundred();
-    message.reply("Rolled a " + roll);
+    const rollEmbed = new discord.MessageEmbed()
+    .setTitle("Rolled a " + roll)
+    .setColor("GREEN");
+    message.channel.send(rollEmbed);
 }
 else  if (!rollType){
     message.delete({ timeout: 2000 })

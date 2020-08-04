@@ -1,3 +1,4 @@
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 let category = message.content.toLowerCase().substring(8);
 //declare objects
@@ -47,7 +48,10 @@ function animal() {
     return(animals [Object.keys(animals)[Math.floor(Math.random() * Object.keys(animals).length)]])
 };
 var response1 = animal();
-message.reply (response1);
+const promptEmbed = new discord.MessageEmbed()
+    .setTitle(response1)
+    .setColor("GREEN");
+    message.channel.send(promptEmbed);
 }
 //Random item within object- bodyParts
 else if(category == "body parts") {
@@ -55,7 +59,10 @@ function body() {
     return (bodyParts [Object.keys(bodyParts)[Math.floor(Math.random() * Object.keys(bodyParts).length)]])
 };
 var response2 = body();
-message.reply (response2);
+const promptEmbed = new discord.MessageEmbed()
+    .setTitle(response2)
+    .setColor("GREEN");
+    message.channel.send(promptEmbed);
 }
 //Random item within object- buildings
 else if(category == "buildings") {
@@ -63,7 +70,10 @@ function building() {
     return (buildings [Object.keys(buildings)[Math.floor(Math.random() * Object.keys(buildings).length)]])
 };
 var response3 = building();
-message.reply (response3);
+const promptEmbed = new discord.MessageEmbed()
+    .setTitle(response3)
+    .setColor("GREEN");
+    message.channel.send(promptEmbed);
 }
 //Random item within object- expressions
 else if(category == "expressions") {
@@ -71,7 +81,10 @@ function expression() {
     return (expressions [Object.keys(expressions)[Math.floor(Math.random() * Object.keys(expressions).length)]])
 };
 var response4 = expression();
-message.reply (response4);
+const promptEmbed = new discord.MessageEmbed()
+    .setTitle(response4)
+    .setColor("GREEN");
+    message.channel.send(promptEmbed);
 }
 //Random item within object- plants
 else if(category == "plants") {
@@ -79,7 +92,10 @@ function plant() {
     return (plants [Object.keys(plants)[Math.floor(Math.random() * Object.keys(plants).length)]])
 };
 var response5 = plant();
-message.reply (response5);
+const promptEmbed = new discord.MessageEmbed()
+    .setTitle(response5)
+    .setColor("GREEN");
+    message.channel.send(promptEmbed);
 }
 //error
 else {

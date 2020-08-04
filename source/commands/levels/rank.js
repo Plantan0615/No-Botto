@@ -3,9 +3,10 @@ const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/sour
 module.exports.run = async(client, message, args) => {
     let prepareStatement = sql.prepare(`SELECT userID, username, userXP, RANK() OVER ( ORDER BY userXP DESC ) Rank FROM data`);
     let guildObject =prepareStatement.all();
-    let leaderArray = guildObject.map(Object.values);
-    let user = leaderArray[0].filter(v => v.userID = message.author.id)
-    let userRank = user[3]
+    let uID = message.author.id
+    let user = guildObject.find(o => o.userID === `${uID}`)
+    let userArr = Object.values(user)
+    let userRank = userArr[3]
 //send embed
     const rankEmbed = new discord.MessageEmbed()
     .setTitle(`Ranking for ${message.author.username}`)

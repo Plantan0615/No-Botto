@@ -16,6 +16,5 @@ module.exports.run = async(client, message, args) => {
                     message.channel.send("Daily Complete. Have 200 Moneys.")
     talkedRecently.add(message.author.id);
     setTimeout(() => {talkedRecently.delete(message.author.id);}, 86400000);
-    console.log(talkedRecently);
 }
 }

@@ -11,7 +11,7 @@ let msgCollectorFilter = (newMsg, originalMsg) => {
 module.exports = {
     run: async(client, message, args) => {
     if(!message.member.hasPermission("ADMINISTRATOR")){
-        message.delete();
+        message.channel.bulkDelete(2).catch(err => console.log(err));
         let noAccess = await message.channel.send("You cannot set up role menus");
         await noAccess.delete({ timeout: 3500 }).catch(err => console.log(err));
         return;

@@ -2,6 +2,10 @@ const axios = require("axios");
 const {MessageEmbed} = require("discord.js");
 module.exports.run = async(client, message, args) => {
 let request = message.content.toLowerCase().substring(8);
+if(!request) {
+    message.channel.send("Must provide a Request Query. Please type ~help random for all of the valid Request Queries.").then(msg => msg.delete({timeout: 5000})).catch(err => console.log(err)); 
+    message.delete(); return;
+}
 //meme
 if (request === "meme"){
     const url = "https://some-random-api.ml/meme"
@@ -254,4 +258,8 @@ else if (request === "koala fact"){
         .addField("You might not know:", data.fact);
     await message.channel.send(koalaFactEmbed)
     }
+else {
+    message.channel.send("Invalid Request Query. Please type ~help random for all of the valid Request Queries.").then(msg => msg.delete({timeout: 5000})).catch(err => console.log(err)); 
+    message.delete(); return;
+}
 };

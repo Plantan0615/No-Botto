@@ -1,3 +1,4 @@
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 var scenarios = [
     {scenarioA: "be blind", scenarioB: "be deaf"},
@@ -10,7 +11,11 @@ function pickScenario (){
     return scenarios[Math.floor(Math.random() * scenarios.length)]
 };
 var situation = pickScenario();
-message.channel.send ("Would you rather " + situation.scenarioA + " or " + situation.scenarioB + " ?")
+const wyrEmbed = new discord.MessageEmbed()
+.setTitle("Would you rather:")
+.setDescription(situation.scenarioA + " or " + situation.scenarioB + " ?")
+.setColor("BLUE")
+await message.channel.send(wyrEmbed)
     .then (function(message){
         message.react("🅰️");
         message.react("🅱️");

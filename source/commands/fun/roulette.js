@@ -1,4 +1,5 @@
 const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 // roulette functions
 var wheel ={
@@ -73,25 +74,47 @@ else{
     let userXpObject= prepareStatement.get(`${userID}`)
         let newMoneys = parseInt(wager);
         let currentMoneys = userXpObject["userMoneys"];
+        if (wager > currentMoneys){
+            message.delete({ timeout: 2000 })
+            message.channel.send("Your wager is higher than the Moneys you have!")
+                .then(msg => msg.delete({timeout: 2000}))
+                .catch(err => console.log(err));
+                return;
+        }
         if (colourGuess === colour) {
             if (numGuess === num){
                 let finalMoneys = newMoneys + currentMoneys
                 let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
                 prepareUpdate.run(finalMoneys, userID);
-                message.reply ("The ball landed on " + colour + " " + num + ". You Win " + wager + " Moneys!");
+
+                const winEmbed = new discord.MessageEmbed()
+                .setTitle("The ball landed on " + colour + " " + num )
+                .setDescription("You Win " + wager + " Moneys!")
+                .setColor("GREEN")
+                message.channel.send(winEmbed)
                 }
             else if(numGuess !== num){
                 let finalMoneys = currentMoneys - newMoneys;
                 let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
                 prepareUpdate.run(finalMoneys, userID);
-                message.reply ("The ball landed on " + colour + " " + num + ". You Lost " + wager + " Moneys!");
+
+                const loseEmbed = new discord.MessageEmbed()
+                .setTitle("The ball landed on " + colour + " " + num )
+                .setDescription("You Lost " + wager + " Moneys!")
+                .setColor("RED")
+                message.channel.send(loseEmbed)
                 }
             }
         else if (colourGuess !== colour){
                 let finalMoneys = currentMoneys - newMoneys;
                 let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
                 prepareUpdate.run(finalMoneys, userID);
-                message.reply ("The ball landed on " + colour + " " + num + ". You Lost " + wager + " Moneys!");  
+
+                const loseEmbed = new discord.MessageEmbed()
+                .setTitle("The ball landed on " + colour + " " + num )
+                .setDescription("You Lost " + wager + " Moneys!")
+                .setColor("RED")
+                message.channel.send(loseEmbed)
                 }      
         }
     };

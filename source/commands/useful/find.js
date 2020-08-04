@@ -14,6 +14,7 @@ module.exports.run = async(client, message, args) => {
     let testingChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "testing-channel");
     let starboardChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "starboard");
     let antChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "ant");
+    let mannyChannel = client.channels.cache.find(channel => channel.name.toLowerCase() === "manny");
     //send message based on request
     let request = message.content.toLowerCase().substring(6);
     if(request === "updates"){
@@ -47,6 +48,10 @@ module.exports.run = async(client, message, args) => {
     else if(request === "ant"){
         message.delete();
         antChannel.send(announcement).then(msg => msg.delete({timeout: 15000})).catch(console.error);
+    }
+    else if(request === "manny"){
+        message.delete();
+        mannyChannel.send(announcement).then(msg => msg.delete({timeout: 15000})).catch(console.error);
     }
     else {
         message.delete({timeout: 5000})
