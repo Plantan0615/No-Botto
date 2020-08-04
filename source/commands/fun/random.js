@@ -15,7 +15,7 @@ if (request === "meme"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const memeEmbed = new MessageEmbed()
         .setTitle("Random Meme")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription(data.caption)
         .setImage(data.image);
     await message.channel.send(memeEmbed)
@@ -29,7 +29,7 @@ else if (request === "cat"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const catEmbed = new MessageEmbed()
         .setTitle("Random Cat Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A cat")
         .setImage(data.link);
     await message.channel.send(catEmbed)
@@ -43,7 +43,7 @@ else if (request === "dog"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const dogEmbed = new MessageEmbed()
         .setTitle("Random Dog Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A dog")
         .setImage(data.link);
     await message.channel.send(dogEmbed)
@@ -57,7 +57,7 @@ else if (request === "panda"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const pandaEmbed = new MessageEmbed()
         .setTitle("Random Panda Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A panda")
         .setImage(data.link);
     await message.channel.send(pandaEmbed)
@@ -71,7 +71,7 @@ else if (request === "red panda"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const redPandaEmbed = new MessageEmbed()
         .setTitle("Random Red Panda Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A red panda")
         .setImage(data.link);
     await message.channel.send(redPandaEmbed)
@@ -85,7 +85,7 @@ else if (request === "birb"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const birbEmbed = new MessageEmbed()
         .setTitle("Random Bird Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A birb")
         .setImage(data.link);
     await message.channel.send(birbEmbed)
@@ -99,7 +99,7 @@ else if (request === "koala"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const koalaEmbed = new MessageEmbed()
         .setTitle("Random Koala Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A koala")
         .setImage(data.link);
     await message.channel.send(koalaEmbed)
@@ -113,7 +113,7 @@ else if (request === "fox"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const foxEmbed = new MessageEmbed()
         .setTitle("Random Fox Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A fox")
         .setImage(data.link);
     await message.channel.send(foxEmbed)
@@ -127,7 +127,7 @@ else if (request === "pikachu"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const pikachuEmbed = new MessageEmbed()
         .setTitle("Random Pikachu Image")
-        .setColor("BLURPLE")
+        .setColor("#4e14c7")
         .setDescription("A wild Pikachu has appeared!")
         .setImage(data.link);
     await message.channel.send(pikachuEmbed)
@@ -141,7 +141,7 @@ else if (request === "wink"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const winkEmbed = new MessageEmbed()
         .setTitle("Random Winking GIF")
-        .setColor("BLURPLE")
+        .setColor("#6344be")
         .setDescription("Wink wink. Nudge nudge.")
         .setImage(data.link);
     await message.channel.send(winkEmbed)
@@ -155,7 +155,7 @@ else if (request === "pat"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const patEmbed = new MessageEmbed()
         .setTitle("Random Pat Pat GIF")
-        .setColor("BLURPLE")
+        .setColor("#6344be")
         .setDescription("Pat. Pat...... This feels wrong.")
         .setImage(data.link);
     await message.channel.send(patEmbed)
@@ -169,7 +169,7 @@ else if (request === "hug"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const hugEmbed = new MessageEmbed()
         .setTitle("Random Hug GIF")
-        .setColor("BLURPLE")
+        .setColor("#6344be")
         .setDescription("I give you my virtual hugs.")
         .setImage(data.link);
     await message.channel.send(hugEmbed)
@@ -183,7 +183,7 @@ else if (request === "dog fact"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const dogFactEmbed = new MessageEmbed()
         .setTitle("Random Dog Fact")
-        .setColor("BLURPLE")
+        .setColor("#220761")
         .setDescription("A fact about dogs.")
         .addField("You might not know:", data.fact);
     await message.channel.send(dogFactEmbed)
@@ -197,7 +197,7 @@ else if (request === "cat fact"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const catFactEmbed = new MessageEmbed()
         .setTitle("Random Cat Fact")
-        .setColor("BLURPLE")
+        .setColor("#220761")
         .setDescription("A fact about cats.")
         .addField("You might not know:", data.fact);
     await message.channel.send(catFactEmbed)
@@ -211,7 +211,7 @@ else if (request === "panda fact"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const pandaFactEmbed = new MessageEmbed()
         .setTitle("Random Panda Fact")
-        .setColor("BLURPLE")
+        .setColor("#220761")
         .setDescription("A fact about pandas.")
         .addField("You might not know:", data.fact);
     await message.channel.send(pandaFactEmbed)
@@ -225,7 +225,7 @@ else if (request === "fox fact"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const foxFactEmbed = new MessageEmbed()
         .setTitle("Random Fox Fact")
-        .setColor("BLURPLE")
+        .setColor("#220761")
         .setDescription("A fact about foxes.")
         .addField("You might not know:", data.fact);
     await message.channel.send(foxFactEmbed)
@@ -239,7 +239,7 @@ else if (request === "bird fact"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const birdFactEmbed = new MessageEmbed()
         .setTitle("Random Bird Fact")
-        .setColor("BLURPLE")
+        .setColor("#220761")
         .setDescription("A fact about birds.")
         .addField("You might not know:", data.fact);
     await message.channel.send(birdFactEmbed)
@@ -253,7 +253,7 @@ else if (request === "koala fact"){
     catch (e) {return message.channel.send(`data:` `An error has occurred`)}
     const koalaFactEmbed = new MessageEmbed()
         .setTitle("Random Koala Fact")
-        .setColor("BLURPLE")
+        .setColor("#220761")
         .setDescription("A fact about koalas.")
         .addField("You might not know:", data.fact);
     await message.channel.send(koalaFactEmbed)

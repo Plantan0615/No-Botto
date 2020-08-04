@@ -39,7 +39,7 @@ if(role) {
         const rulesEmbed = new discord.MessageEmbed()
         .setTitle("Thanks for reading the rules!")
         .setDescription(`${message.author.username} You have added the Noobz role, removed the Rules role, and Unlocked the Channels.`)
-        .setColor("GREEN")
+        .setColor("#17ff00")
         message.channel.send(rulesEmbed);
     }
 }

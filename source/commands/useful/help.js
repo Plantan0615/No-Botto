@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports.run = async(client, message, args) => {
 //help
 const helpEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('Navigating Help')
     .setDescription('Help With Help (haha)')
     .addFields(
@@ -17,7 +17,7 @@ const helpEmbed = new MessageEmbed()
     );
 //fun
 const funEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('Fun Help')
     .setDescription('Help With Fun Commands')
     .addFields(
@@ -32,7 +32,7 @@ const funEmbed = new MessageEmbed()
     );
 //poll
 const pollEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('How to Create A Poll')
     .setDescription('Help With Using ~poll')
     .addFields(
@@ -44,7 +44,7 @@ const pollEmbed = new MessageEmbed()
     );
 //random
 const randomImageEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('Get a random image, animal fact, or GIF')
     .setDescription('Help With Using ~random')
     .addFields(
@@ -55,7 +55,7 @@ const randomImageEmbed = new MessageEmbed()
     );
 //role help
 const roleEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('Managing Roles')
     .setDescription('How to Add and Remove Roles')
     .addFields(
@@ -67,7 +67,7 @@ const roleEmbed = new MessageEmbed()
     );
 //role list
 const roleListEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('Role List')
     .setDescription('List of Roles to Help with Adding/Removing Roles via Command')
     .addFields(
@@ -78,7 +78,7 @@ const roleListEmbed = new MessageEmbed()
     );
 //useful
 const usefulEmbed = new MessageEmbed()
-.setColor('#0099ff')
+.setColor('#0b5eaf')
 .setTitle('Useful Help')
 .setDescription('Help With Useful Commands')
 .addFields(
@@ -89,7 +89,7 @@ const usefulEmbed = new MessageEmbed()
 );
 //economy
 const economyEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
 	.setTitle('Economy Help')
     .setDescription('Help With Understanding PXTCs Economy and Levels Systems')
     .addFields(
@@ -104,7 +104,7 @@ const economyEmbed = new MessageEmbed()
     );
 //admin
     const adminEmbed = new MessageEmbed()
-    .setColor('#0099ff')
+    .setColor('#0b5eaf')
     .setTitle('')
     .setDescription('Help With Admin Only Commands')
     .addFields(

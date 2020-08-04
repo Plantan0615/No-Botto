@@ -14,7 +14,7 @@ var situation = pickScenario();
 const wyrEmbed = new discord.MessageEmbed()
 .setTitle("Would you rather:")
 .setDescription(situation.scenarioA + " or " + situation.scenarioB + " ?")
-.setColor("BLUE")
+.setColor("#ca17a2")
 await message.channel.send(wyrEmbed)
     .then (function(message){
         message.react("🅰️");

@@ -11,7 +11,7 @@ module.exports.run = async(client, message, args) => {
     const rankEmbed = new discord.MessageEmbed()
     .setTitle(`Ranking for ${message.author.username}`)
     .setDescription(`You are ranked number ${userRank} in this server.`)
-    .setColor('#18a7b4');
+    .setColor('#5dc428');
 
     message.channel.send(rankEmbed);
 }

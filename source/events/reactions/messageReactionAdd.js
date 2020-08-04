@@ -53,7 +53,7 @@ const handleStarboard = async () => {
     if(existingMsg){existingMsg.edit(`${reaction.count} - ⭐`);}
     else{
     const embed = new MessageEmbed()
-        .setColor("YELLOW")
+        .setColor("#ebda07")
         .setAuthor(reaction.message.author.tag, reaction.message.author.displayAvatarURL())
         .addField("Message:", reaction.message.content)
         .setDescription(`[React to me here](${reaction.message.url})`)

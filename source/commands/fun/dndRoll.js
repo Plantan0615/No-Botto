@@ -8,7 +8,7 @@ if (rollType === "4"){
     let roll = rollFour();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 if (rollType === "6"){
@@ -18,7 +18,7 @@ if (rollType === "6"){
     let roll = rollSix();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 if (rollType === "8"){
@@ -28,7 +28,7 @@ if (rollType === "8"){
     let roll = rollEight();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 if (rollType === "10"){
@@ -38,7 +38,7 @@ if (rollType === "10"){
     let roll = rollTen();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 if (rollType === "12"){
@@ -48,7 +48,7 @@ if (rollType === "12"){
     let roll = rollTwelve();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 if (rollType === "20"){
@@ -58,7 +58,7 @@ if (rollType === "20"){
     let roll = rollTwenty();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 if (rollType === "100"){
@@ -68,7 +68,7 @@ if (rollType === "100"){
     let roll = rollHundred();
     const rollEmbed = new discord.MessageEmbed()
     .setTitle("Rolled a " + roll)
-    .setColor("GREEN");
+    .setColor("#271285");
     message.channel.send(rollEmbed);
 }
 else  if (!rollType){

@@ -50,7 +50,7 @@ let wager = (msgArray[1]);
         const winEmbed = new discord.MessageEmbed()
         .setTitle("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare)
         .setDescription("You Win " + wager + " Moneys!")
-        .setColor("GREEN")
+        .setColor("#0f5718")
         message.channel.send(winEmbed)
     }
     else if (evenOdd !== compare){
@@ -61,7 +61,7 @@ let wager = (msgArray[1]);
         const loseEmbed = new discord.MessageEmbed()
         .setTitle("Rolled a " + roll1 + " and a " + roll2 + ", for a Total of " + rollTotal + ", which is " + compare)
         .setDescription("You Lost " + wager + " Moneys!")
-        .setColor("RED")
+        .setColor("#ec2727")
         message.channel.send(loseEmbed)
                 }
             }

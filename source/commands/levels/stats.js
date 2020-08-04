@@ -9,7 +9,7 @@ module.exports.run = async(client, message, args) => {
                 let currentMoneys = userXpObject["userMoneys"];
                 let currentLevel = userXpObject["userLevel"];
                 const statsEmbed = new MessageEmbed()
-                .setColor('GREEN')
+                .setColor('#289c20')
                 .setTitle('Stats')
                 .setDescription(`User Stats for ${message.author.username}`)
                 .addFields(

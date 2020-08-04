@@ -50,7 +50,7 @@ function animal() {
 var response1 = animal();
 const promptEmbed = new discord.MessageEmbed()
     .setTitle(response1)
-    .setColor("GREEN");
+    .setColor("#3ee2d8");
     message.channel.send(promptEmbed);
 }
 //Random item within object- bodyParts
@@ -61,7 +61,7 @@ function body() {
 var response2 = body();
 const promptEmbed = new discord.MessageEmbed()
     .setTitle(response2)
-    .setColor("GREEN");
+    .setColor("#3ee2d8");
     message.channel.send(promptEmbed);
 }
 //Random item within object- buildings
@@ -72,7 +72,7 @@ function building() {
 var response3 = building();
 const promptEmbed = new discord.MessageEmbed()
     .setTitle(response3)
-    .setColor("GREEN");
+    .setColor("#3ee2d8");
     message.channel.send(promptEmbed);
 }
 //Random item within object- expressions
@@ -83,7 +83,7 @@ function expression() {
 var response4 = expression();
 const promptEmbed = new discord.MessageEmbed()
     .setTitle(response4)
-    .setColor("GREEN");
+    .setColor("#3ee2d8");
     message.channel.send(promptEmbed);
 }
 //Random item within object- plants
@@ -94,7 +94,7 @@ function plant() {
 var response5 = plant();
 const promptEmbed = new discord.MessageEmbed()
     .setTitle(response5)
-    .setColor("GREEN");
+    .setColor("#3ee2d8");
     message.channel.send(promptEmbed);
 }
 //error

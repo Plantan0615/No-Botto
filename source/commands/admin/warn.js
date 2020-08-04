@@ -35,6 +35,6 @@ module.exports.run = async(client, message, args) => {
             const warnEmbed = new discord.MessageEmbed()
             .setTitle(`${username} has been Warned!`)
             .setDescription(`Reason: ${reason}`)
-            .setColor("RED")
+            .setColor("#831313")
             message.channel.send(warnEmbed)
 }

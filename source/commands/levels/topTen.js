@@ -8,7 +8,7 @@ let leaderArray = userXpObject.map(Object.values);
     const leaderEmbed = new discord.MessageEmbed()
     .setTitle("XP Leaderboard")
     .setDescription("Top 10:")
-    .setColor("BLURPLE")
+    .setColor("#c3e00f")
     .addFields(
         {name: "1", value: leaderArray [0], inline: true},
         {name: "2", value: leaderArray [1], inline: true},

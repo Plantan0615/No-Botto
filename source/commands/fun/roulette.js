@@ -90,7 +90,7 @@ else{
                 const winEmbed = new discord.MessageEmbed()
                 .setTitle("The ball landed on " + colour + " " + num )
                 .setDescription("You Win " + wager + " Moneys!")
-                .setColor("GREEN")
+                .setColor("#0f5718")
                 message.channel.send(winEmbed)
                 }
             else if(numGuess !== num){
@@ -101,7 +101,7 @@ else{
                 const loseEmbed = new discord.MessageEmbed()
                 .setTitle("The ball landed on " + colour + " " + num )
                 .setDescription("You Lost " + wager + " Moneys!")
-                .setColor("RED")
+                .setColor("#ec2727")
                 message.channel.send(loseEmbed)
                 }
             }
@@ -113,7 +113,7 @@ else{
                 const loseEmbed = new discord.MessageEmbed()
                 .setTitle("The ball landed on " + colour + " " + num )
                 .setDescription("You Lost " + wager + " Moneys!")
-                .setColor("RED")
+                .setColor("#ec2727")
                 message.channel.send(loseEmbed)
                 }      
         }

@@ -10,7 +10,7 @@ let userID = message.author.id
     const warnEmbed = new discord.MessageEmbed()
     .setTitle("Warnings")
     .setDescription(`Warnings for ${username}`)
-    .setColor("RED")
+    .setColor("#831313")
     .addFields(
         {name: "Amount of Warnings:", value: warnAmt},
         {name: "Reasons for Warnings:", value: warnReas}

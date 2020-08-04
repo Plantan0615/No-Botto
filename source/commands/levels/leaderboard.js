@@ -14,7 +14,7 @@ module.exports.run = async(client, message, args) => {
 const leaderEmbed = new discord.MessageEmbed()
 .setTitle("XP Leaderboard")
 .setDescription("Top 10:")
-.setColor("BLURPLE")
+.setColor("#e08c0f")
 .addFields(
     {name: "1", value: modArray [0], inline: true},
     {name: "2", value: modArray [1], inline: true},
@@ -31,7 +31,7 @@ const leaderEmbed = new discord.MessageEmbed()
 const secondEmbed = new discord.MessageEmbed()
 .setTitle("XP Leaderboard")
 .setDescription("Top 20:")
-.setColor("BLURPLE")
+.setColor("#e08c0f")
 .addFields(
     {name: "11", value: modArray [10], inline: true},
     {name: "12", value: modArray [11], inline: true},
@@ -48,7 +48,7 @@ const secondEmbed = new discord.MessageEmbed()
 const thirdEmbed = new discord.MessageEmbed()
 .setTitle("XP Leaderboard")
 .setDescription("Top 30:")
-.setColor("BLURPLE")
+.setColor("#e08c0f")
 .addFields(
     {name: "21", value: modArray [20], inline: true},
     {name: "22", value: modArray [21], inline: true},
