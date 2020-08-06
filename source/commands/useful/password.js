@@ -1,14 +1,14 @@
 const { GuildMember, Role } = require("discord.js")
 const discord = require("discord.js")
 module.exports.run = async(client, message, args) => {
+//get the 2 roles
 let { cache } = message.guild.roles;
 let role = cache.find(role => role.name === "I Need to Read the Rules");
-let passwordGuess = message.content.substring(10);
-//
-//change password to PxTc
-//
-const password = "meow" 
 let newRole = cache.find(role => role.name === "Noobz");
+//user input
+    let passwordGuess = message.content.substring(10);
+    const password = "PxTc"
+//if no password guess
 if(!passwordGuess){
     message.delete();
     message.channel.send("You need to enter a password guess.")
@@ -16,7 +16,9 @@ if(!passwordGuess){
     .catch(err => console.log(err));
     return;
 }
+//if the rules role exists
 if(role) {
+    //if user doesn't have the role
     if(!message.member.roles.cache.has(role.id)) {
         message.delete();
         message.channel.send("You have already read the rules")
@@ -24,7 +26,9 @@ if(role) {
         .catch(err => console.log(err));
         return;
     }
+//if user has the role
  else if(message.member.roles.cache.has(role.id)) {
+     //if password is wrong
     if (passwordGuess !== password) {
         message.delete();
         message.channel.send("Incorrect Password, Try Again")
@@ -32,6 +36,7 @@ if(role) {
         .catch(err => console.log(err));
         return;
     }
+    //if password is right
     else if (passwordGuess === password) {
         message.member.roles.add(newRole);
         message.member.roles.remove(role);
@@ -42,6 +47,6 @@ if(role) {
         .setColor("#17ff00")
         message.channel.send(rulesEmbed);
     }
-}
+    }
 }
 }

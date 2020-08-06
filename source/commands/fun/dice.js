@@ -1,12 +1,10 @@
 const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
+//dice roll functions
     function rollDie() {
         return (Math.floor(Math.random() *6) + 1)
 }
-let msgArray = message.content.toLowerCase().substring(6).split (" ")
-var evenOdd = (msgArray[0]);
-let wager = (msgArray[1]);
     let roll1 = rollDie()
     let roll2 = rollDie()
     var rollTotal = roll1 + roll2;
@@ -17,24 +15,32 @@ let wager = (msgArray[1]);
        return ("odd");
    }
     var compare = isEven();
+// userinput
+let msgArray = message.content.toLowerCase().substring(6).split (" ")
+var evenOdd = (msgArray[0]);
+let wager = (msgArray[1]);
+//if no even/odd provided
     if(!evenOdd){
         message.delete({ timeout: 2000 })
         message.channel.send("Please type even or odd after the dice command.")
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
         }
+//if no wager
     else if(!wager){
             message.delete({ timeout: 2000 })
             message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after even or odd)")
                 .then(msg => msg.delete({timeout: 2000}))
                 .catch(err => console.log(err));
             }
+// if all is provided
     else {
     let userID = message.author.id
     let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
     let userXpObject= prepareStatement.get(`${userID}`)
         let newMoneys = parseInt(wager);
         let currentMoneys = userXpObject["userMoneys"];
+        //if wager > moneys
         if (wager > currentMoneys){
             message.delete({ timeout: 2000 })
             message.channel.send("Your wager is higher than the Moneys you have!")
@@ -42,6 +48,7 @@ let wager = (msgArray[1]);
                 .catch(err => console.log(err));
                 return;
         }
+    //win case
     if (evenOdd === compare){
         let finalMoneys = newMoneys + currentMoneys
         let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
@@ -53,6 +60,7 @@ let wager = (msgArray[1]);
         .setColor("#0f5718")
         message.channel.send(winEmbed)
     }
+    //lose case
     else if (evenOdd !== compare){
         let finalMoneys = currentMoneys - newMoneys;
         let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)

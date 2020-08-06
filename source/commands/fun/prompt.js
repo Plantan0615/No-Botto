@@ -1,107 +1,61 @@
+const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 let category = message.content.toLowerCase().substring(8);
-//declare objects
-var animals = {
-   0: "Tiger",
-   1: "Dog",
-   2: "Cat",
-   3: "Eagle",
-   4: "Bear",
-   5: "Monkey",
-};
-var bodyParts = {
-   0: "Eyes",
-   1: "Ears",
-   2: "Nose",
-   3: "Mouth",
-   4: "Hands",
-   5: "Torso",
-};
- var buildings = {
-    0: "2 Story House",
-    1: "Apartment Complex",
-    2: "School",
-    3: "Church",
-    4: "Castle",
-    5: "Eiffel Tower",
- };
- var expressions = {
-   0: "Happy",
-   1: "Surprised",
-    2: "Sad",
-    3: "Angry",
-    4: "Disgusted",
-    5: "Content",
- };
- var plants = {
-     0: "Rose",
-     1: "Pine Tree",
-     2: "Palm Tree",
-     3: "Bush",
-     4: "Hedge",
-     5: "Dandelion",
-}; 
-//Random item within object- animals
-if (category == "animals") {
-function animal() {
-    return(animals [Object.keys(animals)[Math.floor(Math.random() * Object.keys(animals).length)]])
-};
-var response1 = animal();
-const promptEmbed = new discord.MessageEmbed()
-    .setTitle(response1)
-    .setColor("#3ee2d8");
-    message.channel.send(promptEmbed);
-}
-//Random item within object- bodyParts
-else if(category == "body parts") {
-function body() {
-    return (bodyParts [Object.keys(bodyParts)[Math.floor(Math.random() * Object.keys(bodyParts).length)]])
-};
-var response2 = body();
-const promptEmbed = new discord.MessageEmbed()
-    .setTitle(response2)
-    .setColor("#3ee2d8");
-    message.channel.send(promptEmbed);
-}
-//Random item within object- buildings
-else if(category == "buildings") {
-function building() {
-    return (buildings [Object.keys(buildings)[Math.floor(Math.random() * Object.keys(buildings).length)]])
-};
-var response3 = building();
-const promptEmbed = new discord.MessageEmbed()
-    .setTitle(response3)
-    .setColor("#3ee2d8");
-    message.channel.send(promptEmbed);
-}
-//Random item within object- expressions
-else if(category == "expressions") {
-function expression() {
-    return (expressions [Object.keys(expressions)[Math.floor(Math.random() * Object.keys(expressions).length)]])
-};
-var response4 = expression();
-const promptEmbed = new discord.MessageEmbed()
-    .setTitle(response4)
-    .setColor("#3ee2d8");
-    message.channel.send(promptEmbed);
-}
-//Random item within object- plants
-else if(category == "plants") {
-function plant() {
-    return (plants [Object.keys(plants)[Math.floor(Math.random() * Object.keys(plants).length)]])
-};
-var response5 = plant();
-const promptEmbed = new discord.MessageEmbed()
-    .setTitle(response5)
-    .setColor("#3ee2d8");
-    message.channel.send(promptEmbed);
-}
-//error
-else {
+let isValid = ["animals", "body parts", "buildings", "expressions", "food", "famous buildings", "landmarks", "long", "plants", "person adjectives"]
+let valid = isValid.includes(category);
+//NO CATEGORY
+if(!category){
     message.delete({timeout: 5000})
-    message.channel.send("Invalid Prompt. Please type animals, body parts, buildings, expressions, or plants after the prompt command.")
+    message.channel.send("No Category Provided. Please type animals, body parts, buildings, expressions, famous buildings, food, landmarks, long, person adjectives, or plants after the prompt command.")
     .then(msg => msg.delete({timeout: 5000}))
     .catch(console.error);
+    return;
+    }
+// INVALID CATEGORY
+else if(valid === false){
+    message.delete({timeout: 5000})
+    message.channel.send("Invalid Category. Please type animals, body parts, buildings, expressions, famous buildings, food, landmarks, long, person adjectives, or plants after the prompt command.")
+    .then(msg => msg.delete({timeout: 5000}))
+    .catch(console.error);
+    return;
+    }
+//IF CATEGORY IS LONG PROMPT
+else if (valid === true){
+    if (category === "long"){ 
+    let prepStatement = sql.prepare(`SELECT name FROM prompts WHERE category = ?`)
+    let vObj = prepStatement.all("verb");
+    let nObj = prepStatement.all("noun");
+    let aObj = prepStatement.all("adjective");
+        function randomV() {
+        return(vObj [Object.keys(vObj)[Math.floor(Math.random() * Object.keys(vObj).length)]])
+        };
+        function randomN() {
+        return(nObj [Object.keys(nObj)[Math.floor(Math.random() * Object.keys(nObj).length)]])
+        };
+        function randomA() {
+        return(aObj [Object.keys(aObj)[Math.floor(Math.random() * Object.keys(aObj).length)]])
+        };
+    var response1 = randomV(vObj);
+    var response2 = randomN(nObj);
+    var response3 = randomA(aObj);
+        const promptEmbed = new discord.MessageEmbed()
+        .setTitle(response3.name + ", " + response2.name + ", " + response1.name)
+        .setColor("#3ee2d8");
+        message.channel.send(promptEmbed);
+    }
+//IF CATEGORY EXISTS AND IS VALID
+    else{
+    let prepStatement = sql.prepare(`SELECT * FROM prompts WHERE category = ?`)
+    let obj = prepStatement.all(category);
+        function random() {
+        return(obj [Object.keys(obj)[Math.floor(Math.random() * Object.keys(obj).length)]])
+        };
+    var response = random();
+        const promptEmbed = new discord.MessageEmbed()
+        .setTitle(response.name)
+        .setColor("#3ee2d8");
+        message.channel.send(promptEmbed);
+    }
 }
 };

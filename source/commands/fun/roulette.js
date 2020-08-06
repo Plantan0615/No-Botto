@@ -2,31 +2,38 @@ const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/sour
 const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 // roulette functions
+//wheel
 var wheel ={
     0: "green", 
     1: "black", 
     2: "red"
 };
-    function pickColour() {
-        return(wheel [Object.keys(wheel)[Math.floor(Math.random() * Object.keys(wheel).length)]])
-    };
-    var colour = pickColour();
+//pick colour
+function pickColour() {
+    return(wheel [Object.keys(wheel)[Math.floor(Math.random() * Object.keys(wheel).length)]])
+};
+var colour = pickColour();
+//declare nums
     var greenNums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
     var blackNums = [16, 5, 3, 18, 7, 14, 12, 9, 11, 25, 34, 21, 32, 23, 30, 29, 36, 27]
     var redNums = [33, 20, 22, 26, 35, 28, 37, 31, 24, 6, 17, 2, 15, 10, 19, 8, 13, 4]
-    if (colour === "black"){
-    function pickBlackNum (){
-        return blackNums[Math.floor(Math.random() * blackNums.length)]};
-    var num = pickBlackNum();}
-    else if (colour === "red"){
-    function pickRedNum (){
-        return redNums[Math.floor(Math.random() * redNums.length)]};
-    var num = pickRedNum();}
-    else if (colour === "green"){
-    function pickGreenNum (){
-        return greenNums[Math.floor(Math.random() * greenNums.length)]};
-    var num = pickGreenNum();}
-    else {console.log("error");}
+        //pick black num
+        if (colour === "black"){
+        function pickBlackNum (){
+            return blackNums[Math.floor(Math.random() * blackNums.length)]};
+        var num = pickBlackNum();}
+        //pick red num
+        else if (colour === "red"){
+        function pickRedNum (){
+            return redNums[Math.floor(Math.random() * redNums.length)]};
+        var num = pickRedNum();}
+        //pick green num
+        else if (colour === "green"){
+        function pickGreenNum (){
+            return greenNums[Math.floor(Math.random() * greenNums.length)]};
+        var num = pickGreenNum();}
+        //catch error
+        else {console.log("error");}
 //user input
 let msgArray = message.content.toLowerCase().substring(10).split (" ")
 let colourGuess =(msgArray[0]);
@@ -60,7 +67,7 @@ else if(numGuess > "37"){
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
 }
-//
+//if wager is higher than Moneys
 else if(!wager){
     message.delete({ timeout: 2000 })
         message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number).")
@@ -74,6 +81,7 @@ else{
     let userXpObject= prepareStatement.get(`${userID}`)
         let newMoneys = parseInt(wager);
         let currentMoneys = userXpObject["userMoneys"];
+        //if wager > moneys
         if (wager > currentMoneys){
             message.delete({ timeout: 2000 })
             message.channel.send("Your wager is higher than the Moneys you have!")
@@ -81,7 +89,9 @@ else{
                 .catch(err => console.log(err));
                 return;
         }
+        //if colour is right
         if (colourGuess === colour) {
+            //win case
             if (numGuess === num){
                 let finalMoneys = newMoneys + currentMoneys
                 let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
@@ -93,6 +103,7 @@ else{
                 .setColor("#0f5718")
                 message.channel.send(winEmbed)
                 }
+            //lose case
             else if(numGuess !== num){
                 let finalMoneys = currentMoneys - newMoneys;
                 let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
@@ -105,6 +116,7 @@ else{
                 message.channel.send(loseEmbed)
                 }
             }
+        //if colour is wrong- lose case
         else if (colourGuess !== colour){
                 let finalMoneys = currentMoneys - newMoneys;
                 let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
