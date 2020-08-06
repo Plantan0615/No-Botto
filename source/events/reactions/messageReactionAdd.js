@@ -169,7 +169,7 @@ catch (err) {console.log(err);}
 
 //STARBOARD 
 const handleStarboard = async () => {
-    const starboard = client.channels.cache.find(channel => channel.name.toLowerCase() === "starboard")
+    const starboard = client.channels.cache.find(channel => channel.id === "740301633396670464")
     const msgs = await starboard.messages.fetch({ limit: 100});
     const existingMsg = msgs.find(msg => msg.embeds.length === 1 
         ? (msg.embeds[0].footer.text.startsWith(reaction.message.id) ? true : false) : false);

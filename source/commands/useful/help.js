@@ -115,7 +115,7 @@ const economyEmbed = new MessageEmbed()
     .setDescription('Help With Admin Only Commands')
     .addFields(
         { name: "~emoji", value: "For setting up role menus. Works similarly to poll. Type ~help poll if you need help there."},
-        { name: "~purge", value: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete."},
+        { name: "~purge", value: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete. This only works for messages less than 2 weeks old."},
         {name: "~userWarns", value: "For viewing the warnings of members. Type this command followed by the userID (Seperated with a space)."},
         {name: "~warn", value: "For warning members. Type the command followed by the userID and the reason for the warning (MUST BE Separated with a comma)."},
         { name: "IMPORTANT NOTE", value: "Users can only be warned (and their warns checked) if they are in the Database(db). This means that they must have sent a message that is not a command. This also applies to currency if anyone is confused, as if they utilise db commands before they have sent an actual message the command will not work."}

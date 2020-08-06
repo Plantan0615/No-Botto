@@ -48,7 +48,7 @@ module.exports = {
             let optNumMsg = await message.channel.send("Please provide the number of role menu options you wish to have.");
                 optNumMsg.delete({ timeout: 10000});
             let filterMsg = (msg) => {
-                return message.author.id == msg.author.id && msg.content.length >= 1 && msg.content.length <= 2 && (!isNaN(msg.content) && parseInt(msg.content) >= 1 && parseInt(msg.content) <= 12)
+                return message.author.id == msg.author.id && msg.content.length >= 1 && msg.content.length <= 2 && (!isNaN(msg.content) && parseInt(msg.content) >= 1 && parseInt(msg.content) <= 20)
             }
             let isError = false
             let optNum = await message.channel.awaitMessages(filterMsg, {max: 1, time: 10000}).catch(err => {console.log(err); isError = true})
