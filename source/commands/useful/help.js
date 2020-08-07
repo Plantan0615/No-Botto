@@ -24,7 +24,7 @@ const funEmbed = new MessageEmbed()
         { name: "~dice", value: "Type the dice command, then either even or odd, and how many Moneys you want to bet (Separated with spaces). I will roll two dice, add them together, and tell you if you've won."},
         { name: "~dndRoll", value: "Type the roll command and then 4, 6, 8, 10, 12, 20, or 100. I will give you a random number. Please use this command in dnd-chat."},
         { name: "~poll", value: "Type '~help poll' for more info"},
-        { name: "~prompt", value: "Type the prompt command and then animals, body parts, buildings, expressions, or plants. I will give you a random item from the category you choose."},
+        { name: "~prompt", value: "Type the prompt command and then animals, body parts, buildings, expressions, food, famous buildings, landmarks, long, plants or person adjective. I will give you a random item from the category you choose."},
         { name: "~random", value: "Type '~help random' for more info"},
         { name: "~roulette", value: "Type the roulette command and then a colour(black, red, or green), then a number (between 1-37), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."},
         { name: "~wyr", value: "Simply type the command and I will provide you with a Would You Rather scenario. I will also react with options A and B to allow for easy voting."},
