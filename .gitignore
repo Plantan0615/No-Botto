@@ -3,5 +3,5 @@
 #enviroment variables
 *.env
 #discord js
-node_modules/
+#node_modules/
 *.env
