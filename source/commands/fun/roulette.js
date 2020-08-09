@@ -1,48 +1,44 @@
+const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
 // roulette functions
+//wheel
 var wheel ={
     0: "green", 
     1: "black", 
     2: "red"
 };
-    function pickColour() {
-        return(wheel [Object.keys(wheel)[Math.floor(Math.random() * Object.keys(wheel).length)]])
-    };
-    var colour = pickColour();
-
-    var greenNums = 0
-    var blackNums = [15, 4, 2, 17, 6, 13, 11, 8, 10, 24, 33, 20, 31, 22, 29, 28, 35, 26]
-    var redNums = [32, 19, 21, 25, 34, 27, 36, 30, 23, 5, 16, 1, 14, 9, 18, 7, 12, 3]
-    
-    if (colour === "black"){
-    function pickBlackNum (){
-        return blackNums[Math.floor(Math.random() * blackNums.length)]
-    };
-    var num = pickBlackNum();
-    }
-
-    else if (colour === "red"){
-    function pickRedNum (){
-        return redNums[Math.floor(Math.random() * redNums.length)]
-    };
-    var num = pickRedNum();
-    }
-
-    else if (colour === "green"){
-    function pickGreenNum (){
-        return greenNums
-    };
-    var num = pickGreenNum();
-    }
-
-    else {
-        console.log("error");
-    }
+//pick colour
+function pickColour() {
+    return(wheel [Object.keys(wheel)[Math.floor(Math.random() * Object.keys(wheel).length)]])
+};
+var colour = pickColour();
+//declare nums
+    var greenNums = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    var blackNums = [16, 5, 3, 18, 7, 14, 12, 9, 11, 25, 34, 21, 32, 23, 30, 29, 36, 27]
+    var redNums = [33, 20, 22, 26, 35, 28, 37, 31, 24, 6, 17, 2, 15, 10, 19, 8, 13, 4]
+        //pick black num
+        if (colour === "black"){
+        function pickBlackNum (){
+            return blackNums[Math.floor(Math.random() * blackNums.length)]};
+        var num = pickBlackNum();}
+        //pick red num
+        else if (colour === "red"){
+        function pickRedNum (){
+            return redNums[Math.floor(Math.random() * redNums.length)]};
+        var num = pickRedNum();}
+        //pick green num
+        else if (colour === "green"){
+        function pickGreenNum (){
+            return greenNums[Math.floor(Math.random() * greenNums.length)]};
+        var num = pickGreenNum();}
+        //catch error
+        else {console.log("error");}
 //user input
-//let colourGuess = message.content.toLowerCase().substring(10);
 let msgArray = message.content.toLowerCase().substring(10).split (" ")
 let colourGuess =(msgArray[0]);
-let numGuess = (msgArray[1]);
+let numGuess = parseInt(msgArray[1]);
+let wager = (msgArray[2]);
 //if no colour guess
 if(!colourGuess){
     message.delete({ timeout: 2000 })
@@ -51,7 +47,7 @@ if(!colourGuess){
             .catch(err => console.log(err));
 }
 //if invalid colour
-if(colourGuess !== "black" && colourGuess !== "red" && colourGuess !== "green"){
+else if(colourGuess !== "black" && colourGuess !== "red" && colourGuess !== "green"){
     message.delete({ timeout: 2000 })
         message.channel.send("Invalid Colour. Please type black, red, or green after the roulette command.")
             .then(msg => msg.delete({timeout: 2000}))
@@ -60,29 +56,77 @@ if(colourGuess !== "black" && colourGuess !== "red" && colourGuess !== "green"){
 //if no number guess
 else if(!numGuess){
     message.delete({ timeout: 2000 })
-        message.channel.send("No Number Provided. Please type a number between 0 and 36 after the colour.")
+        message.channel.send("No Number Provided. Please type a number between 1 and 37 after the colour.")
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
 }
 //if invalid number
-else if(numGuess > "36"){
+else if(numGuess > "37"){
     message.delete({ timeout: 2000 })
         message.channel.send("Invalid Number. Please type a number between 0 and 36 after the colour.")
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
 }
-//if valid colour and number
+//if wager is higher than Moneys
+else if(!wager){
+    message.delete({ timeout: 2000 })
+        message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number).")
+            .then(msg => msg.delete({timeout: 3000}))
+            .catch(err => console.log(err));
+}
+//if all is well
 else{
-if (colourGuess === colour) {
-    if (numGuess === num) {
-        message.reply ("The ball landed on " + colour + " " + num + " You Win!")
-    }
-    if(numGuess !== num){
-        message.reply ("The ball landed on " + colour + " " + num + " You Lose!")
-    }
-}
-if (colourGuess !== colour){
-    message.reply ("The ball landed on " + colour + " " + num + " You Lose!")
-}
-}
-};
+    let userID = message.author.id
+    let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
+    let userXpObject= prepareStatement.get(`${userID}`)
+        let newMoneys = parseInt(wager);
+        let currentMoneys = userXpObject["userMoneys"];
+        //if wager > moneys
+        if (wager > currentMoneys){
+            message.delete({ timeout: 2000 })
+            message.channel.send("Your wager is higher than the Moneys you have!")
+                .then(msg => msg.delete({timeout: 2000}))
+                .catch(err => console.log(err));
+                return;
+        }
+        //if colour is right
+        if (colourGuess === colour) {
+            //win case
+            if (numGuess === num){
+                let finalMoneys = newMoneys + currentMoneys
+                let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
+                prepareUpdate.run(finalMoneys, userID);
+
+                const winEmbed = new discord.MessageEmbed()
+                .setTitle("The ball landed on " + colour + " " + num )
+                .setDescription("You Win " + wager + " Moneys!")
+                .setColor("#0f5718")
+                message.channel.send(winEmbed)
+                }
+            //lose case
+            else if(numGuess !== num){
+                let finalMoneys = currentMoneys - newMoneys;
+                let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
+                prepareUpdate.run(finalMoneys, userID);
+
+                const loseEmbed = new discord.MessageEmbed()
+                .setTitle("The ball landed on " + colour + " " + num )
+                .setDescription("You Lost " + wager + " Moneys!")
+                .setColor("#ec2727")
+                message.channel.send(loseEmbed)
+                }
+            }
+        //if colour is wrong- lose case
+        else if (colourGuess !== colour){
+                let finalMoneys = currentMoneys - newMoneys;
+                let prepareUpdate = sql.prepare(`UPDATE data SET userMoneys = ? WHERE userID = ?`)
+                prepareUpdate.run(finalMoneys, userID);
+
+                const loseEmbed = new discord.MessageEmbed()
+                .setTitle("The ball landed on " + colour + " " + num )
+                .setDescription("You Lost " + wager + " Moneys!")
+                .setColor("#ec2727")
+                message.channel.send(loseEmbed)
+                }      
+        }
+    };

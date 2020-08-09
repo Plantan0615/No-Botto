@@ -1,16 +1,17 @@
+const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
+const discord = require("discord.js");
 module.exports.run = async(client, message, args) => {
-var scenarios = [
-    {scenarioA: "be blind", scenarioB: "be deaf"},
-    {scenarioA: "aliens be robotic", scenarioB: "aliens be organic"},
-    {scenarioA: "be covered in fur", scenarioB: "be covered in scales"},
-    {scenarioA: "always be 10 minutes late", scenarioB: "always be 20 minutes early"},
-    {scenarioA: "have a literal get out of jail free card", scenarioB: "have a key that opens any door"},
-]
+    let prepStatement = sql.prepare(`SELECT * FROM wyr`)
+    let scenarios = prepStatement.all();
 function pickScenario (){
     return scenarios[Math.floor(Math.random() * scenarios.length)]
 };
 var situation = pickScenario();
-message.channel.send ("Would you rather " + situation.scenarioA + " or " + situation.scenarioB + " ?")
+const wyrEmbed = new discord.MessageEmbed()
+.setTitle("Would you rather:")
+.setDescription(situation.scenarios)
+.setColor("#ca17a2")
+await message.channel.send(wyrEmbed)
     .then (function(message){
         message.react("🅰️");
         message.react("🅱️");
