@@ -83,7 +83,7 @@ module.exports = async(client, message) => {
                     message.member.roles.add("736676859596767413");
                     message.channel.send(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`);
                 }
-                else{ message.channel.send(`${message.member} has levelled up.`)};
+                else{ message.channel.send(`${message.member} has levelled up to ${finalLevel}.`)};
             }
 
 
