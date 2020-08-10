@@ -139,7 +139,7 @@ const levelsEmbed = new MessageEmbed()
 //admin
     const adminEmbed = new MessageEmbed()
     .setColor('#0b5eaf')
-    .setTitle('')
+    .setTitle('Help with Admin Stuff')
     .setDescription('Help With Admin Only Commands')
     .addFields(
         { name: "~emoji", value: "For setting up role menus. Works similarly to poll. Type ~help poll if you need help there."},
