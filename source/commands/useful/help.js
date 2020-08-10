@@ -9,6 +9,7 @@ const helpEmbed = new MessageEmbed()
         { name: "~help fun", value: "Type this command to see what fun features I have."},
         { name: "~help poll", value: "Type this to learn how to set up a poll."},
         { name: "~help random", value: "Type this to learn how to get a random meme, image, animal fact, or GIF."},
+        { name: "~help rpg", value: "Type this to learn how to play the RPGs/Choose Your Own Adventure Stories."},
         { name: "~help roles", value: "Type this for help with adding and remove roles from yourself."},
         { name: "~help role list", value: "Type this for a list of all the roles in the server."},
         { name: "~help useful", value: "Type this to see what useful features I have. (If you need help with the password check #rules-and-info.)"},
@@ -29,6 +30,7 @@ const funEmbed = new MessageEmbed()
         { name: "~random", value: "Type '~help random' for more info"},
         { name: "~roulette", value: "Type the roulette command and then a colour(black, red, or green), then a number (between 1-37), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."},
         { name: "~wyr", value: "Simply type the command and I will provide you with a Would You Rather scenario. I will also react with options A and B to allow for easy voting."},
+        { name: "Various RPGs", value: "Type '~help rpg' for more info"},
         { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with ⭐ and I will add the post to the Starboard channel for you."}
     );
 //poll
@@ -54,6 +56,16 @@ const randomImageEmbed = new MessageEmbed()
         { name: "Random Animal Facts", value: "Type one of the following animals and the word fact after the random command to get a random fact about that animal. Cat, dog, panda, koala, fox, bird."},
         { name: "Random GIFS", value: "Type one of the following after the random command to get a random GIF of it. Hug, pat, wink."}
     );
+//rpg
+const rpgEmbed = new MessageEmbed()
+    .setColor('#0b5eaf')
+    .setTitle("How to play the 'Choose your own Adventure' stories.")
+    .setDescription("Help with the RPGs")
+    .addFields(
+        {name: "~rpghunter", value: "Type this to play the story as a male (adult) hunter."},
+        {name: "~rpgteenager", value: "Type this to play the story as a female teenager."},
+        {name: "How to Play:", value: "Simply type one of the above commands, and I will send a message. Wait for me to react to the message with A and B, then make your decision (by selecting either A or B), at which point I will send another message. After 4 decisions you will know the outcome of the story."}
+    )
 //role help
 const roleEmbed = new MessageEmbed()
     .setColor('#0b5eaf')
@@ -142,6 +154,7 @@ if(!helpType){message.channel.send(helpEmbed);}
 else if (helpType === "fun"){message.channel.send(funEmbed);}
 else if (helpType === "poll"){message.channel.send(pollEmbed);}
 else if (helpType === "random"){message.channel.send(randomImageEmbed);}
+else if (helpType === "rpg"){message.channel.send(rpgEmbed);}
 else if (helpType === "roles"){message.channel.send(roleEmbed);}
 else if (helpType === "role list"){message.channel.send(roleListEmbed);}
 else if (helpType === "economy"){message.channel.send(economyEmbed);}
