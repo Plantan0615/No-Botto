@@ -11,7 +11,7 @@ const firstEmbed = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Left.' },
     { name: 'Option B:', value: 'Right.' }
     );
-//second embed A
+//second embed A- left
 const secondEmbedA = new discord.MessageEmbed()
 .setTitle("Decision 2")
 .setDescription("You see a strange light in the distance.")
@@ -21,7 +21,7 @@ const secondEmbedA = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Go towards it.' },
     { name: 'Option B:', value: 'Stay on the path.' }
     );
-//second embed B
+//second embed B- right
 const secondEmbedB = new discord.MessageEmbed()
 .setTitle("Decision 2")
 .setDescription("You hear a strange noise in the distance.")
@@ -31,7 +31,7 @@ const secondEmbedB = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Go towards it.' },
     { name: 'Option B:', value: 'Stay on the path.' }
     );
-//third embed A
+//third embed A- left go towards it
 const thirdEmbedA = new discord.MessageEmbed()
 .setTitle("Decision 3")
 .setDescription("You come across a magical looking event. There is a game being played.")
@@ -41,7 +41,7 @@ const thirdEmbedA = new discord.MessageEmbed()
     { name: 'Option A:', value: 'No.' },
     { name: 'Option B:', value: 'Yes.' }
     );
-//third embed B
+//third embed B- left stay on path
 const thirdEmbedB = new discord.MessageEmbed()
 .setTitle("Decision 3")
 .setDescription("You come across a black cat, and it's unsettling.")
@@ -51,7 +51,7 @@ const thirdEmbedB = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Yes.' },
     { name: 'Option B:', value: 'No.' }
     );
-//third embed C
+//third embed C- right go towards it
 const thirdEmbedC = new discord.MessageEmbed()
 .setTitle("Decision 3")
 .setDescription("You come across a strange looking man.")
@@ -61,7 +61,7 @@ const thirdEmbedC = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Kindly.' },
     { name: 'Option B:', value: 'Harshly.' }
     );
-//third embed D
+//third embed D- right stay on path
 const thirdEmbedD = new discord.MessageEmbed()
 .setTitle("Decision 3")
 .setDescription("The path ends.")
@@ -71,7 +71,7 @@ const thirdEmbedD = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Turn around.' },
     { name: 'Option B:', value: 'Press on.' }
     );
-//fourth embed A
+//fourth embed A- left, go towards it, don't play the game
 const fourthEmbedA = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("Instead of playing the game. You ask the creatures about how to get home. They don't know what you mean.")
@@ -81,7 +81,7 @@ const fourthEmbedA = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Ask for their help in teleporting you home.' },
     { name: 'Option B:', value: 'Say goodbye and try to continue walking.' }
     );
-//fourth embed B
+//fourth embed B left, go towards it, play the game
 const fourthEmbedB = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("You win the game, despite not understanding it. The creatures tell you about their magical history, it's enthralling. They offer you a place in their group.")
@@ -91,7 +91,7 @@ const fourthEmbedB = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Yes.' },
     { name: 'Option B:', value: 'No.' }
     );
-//fourth embed C
+//fourth embed C left, stay on path, pet the cat
 const fourthEmbedC = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("A beautiful woman appears from nowhere. She asks if you are in trouble.")
@@ -101,7 +101,7 @@ const fourthEmbedC = new discord.MessageEmbed()
     { name: 'Option A:', value: 'I am in trouble.' },
     { name: 'Option B:', value: 'I am just going for a walk.' }
     );
-//fourth embed D
+//fourth embed D left, stay on path, don't pet the cat
 const fourthEmbedD = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("You continue walking forward, the cat is now following you.")
@@ -111,7 +111,7 @@ const fourthEmbedD = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Continue walking, although at a quicker pace.' },
     { name: 'Option B:', value: 'Scare the cat' }
     );
-//fourth embed E
+//fourth embed E- right go towards it, kindly
 const fourthEmbedE = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("The man tells you that you are as kind as you are pretty. You are flattered by this. He then offers to take you home.")
@@ -121,7 +121,7 @@ const fourthEmbedE = new discord.MessageEmbed()
     { name: 'Option A:', value: "Ask him how he knew that was what you wanted." },
     { name: 'Option B:', value: 'Go along with it, and follow his lead.' }
     );
-//fourth embed F
+//fourth embed F- right go towards it, harshly
 const fourthEmbedF = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("The man turns into some sort of demon, his ghostly grasp taking hold of you.")
@@ -131,7 +131,7 @@ const fourthEmbedF = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Apologise.' },
     { name: 'Option B:', value: 'Tell him to fuck himself.' }
     );
-//fourth embed G
+//fourth embed G- right stay on the path, turn around
 const fourthEmbedG = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("You turn around, eventually finding your way back to where the party was.")
@@ -141,7 +141,7 @@ const fourthEmbedG = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Phone for help.' },
     { name: 'Option B:', value: 'Trust that you can find your way from here.' }
     );
-//fourth embed H
+//fourth embed H- right, stay on the path, press on
 const fourthEmbedH = new discord.MessageEmbed()
 .setTitle("Decision 4")
 .setDescription("You continue through the trees and come to a river.")
@@ -151,82 +151,82 @@ const fourthEmbedH = new discord.MessageEmbed()
     { name: 'Option A:', value: 'Up.' },
     { name: 'Option B:', value: 'Down.' }
     );
-//final embed 1
+//final embed 1 left, towards it, don't play the game, ask for help with telepathy
 const finalEmbed1 = new discord.MessageEmbed()
 .setTitle("Outcome 1 of 16")
 .setDescription("The creatures tell you that you are creative, before teleporting you to the middle of the ocean by mistake.")
 .setColor("#e0115b")
-//final embed 2
+//final embed 2 left, towards it, don't play the game, continue walking
 const finalEmbed2 = new discord.MessageEmbed()
 .setTitle("Outcome 2 of 16")
 .setDescription("You remain lost, becoming a skilled woodsman, making a new life for yourself in the woods.")
 .setColor("#e0115b")
-//final embed 3
+//final embed 3 left towards it, play the game, stay with creatures
 const finalEmbed3 = new discord.MessageEmbed()
 .setTitle("Outcome 3 of 16")
 .setDescription("You are welcomed into the community and are turned into a magical being.")
 .setColor("#e0115b")
-//final embed 4
+//final embed 4 left, towards it play the game, don't stay with the creatures
 const finalEmbed4 = new discord.MessageEmbed()
 .setTitle("Outcome 4 of 16")
 .setDescription("They ask you what you want, if not eternal life. You ask them to take you home, which they do.")
 .setColor("#e0115b")
-//final embed 5
+//final embed 5- left stay on path, pet the cat, tell the woman you're in trouble
 const finalEmbed5 = new discord.MessageEmbed()
 .setTitle("Outcome 5 of 16")
 .setDescription("She kidnaps you and reveals that she is a witch. You become her witchy assistant for all of eternity.")
 .setColor("#e0115b")
-//final embed 6
+//final embed 6- left stay on path pet the cat tell woman you're on a walk
 const finalEmbed6 = new discord.MessageEmbed()
 .setTitle("Outcome 6 of 16")
 .setDescription("She believes you, you continue to walk in the direction you were, finding your way home.")
 .setColor("#e0115b")
-//final embed 7
+//final embed 7- left stay on path, don't pet the cat, keep walking
 const finalEmbed7 = new discord.MessageEmbed()
 .setTitle("Outcome 7 of 16")
 .setDescription("The cat continues to follow you. You remain lost, and the paranoia you have about this cat drives you crazy.")
 .setColor("#e0115b")
-//final embed 8
+//final embed 8- left, stay on the path, don't pet the cat, scare the cat
 const finalEmbed8 = new discord.MessageEmbed()
 .setTitle("Outcome 8 of 16")
 .setDescription("The cat bites you, and you pass out. You wake up in your bed the next day, confused about the events the night before.")
 .setColor("#e0115b")
-//final embed 9
+//final embed 9- right, go towards it, kindly, ask how he knew that
 const finalEmbed9 = new discord.MessageEmbed()
 .setTitle("Outcome 9 of 16")
 .setDescription("The man tells you about the magical events taking place tonight. This completely scars you, scares you, and changes your worldview. You return home, but suddenly feel like you have made the wrong choices.")
 .setColor("#e0115b")
-//final embed 10
+//final embed 10 right, towards it, kindly, go along with it
 const finalEmbed10 = new discord.MessageEmbed()
 .setTitle("Outcome 10 of 16")
 .setDescription("He pretends to take you home, leading you instead to the nearest river. He suddenly vanishes, leaving you confused and alone in a completely different part of the woods.")
 .setColor("#e0115b")
-//final embed 11
+//final embed 11- right towards it, harshly, apologise
 const finalEmbed11 = new discord.MessageEmbed()
 .setTitle("Outcome 11 of 16")
 .setDescription("He laughs maniacally and turns you into a werewolf. You live your new life in secret.")
 .setColor("#e0115b")
-//final embed 12
+//final embed 12- right, towards it, harshly, tell him to fuck himself
 const finalEmbed12 = new discord.MessageEmbed()
 .setTitle("Outcome 12 of 16")
 .setDescription("For some reason this works and he vanishes, teleporting you home simultaneously.")
 .setColor("#e0115b")
-//final embed 13
+//final embed 13- right, stay on the path, turn around, phone for help
 const finalEmbed13 = new discord.MessageEmbed()
 .setTitle("Outcome 13 of 16")
 .setDescription("You wonder why you didn't do this the entire time, but end up getting home safely.")
 .setColor("#e0115b")
-//final embed 14
+//final embed 14- right, stay on the path, turn around, trust you can find your way
 const finalEmbed14 = new discord.MessageEmbed()
 .setTitle("Outcome 14 of 16")
 .setDescription("You get lost again (lol why pick this dummy :p)")
 .setColor("#e0115b")
-//final embed 15
+//final embed 15- right stay on the path, press on, up
 const finalEmbed15 = new discord.MessageEmbed()
 .setTitle("Outcome 15 of 16")
 .setDescription("You eventually come to a waterfall and attempt to climb up. Because you are not dressed to go hiking you slip and fall to your doom.")
 .setColor("#e0115b")
-//final embed 16
+//final embed 16 right, stay on the path, press on, down
 const finalEmbed16 = new discord.MessageEmbed()
 .setTitle("Outcome 16 of 16")
 .setDescription("You eventually come to a bridge (where you can get to the road), and you hitchike home.")

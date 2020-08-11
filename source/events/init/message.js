@@ -3,8 +3,6 @@
 //
 const PREFIX = "~";
 
-const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
-
 function updateLevel(updatedXP){
     if(updatedXP >= 0 && updatedXP <= 1000) return 1;//start as Noobz
     else if(updatedXP > 1000 && updatedXP <= 2000) return 2;//iphone photographers (>2000)
@@ -25,9 +23,6 @@ function updateLevel(updatedXP){
 }
 
 module.exports = async(client, message) => {
-    if (client.sql == undefined) {
-        client.sql = sql;
-    }
     if(message.author.bot) return;
     if(message.content.startsWith(PREFIX)) {
         let cmdName = message.content.substring(message.content.indexOf(PREFIX)+ 1).split(new RegExp(/\s+/)).shift();
@@ -42,12 +37,12 @@ module.exports = async(client, message) => {
     if(!message.content.startsWith(PREFIX)) { 
         let userID = message.author.id
         let username = message.author.username
-        let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
+        let prepareStatement = client.sql.prepare("SELECT * FROM data WHERE userID = ?")
         let userXpObject= prepareStatement.get(`${userID}`)
 
         if (userXpObject == undefined) {
             // Does not exist
-            let prepareInsert = sql.prepare(`INSERT INTO data (userID, guildID, username, userXP, userLevel, userMoneys, warnNum, warnReason) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+            let prepareInsert = client.sql.prepare(`INSERT INTO data (userID, guildID, username, userXP, userLevel, userMoneys, warnNum, warnReason) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
             prepareInsert.run(userID, message.guild.id, username, 2, 1, 1, 0, "N/A")
         } else {
             let newXp = 2;
@@ -88,7 +83,7 @@ module.exports = async(client, message) => {
 
 
             // Update DB
-            let prepareUpdate = sql.prepare(`UPDATE data SET userXP = ?, userMoneys = ?, userLevel = ? WHERE userID = ?`)
+            let prepareUpdate = client.sql.prepare(`UPDATE data SET userXP = ?, userMoneys = ?, userLevel = ? WHERE userID = ?`)
             // Does Exist
             prepareUpdate.run(finalXP,finalMoneys,finalLevel, userID);
         }
