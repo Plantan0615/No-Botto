@@ -19,7 +19,8 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "node-emoji": "^1.10.0",
-    "node-gyp": "^7.0.0"
+    "node-gyp": "^7.0.0",
+    "shuffle": "^0.2.2"
   },
   "devDependencies": {
     "eslint": "^7.6.0",

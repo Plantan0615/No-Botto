@@ -1,8 +1,5 @@
-//
-// If you want to figure out how to reference the .env file the prefix declaration is where to do it
-//
+const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 const PREFIX = "~";
-
 function updateLevel(updatedXP){
     if(updatedXP >= 0 && updatedXP <= 1000) return 1;//start as Noobz
     else if(updatedXP > 1000 && updatedXP <= 2000) return 2;//iphone photographers (>2000)
@@ -31,62 +28,65 @@ module.exports = async(client, message) => {
             client.commands.get(cmdName).run(client, message, argsToParse);
         }
     }
-    //
-    //USER XP USING DB 
-    //
-    if(!message.content.startsWith(PREFIX)) { 
-        let userID = message.author.id
-        let username = message.author.username
-        let prepareStatement = client.sql.prepare("SELECT * FROM data WHERE userID = ?")
-        let userXpObject= prepareStatement.get(`${userID}`)
+    // //if message doesn't start with ~
+    // if(!message.content.startsWith(PREFIX)) {
+    // //if I Need to Read the Rules says something dumb
+    // let { cache } = message.guild.roles;
+    // let role = cache.find(role => role.name === "I Need to Read the Rules");
+    // let phrases = ["more channels", "two channels", "2 channels"]
+    // if (message.member.roles.cache.has(role.id) && phrases.some(word => message.content.includes(word))) {
+    //     message.channel.send("Hey! There are more channels! You just need to read the rules and type the password (in this channel) to unlock them.")
+    // }
+    // //USER XP USING DB 
+    //     let userID = message.author.id
+    //     let username = message.author.username
+    //     let prepareStatement = client.sql.prepare("SELECT * FROM data WHERE userID = ?")
+    //     let userXpObject= prepareStatement.get(`${userID}`)
 
-        if (userXpObject == undefined) {
-            // Does not exist
-            let prepareInsert = client.sql.prepare(`INSERT INTO data (userID, guildID, username, userXP, userLevel, userMoneys, warnNum, warnReason) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
-            prepareInsert.run(userID, message.guild.id, username, 2, 1, 1, 0, "N/A")
-        } else {
-            let newXp = 2;
-            let currentXp = userXpObject["userXP"]
-            let newMoneys = 1
-            let currentMoneys = userXpObject["userMoneys"]
-            let currentLevel = userXpObject["userLevel"]
-
-            let finalXP = newXp + currentXp
-            let finalMoneys = newMoneys + currentMoneys
-            let finalLevel = updateLevel(finalXP)
+    //     if (userXpObject == undefined) {
+    //         // Does not exist
+    //         let prepareInsert = client.sql.prepare(`INSERT INTO data (userID, guildID, username, userXP, userLevel, userMoneys, warnNum, warnReason) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`)
+    //         prepareInsert.run(userID, message.guild.id, username, 2, 1, 1, 0, "N/A")
+    //     } else {
+    //         let newXp = 2;
+    //         let currentXp = userXpObject["userXP"]
+    //         let newMoneys = 1
+    //         let currentMoneys = userXpObject["userMoneys"]
+    //         let currentLevel = userXpObject["userLevel"]
+    //         let finalXP = newXp + currentXp
+    //         let finalMoneys = newMoneys + currentMoneys
+    //         let finalLevel = updateLevel(finalXP)
             
-            // Insert Logic
-            if (currentLevel != finalLevel){
-                if(finalLevel === 3){
-                    message.member.roles.remove("735218837057962058");
-                    message.member.roles.add("736668508129198170");
-                    message.channel.send(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`);
-                }
-                else if(finalLevel === 6){
-                    message.member.roles.remove("736668508129198170");
-                    message.member.roles.add("736676248884871231");
-                    message.channel.send(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`);
-                }
-                else if(finalLevel === 11){
-                    message.member.roles.remove("736676248884871231");
-                    message.member.roles.add("736676760971640892");
-                    message.channel.send(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`);
+    //         // Logic
+    //         if (currentLevel != finalLevel){
+    //             if(finalLevel === 3){
+    //                 message.member.roles.remove("651166068877819916"); //noobz
+    //                 message.member.roles.add("651168912959864870"); //iphone
+    //                 message.channel.send(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`);
+    //             }
+    //             else if(finalLevel === 6){
+    //                 message.member.roles.remove("651168912959864870"); //iphone
+    //                 message.member.roles.add("651098747186446346"); //soyboys
+    //                 message.channel.send(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`);
+    //             }
+    //             else if(finalLevel === 11){
+    //                 message.member.roles.remove("651098747186446346"); //soyboys
+    //                 message.member.roles.add("651167306398826509"); //Crafty
+    //                 message.channel.send(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`);
                     
-                }
-                else if(finalLevel === 16){
-                    message.member.roles.remove("736676760971640892");
-                    message.member.roles.add("736676859596767413");
-                    message.channel.send(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`);
-                }
-                else{ message.channel.send(`${message.member} has levelled up to ${finalLevel}.`)};
-            }
-
-
-            // Update DB
-            let prepareUpdate = client.sql.prepare(`UPDATE data SET userXP = ?, userMoneys = ?, userLevel = ? WHERE userID = ?`)
-            // Does Exist
-            prepareUpdate.run(finalXP,finalMoneys,finalLevel, userID);
-        }
-    }
+    //             }
+    //             else if(finalLevel === 16){
+    //                 message.member.roles.remove("651167306398826509"); //crafty
+    //                 message.member.roles.add("651167213490798619"); //epic
+    //                 message.channel.send(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`);
+    //             }
+    //             else{ message.channel.send(`${message.member} has levelled up to ${finalLevel}.`)};
+    //         }
+    //         // Update DB
+    //         let prepareUpdate = client.sql.prepare(`UPDATE data SET userXP = ?, userMoneys = ?, userLevel = ? WHERE userID = ?`)
+    //         // Does Exist
+    //         prepareUpdate.run(finalXP,finalMoneys,finalLevel, userID);
+    //     }
+    // }
 }
 
