@@ -28,15 +28,14 @@ module.exports = async(client, message) => {
             client.commands.get(cmdName).run(client, message, argsToParse);
         }
     }
-    // //if message doesn't start with ~
-    // if(!message.content.startsWith(PREFIX)) {
-    // //if I Need to Read the Rules says something dumb
-    // let { cache } = message.guild.roles;
-    // let role = cache.find(role => role.name === "I Need to Read the Rules");
-    // let phrases = ["more channels", "two channels", "2 channels"]
-    // if (message.member.roles.cache.has(role.id) && phrases.some(word => message.content.includes(word))) {
-    //     message.channel.send("Hey! There are more channels! You just need to read the rules and type the password (in this channel) to unlock them.")
-    // }
+    //if message doesn't start with ~
+    if(!message.content.startsWith(PREFIX)) {
+    //if I Need to Read the Rules says something dumb
+    let role = message.guild.roles.cache.find(role => role.name === "I Need to Read the Rules");
+    let phrases = ["more channels", "two channels", "2 channels"]
+    if (message.member.roles.cache.has(role.id) && phrases.some(word => message.content.includes(word))) {
+        message.channel.send("Hey! There are more channels! You just need to read the rules and type the password (in this channel) to unlock them.")
+    }
     // //USER XP USING DB 
     //     let userID = message.author.id
     //     let username = message.author.username
@@ -87,6 +86,6 @@ module.exports = async(client, message) => {
     //         // Does Exist
     //         prepareUpdate.run(finalXP,finalMoneys,finalLevel, userID);
     //     }
-    // }
+    }
 }
 

@@ -142,7 +142,9 @@ const levelsEmbed = new MessageEmbed()
     .setTitle('Help with Admin Stuff')
     .setDescription('Help With Admin Only Commands')
     .addFields(
+        {name: "~ban", value: "For banning members. Type the command followed by the userID and the reason for the ban (MUST BE Separated with a comma)."},
         { name: "~emoji", value: "For setting up role menus. Works similarly to poll. Type ~help poll if you need help there."},
+        {name: "~kick", value: "For kciking members. Type the command followed by the userID and the reason for the kick (MUST BE Separated with a comma)."},
         { name: "~purge", value: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete. This only works for messages less than 2 weeks old."},
         {name: "~userwarns", value: "For viewing the warnings of members. Type this command followed by the userID (Seperated with a space)."},
         {name: "~warn", value: "For warning members. Type the command followed by the userID and the reason for the warning (MUST BE Separated with a comma)."},
