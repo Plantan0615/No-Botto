@@ -10,6 +10,6 @@ const rulesEmbed = new discord.MessageEmbed()
 module.exports.help = {
       name: "sanity",
       category: "useful",
-      usage: "",
+      usage: `PREFIXsanity`,
       description: "Type this to see if I am still online."
   }

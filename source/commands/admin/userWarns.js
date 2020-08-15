@@ -28,6 +28,6 @@ if(!userID){
 module.exports.help = {
     name: "userwarns",
     category: "admin",
-    usage: "",
+    usage: `PREFIXuserwarns userID\n PREFIXuserwarns 735157583010332723 (the user ID is my alt acct)`,
     description: "For viewing the warnings of members. Type this command followed by the userID (Seperated with a space)."
 }

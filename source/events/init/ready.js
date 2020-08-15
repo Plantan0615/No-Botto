@@ -715,7 +715,692 @@ module.exports = (client) => {
       finalState: "true"
       }
   ]
-
+  let businessMan= [
+    { //main id 1
+    scenario: "You're a wealthy business man whose car has broken down. You have 5 hours before an important meeting, and decide to try to make it on foot. You are now lost in the woods and come to a fork in the road.",
+    category: "business man",
+    question: "Do you go left or right?",
+    leftA: "Left.",
+    rightB: "Right.",
+    leftInt: "",//"2",
+    rightInt: "",//"3",
+    initState: "true",
+    finalState: "false"
+    },
+    { // id 2
+    scenario: "You see a strange light in the distance.",
+    category: "business man",
+    question: "Do you go towards it or stay on the path?",
+    leftA: "Go towards it.",
+    rightB: "Stay on the path.",
+    leftInt: "",//"4",
+    rightInt: "",//"5",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 3
+    scenario: "You hear a strange noise in the distance.",
+    category: "business man",
+    question: "Do you go towards it or stay on the path?",
+    leftA: "Go towards it.",
+    rightB: "Stay on the path.",
+    leftInt: "",//"6",
+    rightInt: "",//"7",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 4
+    scenario: "You come across a magical looking event. There is a game being played.",
+    category: "business man",
+    question: "Do you offer the creatures $500 or play the game?",
+    leftA: "Offer the creatures $500.",
+    rightB: "Play the game.",
+    leftInt: "",//"8",
+    rightInt: "",//"9",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 5
+    scenario: "You come across a black cat, it's unsettling.",
+    category: "business man",
+    question: "Do you ignore the cat or give the cat $50?",
+    leftA: "Ignore the cat.",
+    rightB: "Give the cat $50.",
+    leftInt: "",//"10",
+    rightInt: "",//"11",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 6
+    scenario: "You see a strange man in the distance.",
+    category: "business man",
+    question: "Do you ignore the man or offer him $200?",
+    leftA: "Ignore the man.",
+    rightB: "Give the man $200.",
+    leftInt: "",//"12",
+    rightInt: "",//"13",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 7
+    scenario: "The path ends...",
+    category: "business man",
+    question: "What do you do?",
+    leftA: "Turn around.",
+    rightB: "Scream 'I will pay anyone that can hear me to get me out of here!'",
+    leftInt: "",//"14",
+    rightInt: "",//"15",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 8
+    scenario: "The creatures are insulted that you offered human currency, and so little of it compared to your overall wealth.",
+    category: "business man",
+    question: "What do you do?",
+    leftA: "Offer them a percentage of your overall wealth that will surely make it worth their time.",
+    rightB: "Continue walking without their help.",
+    leftInt: "",//"16",
+    rightInt: "",//"17",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 9
+    scenario: "You win the game, despite not understanding it. The creatures tell you about their magical history, it's enthralling. They offer you a place in their group.",
+    category: "business man",
+    question: "Do you stay with the creatures or swear of magical abilities for the remainder of your life?",
+    leftA: "Stay with the creatures.",
+    rightB: "Resume normal business acitivities.",
+    leftInt: "",//"18",
+    rightInt: "",//"19",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 10
+    scenario: "You continue to walk forward, the cat follows you and meows incessently.",
+    category: "business man",
+    question: "What do you do?",
+    leftA: "Ignore the cat and keep walking (quickly).",
+    rightB: "Scare the cat.",
+    leftInt: "",//"20",
+    rightInt: "",//"21",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 11
+    scenario: "The cat holds the $50 bill in his mouth before melting into a puddle. A beautiful woman arises from the magical ink pool before you.",
+    category: "business man",
+    question: "What do you say to her?",
+    leftA: "What the fuck just happened?",
+    rightB: "Who are you?",
+    leftInt: "",//"22",
+    rightInt: "",//"23",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 12
+    scenario: "The man vanishes into a ghostly vapour, chasing you. You start to run, but you are only human and cannot outrun it.",
+    category: "business man",
+    question: "What do you do?",
+    leftA: "Offer him $1000.",
+    rightB: "Apologise.",
+    leftInt: "",//"24",
+    rightInt: "",//"25",
+    initState: "false",
+    finalState: "false"
+    },
+    {// id 13
+    scenario: "The man accepts your offer, but leads you in the wrong direction.",
+    category: "business man",
+    question: "What do you do once you've realised that you're in the wrong place?",
+    leftA: "Call him out- 'What did I pay you for?!'",
+    rightB: "Go along with it- 'Are you sure this is the right direction?'",
+    leftInt: "",//"26",
+    rightInt: "",//"27",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 14
+    scenario: "You think you have turned around but somehow you end up off the path.",
+    category: "business man",
+    question: "What do you do?",
+    leftA: "Continue walking forward.",
+    rightB: "Call for help.",
+    leftInt: "",//"28",
+    rightInt: "",//"29",
+    initState: "false",
+    finalState: "false"
+    },
+    {//id 15
+    scenario: "A group of magical creatures appears before you.",
+    category: "business man",
+    question: "What do you do?",
+    leftA: "Ask for their help anyways.",
+    rightB: "Ask about their existence.",
+    leftInt: "",//"30",
+    rightInt: "",//"31",
+    initState: "false",
+    finalState: "false"
+    },
+    {//id 16- outcome 1
+    scenario: "They agree to take you back to your car. You end up being late for the meeting.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 17- outcome 2
+    scenario: "You eventually make your way back to the broken down car when it becomes dalyight. You end up missing the meeting.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 18- outcome 3
+    scenario: "The creatures turn you into a centaur, and you lose all your human welath.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 19- outcome 4
+    scenario: "They are hesitant but agree to take you to your meeting, skipping over the broken car entirely.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 20- outcome 5
+    scenario: "You remain lost for an entire year, as the paranoia from the cat and it's constant cries drive you mad. When you eventually return to normal life, you have a new appreciation for the outdoors.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 21- outcome 6
+    scenario: "The cat bites you, and you end up at your meeting, but for some reason your shoes are missing.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 22- outcome 7
+    scenario: "She reveals herself to be a witch, before kidnapping you and teaching you witchcraft. You become a warlock.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 23- outcome 8
+    scenario: "She reveals herself to be a witch, and offers to take you to your destination. You arrive to the meeting o a broomstick.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 24- outcome 9
+    scenario: "He says 'you slready made your choice' before turning you into dust.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 25- outcome 10
+    scenario: "For some reason this works, and he teleports you to your car, you end up being late to your meeting.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 26- outcome 11
+    scenario: "He knows the true nature of your wealth, and is extremely offended as a result. He vanishes and you remain lost, missing your meeting.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 27- outcome 12
+    scenario: "He assures you that this is the right way, and you end up making your way to the meeting on time, although your suit is a bit dirty.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 28- outcome 13
+    scenario: "You fall into a hole in the ground that you cannot climb out of. You end up phoning for help anyways, and missing your meeting.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 29- outcome 14
+    scenario: "You call for help, and you eventually get to your meeting. You wonder why you didn't do this before.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 30- outcome 15
+    scenario: "They take you to your meeting, for the price of one soul. You continue your human business life, but you are a true monster inside.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 31- outcome 16
+    scenario: "They tell you all about their magical history and take you to your meeting. You cannot rationalise the events of this night, and you have a hard time with your business life.",
+    category: "business man",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    }
+  ]
+  let detective= [
+    { //main id 1
+    scenario: "",
+    category: "detective",
+    question: "Do you go left or right?",
+    leftA: "Left.",
+    rightB: "Right.",
+    leftInt: "",//"2",
+    rightInt: "",//"3",
+    initState: "true",
+    finalState: "false"
+    },
+    { // id 2
+    scenario: "You see a strange light in the distance.",
+    category: "detective",
+    question: "Do you go towards it or stay on the path?",
+    leftA: "Go towards it.",
+    rightB: "Stay on the path.",
+    leftInt: "",//"4",
+    rightInt: "",//"5",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 3
+    scenario: "You hear a strange noise in the distance.",
+    category: "detective",
+    question: "Do you go towards it or stay on the path?",
+    leftA: "Go towards it.",
+    rightB: "Stay on the path.",
+    leftInt: "",//"6",
+    rightInt: "",//"7",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 4
+    scenario: "You come across a magical looking event. There is a game being played.",
+    category: "detective",
+    question: "Do you play the game or investigate the creatures?",
+    leftA: "Investigate the creatures.",
+    rightB: "Covertly investigate by playing the game.",
+    leftInt: "",//"8",
+    rightInt: "",//"9",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 5
+    scenario: "You come across a black cat, it's unsettling.",
+    category: "detective",
+    question: "Do you investigate the cat ot ignore the cat?",
+    leftA: "Investigate the cat.",
+    rightB: "Covertly investigate by ignoring the cat.",
+    leftInt: "",//"10",
+    rightInt: "",//"11",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 6
+    scenario: "You see a strange man in the distance.",
+    category: "detective",
+    question: "Do you investigate the man or ignore the man?",
+    leftA: "Investigate the man.",
+    rightB: "Covertly investigate by ignoring the man.",
+    leftInt: "",//"12",
+    rightInt: "",//"13",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 7
+    scenario: "The path ends...",
+    category: "detective",
+    question: "Do you turn around or investigate the trees?",
+    leftA: "Turn around.",
+    rightB: "Investigate the trees.",
+    leftInt: "",//"14",
+    rightInt: "",//"15",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 8
+    scenario: "The creatures are suspicious of your behaviour and begin to question what you're doing.",
+    category: "detective",
+    question: "What do you do?",
+    leftA: "Tell them the truth.",
+    rightB: "Tell them that you're lost.",
+    leftInt: "",//"16",
+    rightInt: "",//"17",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 9
+    scenario: "You win the game, despite not understanding it. The creatures tell you about their magical history, it's enthralling. They offer you a place in their group.",
+    category: "detective",
+    question: "Do you stay with the creatures?",
+    leftA: "Stay with the creatures.",
+    rightB: "Collect one of the creatures as evidence.",
+    leftInt: "",//"18",
+    rightInt: "",//"19",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 10
+    scenario: "The cat runs away, and a beuatiful woman appears from nowhere.",
+    category: "detective",
+    question: "What do you say to her?",
+    leftA: "Where'd the cat go?",
+    rightB: "Where'd you come from?",
+    leftInt: "",//"20",
+    rightInt: "",//"21",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 11
+    scenario: "The cat begins to follow you.",
+    category: "detective",
+    question: "What do you do?",
+    leftA: "Let the cat catch up to you.",
+    rightB: "Scare the cat.",
+    leftInt: "",//"22",
+    rightInt: "",//"23",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 12
+    scenario: "You walk up to the man, and exchange pleasantries. He seems willing to talk.",
+    category: "detective",
+    question: "What do you ask him?",
+    leftA: "Ask him what he's doing in the forest.",
+    rightB: "Ask him if he knows anything about magical creatures.",
+    leftInt: "",//"24",
+    rightInt: "",//"25",
+    initState: "false",
+    finalState: "false"
+    },
+    {// id 13
+    scenario: "The man turns into a ball of fire, and it begins to consume the entire forest.",
+    category: "detective",
+    question: "Where do you run?",
+    leftA: "Towards the flames.",
+    rightB: "Away from the flames.",
+    leftInt: "",//"26",
+    rightInt: "",//"27",
+    initState: "false",
+    finalState: "false"
+    },
+    { // id 14
+    scenario: "You turn around and eventually come to a river.",
+    category: "detective",
+    question: "Which way will you follow the river?",
+    leftA: "Up.",
+    rightB: "Down.",
+    leftInt: "",//"28",
+    rightInt: "",//"29",
+    initState: "false",
+    finalState: "false"
+    },
+    {//id 15
+    scenario: "You start pressing your way through the trees, you continue to hear strange noises the further you go.",
+    category: "detective",
+    question: "What do you do?",
+    leftA: "Go towards the noises.",
+    rightB: "Head back towards the beaten path.",
+    leftInt: "",//"30",
+    rightInt: "",//"31",
+    initState: "false",
+    finalState: "false"
+    },
+    {//id 16- outcome 1
+    scenario: "The creatures tell you nothing, and teleport you to the top of Mt. Everest.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 17- outcome 2
+    scenario: "They offer to take you home, and they tell you all about their magical abilities, but you have no tangible evidence.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 18- outcome 3
+    scenario: "You become the magical creature of your choosing, and the mystery remains unsolved. You are officially missing.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 19- outcome 4
+    scenario: "You bargain with the creatures, and you end up collecting one of the creatures. You receive many accolades and the being you've collected is in captivity.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 20- outcome 5
+    scenario: "She explains that the cat is one of her servants who was misbehaving, revealing herself to be a witch. She then turns you into a cat.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 21- outcome 6
+    scenario: "She reveals herself to be a witch, you have a physical fight where she then flees. You end up leaving empty handed, but your story is believed by some.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 22- outcome 7
+    scenario: "The cat runs up to you affectionately. You end up collecting it as evidence, some believe the cat to be a human, others think you are crazy.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 23- outcome 8
+    scenario: "The cat bites you and you are teleported to where you started. You leave empty handed and confused, but you feel the urge to investigate again soon.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 24- outcome 9
+    scenario: "He reveals all he knows about the magical events taking place this evening. He leads you out of the forest, and allows you to use his 'testimony'. When you ask his name, he vanishes- decreasing the validity of his claims.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 25- outcome 10
+    scenario: "He vanishes immediately, leaving you lost but urged to keep investigating.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 26- outcome 11
+    scenario: "You feel compelled to rush into the flames, you then become magical fairy (that can take human form at will), you turn yourself in as evidence.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 27- outcome 12
+    scenario: "The flames end up catching up to you, but strangely they don't burn, knowing this you simply make your way out, your path illuminated before you. You're confident the strange activity will cease.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 28- outcome 13
+    scenario: "You end up coming to a waterfall, where you see a crashed ship of some kind. There are no survivors so you take it as evidence.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 29- outcome 14
+    scenario: "You see nothing suspicious, and tell your client that you didn't find anything.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 30- outcome 15
+    scenario: "You come across a stone with strange writing engraved in it. You document your journey and turn both in as evidence.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    },
+    {//id 31- outcome 16
+    scenario: "You end up walking away with no evidence. But you feel like there is something going on.",
+    category: "detective",
+    question: "",
+    leftA: "",
+    rightB:"",
+    leftInt: "",
+    rightInt: "",
+    initState: "false",
+    finalState: "true"
+    }
+  ]
     // id - autoincrement
     // category - hunter, teenager
     // scenario - string (description)
@@ -727,9 +1412,12 @@ module.exports = (client) => {
     // finalState - is Ending State (true, false)
 
     let map = {}
-    let questions = [...teenager, ...hunter]
+    // Any new ones that you add: need to add it here
+    // to add one: do ...array inside of questions
+    let questions = [...teenager, ...hunter, ...businessMan, ...detective]
     let counter = 0
     let currentCategory = null
+    let categoryArr = []
     for (let i = 0; i < questions.length; i++) {
       let question = questions[i]
       if (map[question.category] == undefined) {
@@ -740,10 +1428,13 @@ module.exports = (client) => {
           currentCategory = question.category
         }
         if (currentCategory != question.category) {
-          counter = map[currentCategory].count + 0
+          counter = categoryArr.length * map[currentCategory].count + 0
           currentCategory = question.category
         } else {
           counter = 0
+        }
+        if (!categoryArr.includes(question.category)) {
+          categoryArr.push(question.category)
         }
       }
       let questionsql = client.sql.prepare("INSERT INTO rpg (id, category, scenario, question, leftA, rightB, leftInt, rightInt, initState, finalState) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
@@ -891,6 +1582,7 @@ module.exports = (client) => {
     categories[categoryName] = traceByCategory(categoryName, queryResult)
   }
 
+  console.log(categories["business man"])
   client.rpg = categories
 
 }

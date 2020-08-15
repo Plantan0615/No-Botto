@@ -267,7 +267,7 @@ else {
 module.exports.help = {
     name: "random",
     category: "fun",
-    usage: "",
+    usage: `PREFIXrandom item\nPREFIXrandom meme\nPREFIXrandom cat\nPREFIXrandom dog \nPREFIXrandom cat fact \nPREFIXrandom dog fact \nPREFIXrandom hug \nPREFIXrandom wink \nPREFIXrandom pat`,
     short: `Type 'PREFIXhelp random' for more info`,
     description: [
         { name: "Random Meme", value: "Type meme after the random command to get a random meme."},

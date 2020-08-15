@@ -128,6 +128,6 @@ module.exports = {
 module.exports.help = {
     name: "emoji",
     category: "admin",
-    usage: "",
+    usage: `PREFIXemoji messageID\nPREFIXemoji 744291706031177799 (this is a random messageID)`,
     description: "For setting up role menus. Works similarly to poll. Type ~help poll if you need help there."
 }

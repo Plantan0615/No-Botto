@@ -5,20 +5,20 @@ module.exports.help = {
   name: "rpg",
   category: "rpg",
   usage: "",
-  description: "Type this to play the story as either a male (adult) hunter or a female teenager."
+  description: "Type this to play the story as a variety of chracters."
 }
 
 module.exports.run = async(client, message, args) => {
   const categoryPrepare = client.sql.prepare("SELECT DISTINCT category FROM rpg")
   const categories = categoryPrepare.all()
 
-  if (args.length != 1) {
+  const catMap = categories.map(v => v.category)
+  if (!catMap.includes(args.join(" "))) {
     let msg = await message.channel.send(`Missing Category\n: ${categories.map(v => `-> ${v.category}`).join("\n")}`)
     await message.delete({timeout: 3000})
     return
   }
-
-  const choice = args.shift().toLowerCase()
+  const choice = args.join(" ").trim()
 
   const categoryLst = categories.map(v => v.category.toLowerCase())
 
@@ -151,6 +151,7 @@ module.exports.run = async(client, message, args) => {
     const Tree = new TreeModel()
     
     const root = Tree.parse(TreeData)
+    console.log(root)
 
     const Game = new TreeNavigation(root)
 
@@ -318,10 +319,12 @@ class TreeNavigation {
 module.exports.help = {
   name: "rpg",
   category: "rpg",
-  usage: "",
+  usage: "PREFIXrpg character\nPREFIXrpg teenager\nPREFIXrpg hunter\nPREFIXrpg business man\nPREFIXrpg detective",
   description: [
     {name: "~rpg teenager", value: "Type this command to play the story as a female teenager."},
-    {name: "~rpg hunter", value: "Type this command to play the story as a male (adult) hunter."}
+    {name: "~rpg hunter", value: "Type this command to play the story as a male (adult) hunter."},
+    {name: "~rpg business man", value: "Type this command to play the story as a male (adult) business man."},
+    {name: "~rpg detective", value: "Type this command to play the story as a female (adult) detective."}
   ]
 }
 module.exports.h2p = {

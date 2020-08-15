@@ -121,7 +121,7 @@ module.exports = {
     help: {
         name: "poll",
         category: "poll",
-        usage: "",
+        usage: `PREFIXpoll messageID\nPREFIXpoll 744291706031177799 (this is a random messageID)`,
         description: [
             { name: "Step 1", value: "Create the message you want me to react to (this will be the poll itself). This command simply allows me to add reactions to a message. You must create the message with the poll title and options first."},
             { name: "Step 2", value: "Copy the ID of the message you just sent (You will need developer tools on for this. Go to settings, then appearance (behaviour if you're on mobile), and turn it on). Type the poll command and paste the ID (in the same message)."},

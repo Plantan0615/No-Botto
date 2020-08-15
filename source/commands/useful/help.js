@@ -15,7 +15,8 @@ module.exports.run = async(client, message, args) => {
         { name: "~help useful", value: "Type this to see what useful features I have. (If you need help with the password check #rules-and-info.)"},
         { name: "~help economy", value: "Type this for help understanding PXTC's economy and level systems."},
         { name: "~help levels", value: "Type this for help understanding PXTC's levels and level roles."},
-        { name: "~help admin", value: "Type this to see what features I have for admins."}
+        { name: "~help admin", value: "Type this to see what features I have for admins."},
+        { name: "Examples:", value: "If you need an example of what to type for any of the commands. Type one of the above followed by usage (i.e. ~help fun usage)"}
     );
 
     //role list
@@ -60,6 +61,8 @@ module.exports.run = async(client, message, args) => {
     function toCapitalize(input) {
         return input.charAt(0).toUpperCase() + input.slice(1);
     }
+    var usageType = (args.length == 1 ? args.shift() : null)
+    console.log(`Usage: ${usageType}`)
 
     let finalEmbed = new MessageEmbed();
     finalEmbed.setColor("#0b5eaf")
@@ -71,42 +74,78 @@ module.exports.run = async(client, message, args) => {
     let h2p = commandList.filter(v => {
         return v.h2p != undefined
     })
+    function replaceAll(string, search, replace) {
+      return string.split(search).join(replace);
+    }
 
-    function generateEmbed(tmpEmbed, cmdLst, h2pLst) {
-        let arr = cmdLst.array()
-        for(let i = 0; i < arr.length; i++) {
-            let content = arr[i]
-            if (Array.isArray(content.help.description)) {
-                if (content.help.short != undefined && content.help.name != helpType) {
-                    tmpEmbed.addField(`${client.prefix}${content.help.name}`, content.help.short.replace("PREFIX", client.prefix))
+    let usageLst = commandList.map(v => {
+        return v.help.usage.trim().length == 0 ? "No usage found" : replaceAll(v.help.usage, "PREFIX", client.prefix)
+    })
+
+    function generateEmbed(tmpEmbed, cmdLst, h2pLst, isUsage = false) {
+        if (!isUsage) {
+            let arr = cmdLst.array()
+            for(let i = 0; i < arr.length; i++) {
+                let content = arr[i]
+                if (Array.isArray(content.help.description)) {
+                    if (content.help.short != undefined && content.help.name != helpType) {
+                        tmpEmbed.addField(`${client.prefix}${content.help.name}`, content.help.short.replace("PREFIX", client.prefix))
+                    } else {
+                        for ( let j = 0; j < content.help.description.length; j++) {
+                            const data = content.help.description[j]
+                            tmpEmbed.addField(data.name, data.value)
+                        }
+                    }
                 } else {
-                    for ( let j = 0; j < content.help.description.length; j++) {
-                        const data = content.help.description[j]
+                    tmpEmbed.addField(`${client.prefix}${content.help.name}`, content.help.description.replace("PREFIX", client.prefix))
+                }
+            }
+            arr = h2pLst.array()
+            if (arr.length >= 1) {
+                let content = arr[0].h2p.instructions
+                if (Array.isArray(content)) {
+                    for (let i = 0; i < content.length; i++) {
+                        const data = content[i]
                         tmpEmbed.addField(data.name, data.value)
+                    }
+                } else {
+                    tmpEmbed.addField("How to Play:", content)
+                }
+            }
+        } else {
+            let arr = cmdLst.array()
+            let uList = Array.isArray(h2pLst) ? h2pLst : h2pLst.array()
+            if (arr.length == uList.length) {
+                //they match
+                console.log("MATCH!")
+                for (let i = 0; i < arr.length; i++) {
+                    let content = arr[i]
+                    let uText = uList[i]
+                    const usageTxt = uText.split("\n")
+                    if (usageTxt.length == 1) {
+                        tmpEmbed.addField(`${client.prefix}${content.help.name}`, uText)
+                    } else {
+                        tmpEmbed.addField(`${client.prefix}${content.help.name}`, uText)
                     }
                 }
             } else {
-                tmpEmbed.addField(`${client.prefix}${content.help.name}`, content.help.description.replace("PREFIX", client.prefix))
-            }
-        }
-        arr = h2pLst.array()
-        if (arr.length >= 1) {
-            let content = arr[0].h2p.instructions
-            if (Array.isArray(content)) {
-                for (let i = 0; i < content.length; i++) {
-                    const data = content[i]
-                    tmpEmbed.addField(data.name, data.value)
-                }
-            } else {
-                tmpEmbed.addField("How to Play:", content)
+                console.log("NO MATCH")
             }
         }
         return tmpEmbed
     }
-    if (commandList.size >= 1) {
-        finalEmbed = generateEmbed(finalEmbed, commandList, h2p)
-    } else if (commandList.size == 0 && command.size >= 1) {
-        finalEmbed = generateEmbed(finalEmbed, command, h2p)
+    if (usageType.toLowerCase() != "usage") {
+        if (commandList.size >= 1) {
+            finalEmbed = generateEmbed(finalEmbed, commandList, h2p)
+        } else if (commandList.size == 0 && command.size >= 1) {
+            finalEmbed = generateEmbed(finalEmbed, command, h2p)
+        }
+    } else {
+        if (commandList.size >= 1) {
+            finalEmbed = generateEmbed(finalEmbed, commandList, usageLst, true)
+        } else if (commandList.size == 0 && command.size >= 1) {
+            finalEmbed = generateEmbed(finalEmbed, command, usageLst, true)
+        }
     }
 
     if (helpType == "admin" && !message.member.hasPermission("ADMINISTRATOR")) {
@@ -136,7 +175,7 @@ module.exports.run = async(client, message, args) => {
 }
 
 module.exports.help = {
-    name: "help2",
+    name: "help",
     category: "useful",
     usage: "",
     description: "This is the help command"

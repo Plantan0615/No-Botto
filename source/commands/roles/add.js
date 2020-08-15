@@ -43,7 +43,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "add",
     category: "roles",
-    usage: "",
+    usage: `PREFIXadd role, another role\nOne Role: PREFIXadd animal lover\n Multiple Roles: PREFIXadd animal lover, anime weeb`,
     description: "Type the add command and the names of the roles you want to add. With the roles separated by commas."
 }
 

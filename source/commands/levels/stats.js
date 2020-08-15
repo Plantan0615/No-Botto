@@ -23,6 +23,6 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "stats",
     category: "economy",
-    usage: "",
+    usage: `PREFIXstats`,
     description: "Type this to see your current XP, Level, and Moneys. (Your rank cannot be viewed here.)"
 }

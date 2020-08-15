@@ -205,6 +205,6 @@ else if(guessType && guess){
 module.exports.help = {
     name: "roulette5050",
     category: "fun",
-    usage: "",
-    description: "To bet on groups of the roulette wheel. Type the command, then a guess type (colours, even/odd, numbers), your betting option(black, red; even, odd; group1 (for numbers 1-18), group2 (for numbers 19-37)), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."
+    usage: `PREFIXroulette5050 guess-type betting-option wager\nPREFIXroulette5050 colour black 5 \nPREFIXroulette5050 colour red 5 \nPREFIXroulette5050 even/odd even 5 \nPREFIXroulette5050 even/odd odd 5 \nPREFIXroulette5050 numbers group1 5 \nPREFIXroulette5050 numbers group2 5`,
+    description: "To bet on groups of the roulette wheel. Type the command, then a guess type (colour, even/odd, numbers), your betting option(black, red; even, odd; group1 (for numbers 1-18), group2 (for numbers 19-37)), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."
 }
