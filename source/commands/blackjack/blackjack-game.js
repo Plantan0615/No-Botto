@@ -1,4 +1,4 @@
-var shuffle = require("../../../node_modules/shuffle"),
+var shuffle = require("../../../node_modules/shuffle/lib/index"),
     blackjackHand = require("./blackjack-hand"),
     EventEmitter = require("events").EventEmitter,
     util = require("util");
@@ -19,7 +19,7 @@ function Game(){
         dealer= new blackjackHand();
         player = new blackjackHand();
         deck = shuffle.shuffle();
-        deck.deal(2, [player, dealer]);
+        deck.deal(2, [dealer, player]);
 
         isGameOver(playerTurn);
     }
@@ -30,20 +30,20 @@ function Game(){
 
         var handleInput = function(command){
             switch(command.toLowerCase()){
-                case "hit":
+                case 'hit':
                     player.push(deck.draw());
                     isGameOver(playerTurn);
                     break;
-                case "stay":
+                case 'stay':
                     playerHasStayed = true;
                     dealerTurn();
                     break;
-                case "quit":
+                case 'quit':
                     game.emit("end");
                     break;
                 default:
-                    console.log("Unknown command: " + command.toLowerCase());
-                    playerTurn();
+                    console.log(command.toLowerCase());
+                    playerTurn(); 
                     break;
             }
         };
@@ -80,22 +80,22 @@ function Game(){
 
         if(dealerScore == target){
             displayGameStatus(true);
-            console.log("\nDealer has 21. you lose");
+            console.log("Dealer has 21. you lose\n");
             game.emit("end");
         } else if (playerScore > target){
             displayGameStatus(true);
-            console.log("\nYou have gone bust. you lose")
+            console.log("You have gone bust. you lose\n");
             game.emit("end");
         } else if (dealerScore > target){
             displayGameStatus(true);
-            console.log("\nDealer has gone bust. you win");
+            console.log("Dealer has gone bust. you win\n");
             game.emit("end");
         } else if(dealerHasStayed){
-            displayGameStatus(true);
+            displayGameStatus(true);;
             if(dealerScore >= playerScore)
-                console.log("You lose.\n")
+                console.log("You lose.\n");
             else
-                console.log("You win. \n")
+                console.log("You win. \n");
             game.emit("end");
         } else{
             callback();
@@ -105,7 +105,7 @@ function Game(){
     function displayGameStatus(gameIsOver){
         var target = 21;
         if(playerHasStayed || gameIsOver)
-            console.log("\nDealer: %s (%d)", dealer.toString(), player.score(target));
+            console.log("\nDealer: %s (%d)", dealer.toString(), dealer.score(target));
         else
         console.log("\nDealer: %s", dealer.toString(true));    
         console.log("\nPlayer: %s (%d)", player.toString(), player.score(target));
@@ -114,3 +114,9 @@ function Game(){
 
 util.inherits(Game, EventEmitter);
 module.exports = Game;
+module.exports.help = {
+    name: "blackjack_game",
+    category: "blackjack",
+    usage: "",
+    description: "None"
+}

@@ -17,3 +17,10 @@ let userID = message.author.id
     )
         message.channel.send(warnEmbed);
 }
+
+module.exports.help = {
+    name: "mywarnings",
+    category: "useful",
+    usage: "",
+    description: "Type this command to see how many warnings you have, and the reasons for those warnings (This command will only work if you have sent a non-command message. Type ~economy help for more info.)"
+}

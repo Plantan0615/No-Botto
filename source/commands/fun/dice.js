@@ -74,3 +74,17 @@ let wager = (msgArray[1]);
                 }
             }
         };
+
+module.exports.help = {
+    name: "dice",
+    category: "fun",
+    usage: "",
+    description: "Type the dice command, then either even or odd, and how many Moneys you want to bet (Separated with spaces). I will roll two dice, add them together, and tell you if you've won."
+}
+
+module.exports.h2p = {
+    instructions: [
+        { name: "Various RPGs", value: "Type '~help rpg' for more info"},
+        { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with ⭐ and I will add the post to the Starboard channel for you. (THIS ONLY WORKS FOR TEXT AND LINKS, I will not add pictures or link previews.)"}
+    ]
+}

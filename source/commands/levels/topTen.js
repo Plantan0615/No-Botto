@@ -1,8 +1,7 @@
 const discord = require("discord.js");
-const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 module.exports.run = async(client, message, args) => {
-let prepareStatement = sql.prepare("SELECT username, userXP FROM data ORDER BY userXP DESC")
-let userXpObject = prepareStatement.all()
+let prepareStatement = client.sql.prepare("SELECT username, userXP FROM data WHERE guildID = ? ORDER BY userXP DESC")
+let userXpObject = prepareStatement.all(`${message.guild.id}`)
 let leaderArray = userXpObject.map(Object.values);
 //send leaderboard array in embed
     const leaderEmbed = new discord.MessageEmbed()
@@ -23,3 +22,10 @@ let leaderArray = userXpObject.map(Object.values);
     );
     message.channel.send(leaderEmbed);
  }
+
+ module.exports.help = {
+    name: "topten",
+    category: "economy",
+    usage: "",
+    description: "Type this to see the leaderboard of the top 10 XP earners."
+}

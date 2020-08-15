@@ -118,4 +118,16 @@ module.exports = {
             }
         }
     },
+    help: {
+        name: "poll",
+        category: "poll",
+        usage: "",
+        description: [
+            { name: "Step 1", value: "Create the message you want me to react to (this will be the poll itself). This command simply allows me to add reactions to a message. You must create the message with the poll title and options first."},
+            { name: "Step 2", value: "Copy the ID of the message you just sent (You will need developer tools on for this. Go to settings, then appearance (behaviour if you're on mobile), and turn it on). Type the poll command and paste the ID (in the same message)."},
+            { name: "Step 3", value: "You will then be prompted (in a following message) to provide the amount of poll options you wish to have (you will not need the ID again.)"},
+            { name: "Step 4", value: "You will then be prompted (in following messages) to provide the emojis you want me to react with (one message at a time)."},
+            { name: "Step 5", value: "I will delete the messages you and I have sent (except for the poll itself). If you need to edit the poll, do so at this point.(If the messages that prompt you to send an emoji have not been automatically deleted before the last emoji is sent, 1 or 2 messages may remain.)"}
+        ]
+    }
 }

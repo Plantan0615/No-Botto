@@ -1,9 +1,8 @@
-const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 const { MessageEmbed } = require("discord.js");
 module.exports.run = async(client, message, args) => {
     let userID = message.author.id
-    let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
-    let userXpObject= prepareStatement.get(`${userID}`)
+    let prepareStatement = client.sql.prepare("SELECT * FROM data WHERE userID = ? AND guildID = ?")
+    let userXpObject= prepareStatement.get(`${userID}`, `${message.guild.id}`)
                 let username = userXpObject["username"];
                 let currentXp = userXpObject["userXP"];
                 let currentMoneys = userXpObject["userMoneys"];
@@ -21,3 +20,9 @@ module.exports.run = async(client, message, args) => {
             message.channel.send(statsEmbed);
 }
 
+module.exports.help = {
+    name: "stats",
+    category: "economy",
+    usage: "",
+    description: "Type this to see your current XP, Level, and Moneys. (Your rank cannot be viewed here.)"
+}

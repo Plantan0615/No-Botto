@@ -263,3 +263,16 @@ else {
     message.delete(); return;
 }
 };
+
+module.exports.help = {
+    name: "random",
+    category: "fun",
+    usage: "",
+    short: `Type 'PREFIXhelp random' for more info`,
+    description: [
+        { name: "Random Meme", value: "Type meme after the random command to get a random meme."},
+        { name: "Random Animal Pictures", value: "Type one of the following animals after the random command to get a random pic of that animal. Cat, dog, panda, red panda, koala, fox, birb, pikachu."},
+        { name: "Random Animal Facts", value: "Type one of the following animals and the word fact after the random command to get a random fact about that animal. Cat, dog, panda, koala, fox, bird."},
+        { name: "Random GIFS", value: "Type one of the following after the random command to get a random GIF of it. Hug, pat, wink."}
+    ]
+}

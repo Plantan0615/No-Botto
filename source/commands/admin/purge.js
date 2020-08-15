@@ -15,3 +15,9 @@ module.exports.run = async (client, message, args) => {
         message.channel.send(`Cleared the messages`).then(msg => msg.delete({timeout: 700}));
     }).catch(console.error)
 }
+module.exports.help = {
+    name: "purge",
+    category: "admin",
+    usage: "",
+    description: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete. This only works for messages less than 2 weeks old."
+}

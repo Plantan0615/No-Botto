@@ -1,8 +1,7 @@
 const discord = require("discord.js");
-const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 module.exports.run = async(client, message, args) => {
-    let prepareStatement = sql.prepare(`SELECT userID, username, userXP, RANK() OVER ( ORDER BY userXP DESC ) Rank FROM data`);
-    let guildObject =prepareStatement.all();
+    let prepareStatement = client.sql.prepare(`SELECT userID, username, userXP, RANK() OVER ( ORDER BY userXP DESC ) Rank FROM data WHERE guildID = ?`);
+    let guildObject =prepareStatement.all(message.guild.id);
     let uID = message.author.id
     let user = guildObject.find(o => o.userID === `${uID}`)
     let userArr = Object.values(user)
@@ -14,4 +13,11 @@ module.exports.run = async(client, message, args) => {
     .setColor('#5dc428');
 
     message.channel.send(rankEmbed);
+}
+
+module.exports.help = {
+    name: "rank",
+    category: "economy",
+    usage: "",
+    description: "Type this to see your current rank (based on XP)."
 }

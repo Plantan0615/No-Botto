@@ -30,3 +30,9 @@ module.exports.run = async(client, message, args) => {
         message.channel.send(kickEmbed)
     }
 }
+module.exports.help = {
+    name: "kick",
+    category: "admin",
+    usage: "",
+    description: "For kicking members. Type the command followed by the userID and the reason for the kick (MUST BE Separated with a comma)."
+}

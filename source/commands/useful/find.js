@@ -6,3 +6,10 @@ module.exports.run = async(client, message, args) => {
     message.delete();
     channel.send(announcement).then(msg => msg.delete({timeout: 15000})).catch(console.error);
 }
+
+module.exports.help = {
+    name: "find",
+    category: "useful",
+    usage: "",
+    description: "Type this followed by the channel you want me to find. I will ping you in that channel, then delete the messages after 15 seconds. YOU MUST TYPE THE CHANNEL NAME EXACTLY AS IT APPEARS (dashes and all)."
+}

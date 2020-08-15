@@ -39,3 +39,16 @@ module.exports.run = async(client, message, args) => {
     });
     message.delete();
 }
+
+module.exports.help = {
+    name: "add",
+    category: "roles",
+    usage: "",
+    description: "Type the add command and the names of the roles you want to add. With the roles separated by commas."
+}
+
+module.exports.h2p = {
+    instructions: [{ name: "Reacting for Roles", value: "You can add roles to (and remove roles from) yourself by reacting (and unreacting) to the messages in #role-menu (I will only add the role if you react in that channel)."},
+        { name: "Level Roles", value: "The I Need to Read the Rules, Noobz, iPhone Photographers, Soy Boys, Crafty Crew, and Epic Gamers Roles are level roles (based on xp, earned by takling). You CANNOT add yourself to (or remove yourself from) these roles."},
+        { name: "Other Roles", value: "Please type ~help role list for info on all of the roles."}]
+}

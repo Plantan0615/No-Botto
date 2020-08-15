@@ -17,3 +17,10 @@ await message.channel.send(wyrEmbed)
         message.react("🅱️");
     }).catch(err => console.log(err));
 }
+
+module.exports.help = {
+    name: "wyr",
+    category: "fun",
+    usage: "",
+    description: "Simply type the command and I will provide you with a Would You Rather scenario. I will also react with options A and B to allow for easy voting."
+}

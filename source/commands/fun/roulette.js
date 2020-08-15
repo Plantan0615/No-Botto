@@ -60,17 +60,34 @@ else if(!numGuess){
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
 }
-//if invalid number
+//if number is too high
 else if(numGuess > "37"){
     message.delete({ timeout: 2000 })
         message.channel.send("Invalid Number. Please type a number between 0 and 36 after the colour.")
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
 }
-//if wager is higher than Moneys
+//if invalid number
+else if(colourGuess && numGuess){
+    let isValidRed = [33, 20, 22, 26, 35, 28, 37, 31, 24, 6, 17, 2, 15, 10, 19, 8, 13, 4]
+    let isValidBlack = [16, 5, 3, 18, 7, 14, 12, 9, 11, 25, 34, 21, 32, 23, 30, 29, 36, 27]
+    let isValidGreen = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        var valid;
+    if(colourGuess === "red"){valid = isValidRed.includes(numGuess)}
+    else if(colourGuess === "black"){valid = isValidBlack.includes(numGuess)}
+    else if(colourGuess === "green"){valid = isValidGreen.includes(numGuess)};
+    if (valid === false){
+        message.delete({timeout: 2000})
+        message.channel.send("Number/Colour combination does not exist. (If you need help- Look at a Roulette Wheel and add 1 to the number you want to bet on.)")
+        .then(msg => msg.delete({timeout: 3000}))
+        .catch(err => console.log(err));
+        return;
+    }
+}
+//if no wager
 else if(!wager){
     message.delete({ timeout: 2000 })
-        message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number).")
+        message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number/Betting Option).")
             .then(msg => msg.delete({timeout: 3000}))
             .catch(err => console.log(err));
 }
@@ -130,3 +147,10 @@ else{
                 }      
         }
     };
+
+module.exports.help = {
+    name: "roulette",
+    category: "fun",
+    usage: "",
+    description: "To bet on a single number of the roulette wheel. Type the roulette command and then a colour(black, red, or green), then a number (between 1-37), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."
+}

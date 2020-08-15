@@ -38,3 +38,10 @@ module.exports.run = async(client, message, args) => {
             .setColor("#831313")
             message.channel.send(warnEmbed)
 }
+
+module.exports.help = {
+    name: "warn",
+    category: "admin",
+    usage: "",
+    description: "For warning members. Type the command followed by the userID and the reason for the warning (MUST BE Separated with a comma)."
+}

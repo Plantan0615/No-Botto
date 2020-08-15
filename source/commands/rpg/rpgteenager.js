@@ -388,3 +388,14 @@ const reaction = firstMsg.first();
         }
     }
 }
+
+module.exports.help = {
+    name: "rpgteenager",
+    category: "rpg",
+    usage: "",
+    description: "Type this to play the story as a female teenager."
+}
+
+module.exports.h2p = {
+    instructions: "Simply type one of the above commands, and I will send a message. Wait for me to react to the message with A and B, then make your decision (by selecting either A or B), at which point I will send another message. After 4 decisions you will know the outcome of the story."
+}

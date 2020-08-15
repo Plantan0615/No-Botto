@@ -25,3 +25,9 @@ if(!userID){
     )
         message.channel.send(warnEmbed);
 }
+module.exports.help = {
+    name: "userwarns",
+    category: "admin",
+    usage: "",
+    description: "For viewing the warnings of members. Type this command followed by the userID (Seperated with a space)."
+}

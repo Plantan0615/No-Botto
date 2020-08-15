@@ -125,3 +125,9 @@ module.exports = {
         }
     },
 }
+module.exports.help = {
+    name: "emoji",
+    category: "admin",
+    usage: "",
+    description: "For setting up role menus. Works similarly to poll. Type ~help poll if you need help there."
+}

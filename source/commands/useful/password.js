@@ -50,3 +50,10 @@ if(role) {
     }
 }
 }
+
+module.exports.help = {
+    name: "password",
+    category: "useful",
+    usage: "",
+    description: "For newcomers to type the password after the command. Do not tell others the password. If you have the role I Need to Read the Rules, you need to type this with the password."
+}

@@ -28,10 +28,11 @@ const funEmbed = new MessageEmbed()
         { name: "~poll", value: "Type '~help poll' for more info"},
         { name: "~prompt", value: "Type the prompt command and then animals, body parts, buildings, expressions, food, famous buildings, landmarks, long, plants or person adjective. I will give you a random item from the category you choose."},
         { name: "~random", value: "Type '~help random' for more info"},
-        { name: "~roulette", value: "Type the roulette command and then a colour(black, red, or green), then a number (between 1-37), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."},
+        { name: "~roulette", value: "To bet on a single number of the roulette wheel. Type the roulette command and then a colour(black, red, or green), then a number (between 1-37), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."},
+        { name: "~roulette5050", value: "To bet on groups of the roulette wheel. Type the command, then a guess type (colours, even/odd, numbers), your betting option(black, red; even, odd; group1 (for numbers 1-18), group2 (for numbers 19-37)), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."},
         { name: "~wyr", value: "Simply type the command and I will provide you with a Would You Rather scenario. I will also react with options A and B to allow for easy voting."},
         { name: "Various RPGs", value: "Type '~help rpg' for more info"},
-        { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with ⭐ and I will add the post to the Starboard channel for you."}
+        { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with ⭐ and I will add the post to the Starboard channel for you. (THIS ONLY WORKS FOR TEXT AND LINKS, I will not add pictures or link previews.)"}
     );
 //poll
 const pollEmbed = new MessageEmbed()
@@ -40,7 +41,7 @@ const pollEmbed = new MessageEmbed()
     .setDescription('Help With Using ~poll')
     .addFields(
         { name: "Step 1", value: "Create the message you want me to react to (this will be the poll itself). This command simply allows me to add reactions to a message. You must create the message with the poll title and options first."},
-        { name: "Step 2", value: "Copy the ID of the message you just sent (You will need developer tools on for this. Go to settings, then appearance (behaviour if you're on mobile), and turn it on). Type the poll command and paste the ID."},
+        { name: "Step 2", value: "Copy the ID of the message you just sent (You will need developer tools on for this. Go to settings, then appearance (behaviour if you're on mobile), and turn it on). Type the poll command and paste the ID (in the same message)."},
         { name: "Step 3", value: "You will then be prompted (in a following message) to provide the amount of poll options you wish to have (you will not need the ID again.)"},
         { name: "Step 4", value: "You will then be prompted (in following messages) to provide the emojis you want me to react with (one message at a time)."},
         { name: "Step 5", value: "I will delete the messages you and I have sent (except for the poll itself). If you need to edit the poll, do so at this point.(If the messages that prompt you to send an emoji have not been automatically deleted before the last emoji is sent, 1 or 2 messages may remain.)"}
@@ -172,3 +173,10 @@ else{
     message.delete();
     message.channel.send("I'm not sure what you need help with. Type '~help' for all help commands.").then(msg => msg.delete({timeout: 15000})).catch(err => console.log(err));}
 };
+
+module.exports.help = {
+    name: "help",
+    category: "useful",
+    usage: "",
+    description: "This is the help command"
+}

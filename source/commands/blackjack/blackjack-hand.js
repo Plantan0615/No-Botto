@@ -35,7 +35,7 @@ module.exports = function (cards){
     //finds number of aces
     var aces = 0;
     for(var i = 0; i < this.cards.length; i++)
-        if(this.card[i].description.toLowerCase() === "ace")
+        if(this.cards[i].description.toLowerCase() === "ace")
         aces++;
         if (aces === 1)
             return low;
@@ -43,14 +43,14 @@ module.exports = function (cards){
     var inbetween = high;
     for(var i=0; i < aces; i++){
         inbetween -= 10;
-        if(inbetween <= target);
+        if(inbetween <= target)
         return inbetween;
         }
         throw "shouldn't be reachable";
     }
 
     this.highestValue = function(){
-        var ret = 0 
+        var ret = 0; 
         for(var i = 0; i < this.cards.length; i++){
             var card = this.cards[i];
             if(card.description.toLowerCase() === "ace")
@@ -67,7 +67,7 @@ module.exports = function (cards){
         var ret = 0;
         for(var i = 0; i < this.cards.length; i++){
             var card = this.cards[i];
-            if(card.description === "ace")
+            if(card.description.toLowerCase() === "ace")
                 ret += 1;
             else if(card.sort > 10)
                 ret += 10;
@@ -77,3 +77,9 @@ module.exports = function (cards){
         return ret;
     }
 };
+module.exports.help = {
+    name: "blackjack_game",
+    category: "blackjack",
+    usage: "",
+    description: "None"
+}

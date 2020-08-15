@@ -30,3 +30,15 @@ module.exports.run = async(client, message, args) => {
         message.channel.send(banEmbed)
     }
 }
+
+module.exports.help = {
+    name: "ban",
+    category: "admin",
+    usage: "",
+    description: "For banning members. Type the command followed by the userID and the reason for the ban (MUST BE Separated with a comma)."
+}
+
+module.exports.h2p = {
+    instructions: [{ name: "IMPORTANT NOTE", value: "Users can only be warned (and their warns checked) if they are in the Database(db). This means that they must have sent a message that is not a command. This also applies to currency if anyone is confused, as if they utilise db commands before they have sent an actual message the command will not work."}],
+
+}

@@ -59,3 +59,10 @@ else if (valid === true){
     }
 }
 };
+
+module.exports.help = {
+    name: "prompt",
+    category: "fun",
+    usage: "",
+    description: "Type the prompt command and then animals, body parts, buildings, expressions, food, famous buildings, landmarks, long, plants or person adjective. I will give you a random item from the category you choose."
+}

@@ -1,8 +1,7 @@
 const discord = require("discord.js");
-const sql = require("better-sqlite3")("/Users/chase/Desktop/Coding/No Botto/source/userInfo.db");
 module.exports.run = async(client, message, args) => {
-    let prepareStatement = sql.prepare(`SELECT userID, username, userXP, RANK() OVER ( ORDER BY userXP DESC ) Rank FROM data`);
-    let guildObject = prepareStatement.all();
+    let prepareStatement = client.sql.prepare(`SELECT userID, username, userXP, RANK() OVER ( ORDER BY userXP DESC ) Rank FROM data WHERE guildID = ?`);
+    let guildObject = prepareStatement.all(message.guild.id);
     function getInfo(item){
         var info = [item.username, item.userXP]
         return info
@@ -69,4 +68,11 @@ let userRank = userArr[3]
 if (userRank <= 9) {message.channel.send(leaderEmbed);}
 else if (userRank >= 10 && userRank <= 19) {message.channel.send(secondEmbed);}
 else if (userRank >= 20 && userRank <= 29) {message.channel.send(thirdEmbed);}
+}
+
+module.exports.help = {
+    name: "leaderboard",
+    category: "economy",
+    usage: "",
+    description: "Type this to see your place on the leaderboard. (The leaderboards are grouped in 10s.)"
 }

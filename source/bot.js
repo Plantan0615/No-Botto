@@ -4,49 +4,65 @@ const client = new discord.Client({partials: ["MESSAGE", "CHANNEL", "REACTION"]}
 const fs = require("fs").promises;
 const path = require("path");
 const PREFIX = process.env.PREFIX;
-client.login(process.env.BOT_TOKEN);
-client.commands = new Map();
+client.commands = new discord.Collection();
+client.prefix = PREFIX
 
-//command handling
-(async function registerCommands(dir = "commands") {
-let files = await fs.readdir(path.join(__dirname, dir));
-for(let file of files) {
-    let stat = await fs.lstat(path.join(__dirname, dir, file));
-    if(stat.isDirectory())
-    registerCommands(path.join(dir, file));
-    else {
-        if(file.endsWith(".js")){
-            let cmdName = file.substring(0, file.indexOf(".js"));
-            try{
-            let cmdModule = require(path.join(__dirname, dir, file));
-            client.commands.set(cmdName, cmdModule);
-            }
-            catch (err) {
-                console.log(err);
+async function registerCommands(dir = "commands") {
+    let files = await fs.readdir(path.join(__dirname, dir));
+    for(let file of files) {
+        let stat = await fs.lstat(path.join(__dirname, dir, file));
+        if(stat.isDirectory()) {
+            await registerCommands(path.join(dir, file));
+        }
+        else {
+            if(file.endsWith(".js")){
+                let cmdName = file.substring(0, file.indexOf(".js"));
+                try{
+                let cmdModule = require(path.join(__dirname, dir, file));
+                client.commands.set(cmdModule.help.name, cmdModule);
+                }
+                catch (err) {
+                    console.log(err);
+                }
             }
         }
     }
 }
-})();
-
 //event hanlding
-(async function registerEvents(dir = "events") {
-let files = await fs.readdir(path.join(__dirname, dir));
-for(let file of files) {
-    let stat = await fs.lstat(path.join(__dirname, dir, file));
-    if(stat.isDirectory())
-    registerEvents(path.join(dir, file));
-    else {
-        if(file.endsWith(".js")){
-            let eventName = file.substring(0, file.indexOf(".js"));
-            try{
-            let eventModule = require(path.join(__dirname, dir, file));
-            client.on(eventName, eventModule.bind(null, client));
-            }
-            catch (err) {
-                console.log(err);
-            }
-    }
+async function registerEvents(dir = "events") {
+    let files = await fs.readdir(path.join(__dirname, dir));
+    for(let file of files) {
+        let stat = await fs.lstat(path.join(__dirname, dir, file));
+        if(stat.isDirectory()) {
+            await registerEvents(path.join(dir, file));
+        }
+        else {
+            if(file.endsWith(".js")){
+                let eventName = file.substring(0, file.indexOf(".js"));
+                try{
+                let eventModule = require(path.join(__dirname, dir, file));
+                client.on(eventName, eventModule.bind(null, client));
+                }
+                catch (err) {
+                    console.log(err);
+                }
+        }
+        }
     }
 }
-})();
+    
+async function main() {
+    //command handling
+    await registerCommands()
+
+    // Event Handling
+    await registerEvents()
+
+    // Set up MySQL
+    const sql = require("better-sqlite3")("C:\\Users\\chase\\Desktop\\Coding\\No Botto\\source\\userInfo.db");
+    client.sql = sql
+
+    // Start Bot
+    client.login(process.env.BOT_TOKEN);
+}
+main()

@@ -28,3 +28,10 @@ let valid = isValid.includes(rollType);
         message.channel.send(rollEmbed);
     }   
 };
+
+module.exports.help = {
+    name: "dndroll",
+    category: "fun",
+    usage: "",
+    description: "Type the roll command and then 4, 6, 8, 10, 12, 20, or 100. I will give you a random number. Please use this command in dnd-chat."
+}

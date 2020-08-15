@@ -6,3 +6,10 @@ const rulesEmbed = new discord.MessageEmbed()
       .setColor("#19da58")
          message.channel.send(rulesEmbed);
 }
+
+module.exports.help = {
+      name: "sanity",
+      category: "useful",
+      usage: "",
+      description: "Type this to see if I am still online."
+  }
