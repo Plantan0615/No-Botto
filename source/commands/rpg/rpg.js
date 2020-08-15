@@ -190,7 +190,7 @@ class TreeNavigation {
   }
 
   getTitle() {
-    return (this.isFinal() ? `Final Decision` : `Decision ${this.getCount()}`)
+    return (this.isFinal() ? `Final Outcome` : `Decision ${this.getCount()}`)
   }
 
   getDescription() {
@@ -315,6 +315,15 @@ class TreeNavigation {
   }
 }
 
+module.exports.help = {
+  name: "rpg",
+  category: "rpg",
+  usage: "",
+  description: [
+    {name: "~rpg teenager", value: "Type this command to play the story as a female teenager."},
+    {name: "~rpg hunter", value: "Type this command to play the story as a male (adult) hunter."}
+  ]
+}
 module.exports.h2p = {
-  instructions: "Simply type one of the above commands, and I will send a message. Wait for me to react to the message with A and B, then make your decision (by selecting either A or B), at which point I will send another message. After 4 decisions you will know the outcome of the story."
+  instructions: "Simply type one of the above commands, and I will send a message. Wait for me to react to the message with A and B, then make your decision (by selecting either A or B), at which point I will edit the message. After 4 decisions you will know the outcome of the story."
 }

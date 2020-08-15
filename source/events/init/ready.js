@@ -1,6 +1,6 @@
 module.exports = (client) => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity("your commands.", {type: "LISTENING"})
+  client.user.setActivity("your commands.", {type: "LISTENING"});
   // Create RPG Table
   // id - autoincrement
   // category - hunter, teenager

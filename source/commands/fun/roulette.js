@@ -67,7 +67,14 @@ else if(numGuess > "37"){
             .then(msg => msg.delete({timeout: 2000}))
             .catch(err => console.log(err));
 }
-//if invalid number
+//if no wager
+else if(!wager){
+    message.delete({ timeout: 2000 })
+        message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number/Betting Option).")
+            .then(msg => msg.delete({timeout: 3000}))
+            .catch(err => console.log(err));
+}
+//if num and colour guess
 else if(colourGuess && numGuess){
     let isValidRed = [33, 20, 22, 26, 35, 28, 37, 31, 24, 6, 17, 2, 15, 10, 19, 8, 13, 4]
     let isValidBlack = [16, 5, 3, 18, 7, 14, 12, 9, 11, 25, 34, 21, 32, 23, 30, 29, 36, 27]
@@ -76,6 +83,7 @@ else if(colourGuess && numGuess){
     if(colourGuess === "red"){valid = isValidRed.includes(numGuess)}
     else if(colourGuess === "black"){valid = isValidBlack.includes(numGuess)}
     else if(colourGuess === "green"){valid = isValidGreen.includes(numGuess)};
+    //if invalid num 
     if (valid === false){
         message.delete({timeout: 2000})
         message.channel.send("Number/Colour combination does not exist. (If you need help- Look at a Roulette Wheel and add 1 to the number you want to bet on.)")
@@ -83,14 +91,6 @@ else if(colourGuess && numGuess){
         .catch(err => console.log(err));
         return;
     }
-}
-//if no wager
-else if(!wager){
-    message.delete({ timeout: 2000 })
-        message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number/Betting Option).")
-            .then(msg => msg.delete({timeout: 3000}))
-            .catch(err => console.log(err));
-}
 //if all is well
 else{
     let userID = message.author.id
@@ -144,9 +144,10 @@ else{
                 .setDescription("You Lost " + wager + " Moneys!")
                 .setColor("#ec2727")
                 message.channel.send(loseEmbed)
-                }      
+            }      
         }
-    };
+    }
+};
 
 module.exports.help = {
     name: "roulette",

@@ -84,7 +84,7 @@ else if(!wager){
         .then(msg => msg.delete({timeout: 3000}))
         .catch(err => console.log(err));
 }
-//if invalid guess
+//if guess type and guess
 else if(guessType && guess){
     let isValidColour = ["black", "red"]
     let isValidEvenOdd = ["even", "odd"]
