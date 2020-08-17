@@ -134,17 +134,17 @@ module.exports.run = async(client, message, args) => {
         }
         return tmpEmbed
     }
-    if (usageType.toLowerCase() != "usage") {
-        if (commandList.size >= 1) {
-            finalEmbed = generateEmbed(finalEmbed, commandList, h2p)
-        } else if (commandList.size == 0 && command.size >= 1) {
-            finalEmbed = generateEmbed(finalEmbed, command, h2p)
-        }
-    } else {
+    if (usageType != null && usageType.toLowerCase() == "usage") {
         if (commandList.size >= 1) {
             finalEmbed = generateEmbed(finalEmbed, commandList, usageLst, true)
         } else if (commandList.size == 0 && command.size >= 1) {
             finalEmbed = generateEmbed(finalEmbed, command, usageLst, true)
+        }
+    } else {
+        if (commandList.size >= 1) {
+            finalEmbed = generateEmbed(finalEmbed, commandList, h2p)
+        } else if (commandList.size == 0 && command.size >= 1) {
+            finalEmbed = generateEmbed(finalEmbed, command, h2p)
         }
     }
 

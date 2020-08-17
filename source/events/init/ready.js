@@ -1159,7 +1159,7 @@ module.exports = (client) => {
     finalState: "false"
     },
     { // id 10
-    scenario: "The cat runs away, and a beuatiful woman appears from nowhere.",
+    scenario: "The cat runs away, and a beautiful woman appears from nowhere.",
     category: "detective",
     question: "What do you say to her?",
     leftA: "Where'd the cat go?",
@@ -1460,21 +1460,16 @@ module.exports = (client) => {
 
   let isError = false
 
-  // console.log(statement)
 
   let request = `SELECT DISTINCT category FROM rpg`
   let category = client.sql.prepare(request).all()
 
-  // console.log(category)
 
   function createTree(category, data, iState) {
     let generateTree = {}
 
-    // console.log(iState)
 
     function getData(id) {
-      // console.log(data.length)
-
       return data.filter(v => v.id == id)
     }
 
@@ -1504,7 +1499,6 @@ module.exports = (client) => {
     let hasSeen = []
     function recursiveTree(tree) {
 
-      // console.log(tree)
       let fun = {}
       fun.id = tree.id
       fun.children = []
@@ -1514,7 +1508,7 @@ module.exports = (client) => {
         final: tree.finalState == 'true' ? true : false,
         init: tree.initState == 'true' ? true : false
       }
-      // console.log(tree.leftInt, tree.rightInt)
+
       if (tree.leftInt != undefined) {
         fun.data.left = tree.leftA
       }
@@ -1537,7 +1531,6 @@ module.exports = (client) => {
       return fun
     }
 
-    console.log(iState.length)
     for (let i = 0; i < iState.length; i++) {
       generateTree = recursiveTree(iState[i])
     }
@@ -1576,13 +1569,10 @@ module.exports = (client) => {
     if (categories[categoryName] == undefined) {
       categories[categoryName] = {} // statemachine
     }
-    // console.log(`Category Name: ${categoryName}`)
     let query = `SELECT * FROM rpg WHERE category = '${categoryName}'`
     let queryResult = client.sql.prepare(query).all()
     categories[categoryName] = traceByCategory(categoryName, queryResult)
   }
-
-  console.log(categories["business man"])
   client.rpg = categories
 
 }

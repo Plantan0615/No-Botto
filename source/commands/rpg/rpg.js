@@ -151,8 +151,7 @@ module.exports.run = async(client, message, args) => {
     const Tree = new TreeModel()
     
     const root = Tree.parse(TreeData)
-    console.log(root)
-
+    
     const Game = new TreeNavigation(root)
 
     const getCurrent = await Game.getCurrentNode()

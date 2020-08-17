@@ -35,6 +35,17 @@ module.exports = async(client, message) => {
     if (message.member.roles.cache.has(role.id) && phrases.some(word => message.content.includes(word))) {
         message.channel.send("Hey! There are more channels! You just need to read the rules and type the password (in this channel) to unlock them.")
     }
+    //if sentence starts with I'm
+    let isValid = ["I'm ", "Im ", "i'm ", "im "]
+    if (isValid.some(word => message.content.includes(word))){
+        if(message.channel.id === "649178353471062016"){return;}// if vent and advice channel
+        let msgArr = message.content.split(" "); //create array
+        if (msgArr.length <= 5){//if array is less than 5 long
+            msgArr.shift(); //remove I'm
+            let words = msgArr.join(" ");//recreate string
+            message.channel.send(`Hi ${words}, I'm dad!`); //send dad joke
+        } else {return;}
+    }
     // //USER XP USING DB 
         let userID = message.author.id
         let username = message.author.username
