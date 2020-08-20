@@ -10,7 +10,7 @@ module.exports.run = async (client, message, args) => {
         message.channel.send("Too many messages. (maximum: 99)").then(msg => msg.delete({timeout: 2000})).catch(err => console.log(err)); 
         message.delete(); return;
     }
-    message.channel.bulkDelete(num + 1)
+    message.channel.bulkDelete(num + 1, true)
     .then(() => {
         message.channel.send(`Cleared the messages`).then(msg => msg.delete({timeout: 700}));
     }).catch(console.error)
@@ -19,5 +19,5 @@ module.exports.help = {
     name: "purge",
     category: "admin",
     usage: `PREFIXpurge number\nPREFIXpurge 10`,
-    description: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete. This only works for messages less than 2 weeks old."
+    description: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete."
 }

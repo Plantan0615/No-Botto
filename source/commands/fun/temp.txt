@@ -1,0 +1,230 @@
+const Shuffle = require("shuffle");
+const Discord = require("discord.js");
+module.exports.run = async(client, message, args) => {
+//filters and input variables
+const filter = m=> m.content.includes("playing");
+const selectFilter = (mg) => {return ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].includes(mg.content.toLowerCase()) && currentCz === message.author.id};
+const cardFilter = (msg) => {return ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].includes(msg.content.toLowerCase()) && currentCz !== message.author.id};
+var num;
+var pts;
+const userArr = []
+const nameArr = []
+//ask for number of players and points
+// Error with no number of players
+if (args.length == 0) {
+    let msg = await message.reply("You must provide a number of players.")
+    await message.delete({timeout: 3000})
+    await msg.delete({timeout: 2000})
+    return;
+}
+// Error with no points
+if (args.length == 1) {
+    let msg = await message.reply("You must provide a number of points to play to (i.e. the first player to reach this number wins).")
+    await message.delete({timeout: 3000})
+    await msg.delete({timeout: 2000})
+    return;
+}
+//if players and points provided
+else {
+    num = parseInt(args[0])
+    pts = parseInt(args[1])
+    //if players and points are within limits
+    if(num <= 10 && pts <= 12){
+        //send starting message
+        const promptMsg = new Discord.MessageEmbed();
+        promptMsg.setTitle("Welcome to Cards Against Humanity!")
+        promptMsg.setDescription(`You have choosen ${num} players and ${pts} points. All of you need to reply with "playing" to continue.`)
+            await message.channel.send(promptMsg);
+        //get userIDs of players
+            //collect messages
+            let data = null
+            let collected = await message.channel.awaitMessages(filter, {max: num, time: 30000, errors: ["time"]}).catch(er => {
+                data = er
+            })
+            if (collected != undefined) {
+                data = collected
+            }
+            //create array of user IDs
+            let collectArr = data.array();
+            for(let i = 0; i < collectArr.length; i++){
+                userArr.push(collectArr[i].author.id)
+                nameArr.push(collectArr[i].author.username)
+            }
+        }
+    //too many players error
+    else if(num > 10){
+        let msg = await message.reply("Too many players (max: 10).")
+        await message.delete({timeout: 3000})
+        await msg.delete({timeout: 2000})
+        return;
+    } //too many points error
+    else if(pts > 12){
+        let msg = await message.reply("Too many points (max: 12).")
+        await message.delete({timeout: 3000})
+        await msg.delete({timeout: 2000})
+        return;
+    }
+}
+//reference db
+let prepareStatement = client.sql.prepare("SELECT * FROM cah WHERE type = ?");
+//get white cards
+var wCards = prepareStatement.all(`white`);
+    //shuffle white deck
+        var wdeck = Shuffle.shuffle({deck: wCards});
+//get black cards
+var bCards = prepareStatement.all(`black`);
+    //shuffle black deck
+        var bDeck = Shuffle.shuffle({deck: bCards});
+//deal 10 white cards to each player
+//create player variables
+const playArr = [];
+createVariables();
+//deal cards
+wdeck.deal(10, playArr);
+    //create structure of players
+    var players = [];
+    for (var i = 0; i < userArr.length; i++){
+        // IF PLAYER 1
+        if (i === 0){
+        players[i] = {
+            playerNum: "player" + (i+1).toString(),
+            username : nameArr[i],
+            userID : userArr[i],
+            hand : playArr[i],
+            points: 0,
+            czar: true
+            };
+        }
+        // IF ANY OTHER PLAYER
+        else if(i >= 1){
+        players[i] ={
+            playerNum: "player" + (i+1).toString(),
+            username : nameArr[i],
+            userID : userArr[i],
+            hand : playArr[i],
+            points: 0,
+            czar: false
+            };
+        }
+    }
+//send cards via dm
+var handEmbed
+for (let i = 0; i < players.length; i++){
+    if(players[i].czar === false){
+        handEmbed = new Discord.MessageEmbed()
+        .setTitle(`Cards Against Humanity`)
+        .setDescription(`You are ${players[i].playerNum}. You have ${players[i].points} points.`)
+        .addFields(
+            {name: "Card 1", value: `${players[i].hand[0].content}`},
+            {name: "Card 2", value: `${players[i].hand[1].content}`},
+            {name: "Card 3", value: `${players[i].hand[2].content}`},
+            {name: "Card 4", value: `${players[i].hand[3].content}`},
+            {name: "Card 5", value: `${players[i].hand[4].content}`},
+            {name: "Card 6", value: `${players[i].hand[5].content}`},
+            {name: "Card 7", value: `${players[i].hand[6].content}`},
+            {name: "Card 8", value: `${players[i].hand[7].content}`},
+            {name: "Card 9", value: `${players[i].hand[8].content}`},
+            {name: "Card 10", value: `${players[i].hand[9].content}`}
+        )
+    }
+    else{
+        handEmbed = new Discord.MessageEmbed()
+        .setTitle(`Cards Against Humanity`)
+        .setDescription(`You are ${players[i].playerNum}. You have ${players[i].points} points. You are the czar this round!`)
+        .addFields(
+            {name: "Card 1", value: `${players[i].hand[0].content}`},
+            {name: "Card 2", value: `${players[i].hand[1].content}`},
+            {name: "Card 3", value: `${players[i].hand[2].content}`},
+            {name: "Card 4", value: `${players[i].hand[3].content}`},
+            {name: "Card 5", value: `${players[i].hand[4].content}`},
+            {name: "Card 6", value: `${players[i].hand[5].content}`},
+            {name: "Card 7", value: `${players[i].hand[6].content}`},
+            {name: "Card 8", value: `${players[i].hand[7].content}`},
+            {name: "Card 9", value: `${players[i].hand[8].content}`},
+            {name: "Card 10", value: `${players[i].hand[9].content}`}
+        )
+    }
+    let user = client.users.cache.get(`${userArr[i]}`)
+    user.send(handEmbed)
+}
+//get random black card
+    const bDealt = bDeck.draw(1);
+//send black card to channel
+    const bCardEmbed = new Discord.MessageEmbed()
+    bCardEmbed.setTitle(`Cards Against Humanity`)
+    bCardEmbed.setDescription(`${bDealt.content}`)
+    message.channel.send(bCardEmbed)
+//await white card selection for all players except czar
+    //if czar is true
+        //send error message
+        //message delete
+        //czar message delete
+    //if czar is false- exclude czar
+        //await messages num -1
+        //bulk delete (num -1)
+        //splice method on each player hand
+        //create array of discarded black cards
+        //create array of "discarded" white cards
+        //send new black/white combo embed
+//let czar pick best card
+    //check if czar is true
+    var czarArr = [];
+    var posi;
+    checkCzar();
+    //if czar is true
+        //await czar message
+
+        //send message player has won this round, they have x points out of pts points
+//first user to reach set points wins
+    //add points
+    //check points
+    var ptsArr = [];
+    checkPoints();
+//do while loop
+        //continue game
+            //assign czar to next player
+            //assign players a new card
+            //send new black card
+            //send new hand embeds
+    //FUNCTIONS
+    function createVariables(){
+        for (var i = 0; i < userArr.length; i++){
+            var str = "player"+ (i+1).toString() + "= []";
+            playArr[i] = eval(str)
+        }
+    }
+    function checkPoints() {
+        for (var i = 0; i < players.length; i++){
+            ptsArr[i] = players[i].points
+        }
+        if(ptsArr.includes(num)){
+            var pos = ptsArr.indexOf(num)
+            let plNum = players[pos].playerNum
+            let plName = players[pos].username
+            let finalEmbed = new Discord.MessageEmbed()
+            finalEmbed.setTitle("Cards Against Humanity")
+            finalEmbed.setDescription(`${plNum} (aka ${plName}) has won!`)
+            message.channel.send(finalEmbed);
+            return;
+        }
+    }
+    function checkCzar() {
+        for (var i = 0; i < players.length; i++){
+            czarArr[i] = players[i].czar
+        }
+        if(czarArr.includes(true)){
+            posi = czarArr.indexOf(true)
+            czName = players[posi].username
+            currentCz = players[posi].userID
+            if (posi === -1){newCz = players[0].userID}
+            else {newCz = players[(posi + 1)].userID}
+        }   
+    }
+}
+
+module.exports.help = {
+    name: "cah",
+    category: "fun",
+    usage: `PREFIXcah number-of-players number-of-points\n PREFIXcah 3 6`,
+    description: "Cards Against Humanity"
+};

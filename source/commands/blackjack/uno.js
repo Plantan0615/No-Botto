@@ -20,6 +20,7 @@ else {
     promptMsg.setTitle("Welcome to Uno!")
     promptMsg.setDescription(`You have choosen ${num} players. All of you need to reply with "playing" to continue.`)
         await message.channel.send(promptMsg);
+        //get userIDs
         let data = null
         let collected = await message.channel.awaitMessages(filter, {max: num, time: 30000, errors: ["time"]}).catch(er => {
             data = er
@@ -30,9 +31,13 @@ else {
         const userArr = []
         let collectArr = data.array();
         for(let i = 0; i < collectArr.length; i++){
-            userArr.push(collectArr[i].message.author.id)
+            userArr.push(collectArr[i].author.id)
         }
-        return userArr
+        //dm players
+        for(let j = 0; j < userArr.length; j++){
+        const user = client.users.cache.get(`${userArr[j]}`)
+        user.send("testing")
+        }
     }
     // Error with too many players
     else{
