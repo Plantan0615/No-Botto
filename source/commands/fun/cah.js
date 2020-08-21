@@ -9,7 +9,7 @@ var players = [];
 const userArr = []
 const nameArr = []
 const playArr = [];
-    //ask for number of players and points
+//ask for number of players and points
     // Error with no number of players
     if (args.length == 0) {
         let msg = await message.reply("You must provide a number of players.")
@@ -175,6 +175,7 @@ var discard;
 var currentPts, newPts
 var posi, czName, currentCzID;
 var newCard;
+var discard;
     //get random black card
     const bDealt = bDeck.draw(1);
     //czar function
@@ -214,8 +215,8 @@ var newCard;
     //send new black/white combo embed
     const oldEmbed = currentEmbed.embeds.length >= 1 ? currentEmbed.embeds[0] : null
     const comboEmbed = oldEmbed != null ? new Discord.MessageEmbed(oldEmbed) : new Discord.MessageEmbed()
+    comboEmbed.fields = []
     for (let i = 0; i < cardsArr.length; i++) {
-        comboEmbed.fields = []
         let fName = "Card " + (i + 1).toString()
         comboEmbed.addField(fName, cardsArr[i].content)
     }
@@ -273,6 +274,7 @@ var newCard;
     assignCzar();
     //change czar to false
     removeCzar();
+    console.log(players)
     //assign players a new card
     assignNewCards();
     //send new hand embeds
@@ -323,34 +325,63 @@ var newCz;
         }   
         if (czarArr.includes(true)) {
             posi = czarArr.indexOf(true)//gets index of true in czar arr
-            let newPos = posi + 1
-            console.log(posi, newPos, czarArr.length)
-            if (newPos === czarArr.length){
-                var newCz1 = players[0] //gets player obj of next czar at end of array
-                if (newCz1.czar === false) {
-                    posi = posi - 1
-                    newPos = newPos - 1
-                    console.log(posi, newPos)
-                    return players[posi].czar = true //changes czar to true for next player
-                }
+            newPos = posi + 1 //add one to make index increase by 1 (to get next player obj)
+            if (newPos >= czarArr.length){ //if newPos is > = length of czar arr
+                newPos = 0 //reset new position (because we are back at 0)
+                newCz = players[newPos] //gets player obj of next czar at end of array (position 0)
+                if (newCz.czar === false) { //if czar is false
+                    return players[newPos].czar = true //changes czar to true for next player
+                } 
             } else {
                 newCz = players[newPos]//gets player obj of next czar otherwise
-                if (newCz.czar === false) {
+                if (newCz.czar === false) {//if new player's czar value is false
                     return players[newPos].czar = true //changes czar to true for next player
-                }
+                } 
             }
         }
     }
-
+var result;
     function removeCzar() {
         for (var i = 0; i < players.length; i++) {
             czarArr[i] = players[i].czar //gets czar value of player at position i and populates array
         }   
         if (czarArr.includes(true)) {
             posi = czarArr.indexOf(true)//gets index of true in czar arr
+            if(posi === 0) {//if posi is 0 then check for multiple instances of true
+                for(let i = 0; i < czarArr.length; i++){
+                    if(czarArr.indexOf(true) !== czarArr.lastIndexOf(true)){ //if the first index of true doesn't match the last index of true
+                        result = true; //return true
+                    } else {
+                        result = false;//return false
+                    }
+                break;//end loop
+                }
+                if(result === true){//if multiple exist
+                    if(newCz === players[0]){ //if new czar is player at 0
+                        posi = czarArr.length - 1 //position -1 is the one to be removed
+                        currentCz = players[posi]//player obj of current czar (at set index)
+                        if (currentCz.czar === true) {//if czar value is true
+                            return players[posi].czar = false//changes czar to false
+                        }
+                    } else {//if new czar is anyone but player 1/position 0
+                        posi = 0 //position 0 is the one to be removed
+                        currentCz = players[posi]//player obj of current czar (at true index)
+                        if (currentCz.czar === true) {
+                            return players[posi].czar = false//changes czar to false
+                        }
+                    }
+                } else {
+                //otherwise remove it from posi
+                currentCz = players[posi]//player obj of current czar (at true index)
+                    if (currentCz.czar === true) {
+                        return players[posi].czar = false//changes czar to false
+                    }
+                }
+            } else {  //otherwise remove from players at first index of true
             currentCz = players[posi]//player obj of current czar (at true index)
             if (currentCz.czar === true) {
                 return players[posi].czar = false//changes czar to false
+                }
             } 
         }
     }
@@ -361,12 +392,12 @@ var newCz;
             value = parseInt(cardNums[i]) - 1 //parses user input into index num
             pCard = player.hand[value] //gets the index number of that card in the players hand
             cardsArr.push(player.hand[value]) //creates array of chosen cards
+            discard = player.hand.splice(value, 1)//creates discard pile and removes from hand
         }
     }
 
     function assignNewCards(){
         for(i = 0; i < (players.length); i++) {
-            discard = players[i].hand.splice(value, 1)//creates discard pile and removes from hand
             newCard = wdeck.draw(1);//draws new card
             players[i].hand.push(newCard)//adds card to player's hand
         }
@@ -387,13 +418,6 @@ var newCz;
         finalEmbed.setDescription(`${plNum} (aka ${plName}) has won!`)
         message.channel.send(finalEmbed);
         return;
-    }
-}
-
-class CardsAgainstHumanity {
-    constructor() {
-        this.czar = ""
-        this.players = []
     }
 }
 
