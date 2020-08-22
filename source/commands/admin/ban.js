@@ -34,7 +34,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "ban",
     category: "admin",
-    usage: `PREFIXban userID, reason\n PREFIXban 735157583010332723, because (the user ID is my alt acct)`,
+    usage: `Template: PREFIXban userID, reason\nExample: PREFIXban 735157583010332723, because (the user ID is my alt acct)`,
     description: "For banning members. Type the command followed by the userID and the reason for the ban (MUST BE Separated with a comma)."
 }
 

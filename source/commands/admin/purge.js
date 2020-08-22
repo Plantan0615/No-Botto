@@ -18,6 +18,6 @@ module.exports.run = async (client, message, args) => {
 module.exports.help = {
     name: "purge",
     category: "admin",
-    usage: `PREFIXpurge number\nPREFIXpurge 10`,
+    usage: `Template: PREFIXpurge number\nExample: PREFIXpurge 10`,
     description: "For Bulk Deleting Messages. Type the command followed by the number of message you wish to delete."
 }

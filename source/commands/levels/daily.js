@@ -20,6 +20,6 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "daily",
     category: "economy",
-    usage: `PREFIXdaily`,
+    usage: `Template/Example: PREFIXdaily`,
     description: "Type this once a day to earn 200 Moneys."
 }

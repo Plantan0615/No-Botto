@@ -78,7 +78,7 @@ let wager = (msgArray[1]);
 module.exports.help = {
     name: "dice",
     category: "fun",
-    usage: `PREFIXdice even/odd wager\nPREFIXdice even 5\nPREFIXdice odd 5`,
+    usage: `Template: PREFIXdice even/odd wager\n Example (for even): PREFIXdice even 5\n Example (for odd): PREFIXdice odd 5`,
     description: "Type the dice command, then either even or odd, and how many Moneys you want to bet (Separated with spaces). I will roll two dice, add them together, and tell you if you've won."
 }
 

@@ -18,6 +18,6 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "rank",
     category: "economy",
-    usage: `PREFIXrank`,
+    usage: `Template/Example: PREFIXrank`,
     description: "Type this to see your current rank (based on XP)."
 }

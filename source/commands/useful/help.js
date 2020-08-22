@@ -62,7 +62,6 @@ module.exports.run = async(client, message, args) => {
         return input.charAt(0).toUpperCase() + input.slice(1);
     }
     var usageType = (args.length == 1 ? args.shift() : null)
-    console.log(`Usage: ${usageType}`)
 
     let finalEmbed = new MessageEmbed();
     finalEmbed.setColor("#0b5eaf")
@@ -117,7 +116,6 @@ module.exports.run = async(client, message, args) => {
             let uList = Array.isArray(h2pLst) ? h2pLst : h2pLst.array()
             if (arr.length == uList.length) {
                 //they match
-                console.log("MATCH!")
                 for (let i = 0; i < arr.length; i++) {
                     let content = arr[i]
                     let uText = uList[i]
@@ -161,7 +159,6 @@ module.exports.run = async(client, message, args) => {
         message.channel.send(levelsEmbed)
     } else if (helpType == "role" && args.length >= 1) {
         const next = args.shift().toLowerCase()
-        console.log(next, args.length, helpType)
         if (next == "list") {
             message.channel.send(roleListEmbed)
         } else {

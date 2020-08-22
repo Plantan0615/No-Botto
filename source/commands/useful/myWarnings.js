@@ -21,6 +21,6 @@ let userID = message.author.id
 module.exports.help = {
     name: "mywarnings",
     category: "useful",
-    usage: `PREFIXmywarnings`,
+    usage: `Template/Example: PREFIXmywarnings`,
     description: "Type this command to see how many warnings you have, and the reasons for those warnings (This command will only work if you have sent a non-command message. Type ~economy help for more info.)"
 }

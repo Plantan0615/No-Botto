@@ -267,7 +267,7 @@ else {
 module.exports.help = {
     name: "random",
     category: "fun",
-    usage: `PREFIXrandom item\nPREFIXrandom meme\nPREFIXrandom cat\nPREFIXrandom dog \nPREFIXrandom cat fact \nPREFIXrandom dog fact \nPREFIXrandom hug \nPREFIXrandom wink \nPREFIXrandom pat`,
+    usage: `Template: PREFIXrandom item\n Example (for meme): PREFIXrandom meme\nExamples (for random animal pictures): PREFIXrandom cat\nPREFIXrandom dog \nExample (for random animal facts): PREFIXrandom cat fact \nPREFIXrandom dog fact \nExample (for random GIFs): PREFIXrandom hug \nPREFIXrandom wink \nPREFIXrandom pat`,
     short: `Type 'PREFIXhelp random' for more info`,
     description: [
         { name: "Random Meme", value: "Type meme after the random command to get a random meme."},

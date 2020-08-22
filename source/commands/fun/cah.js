@@ -424,6 +424,6 @@ var result;
 module.exports.help = {
     name: "cah",
     category: "fun",
-    usage: `PREFIXcah number-of-players number-of-points\n PREFIXcah 3 6`,
-    description: "Cards Against Humanity"
+    usage: `Template: PREFIXcah number-of-players number-of-points\n Example (3 players, 6 points): PREFIXcah 3 6`,
+    description: "Cards Against Humanity. A party game where everyone completes a sentence or answers a question, with a card from their hand. With the card czar picking the best card each round. The first to get to the points set out wins."
 };

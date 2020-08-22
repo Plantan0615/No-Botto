@@ -26,6 +26,6 @@ let leaderArray = userXpObject.map(Object.values);
  module.exports.help = {
     name: "topten",
     category: "economy",
-    usage: `PREFIXtopten`,
+    usage: `Template/Example: PREFIXtopten`,
     description: "Type this to see the leaderboard of the top 10 XP earners."
 }

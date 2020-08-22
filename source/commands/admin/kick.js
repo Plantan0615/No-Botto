@@ -33,6 +33,6 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "kick",
     category: "admin",
-    usage: `PREFIXkick userID, reason\n PREFIXkick 735157583010332723, a reason (the user ID is my alt acct)`,
+    usage: `Template: PREFIXkick userID, reason\n Example: PREFIXkick 735157583010332723, a reason (the user ID is my alt acct)`,
     description: "For kicking members. Type the command followed by the userID and the reason for the kick (MUST BE Separated with a comma)."
 }

@@ -73,6 +73,6 @@ else if (userRank >= 20 && userRank <= 29) {message.channel.send(thirdEmbed);}
 module.exports.help = {
     name: "leaderboard",
     category: "economy",
-    usage: `PREFIXleaderboard`,
+    usage: `Template/Example: PREFIXleaderboard`,
     description: "Type this to see your place on the leaderboard. (The leaderboards are grouped in 10s.)"
 }

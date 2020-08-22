@@ -152,6 +152,6 @@ else{
 module.exports.help = {
     name: "roulette",
     category: "fun",
-    usage: `PREFIXroulette colour number wager\nPREFIXroulette black 16 5\nPREFIXroulette red 17 5 \nPREFIXroulette green 1 5`,
+    usage: `Template: PREFIXroulette colour number wager\nExample (for black): PREFIXroulette black 16 5\nExample (for red): PREFIXroulette red 17 5 \nExample (for green): PREFIXroulette green 1 5`,
     description: "To bet on a single number of the roulette wheel. Type the roulette command and then a colour(black, red, or green), then a number (between 1-37), and how many Moneys you want to bet (Separated with spaces). I will spin the wheel and tell you if you've won."
 }

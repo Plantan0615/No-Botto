@@ -41,7 +41,7 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "del",
     category: "roles",
-    usage: `PREFIXdel role, another role\nOne Role: PREFIXdel animal lover\n Multiple Roles: PREFIXdel animal lover, anime weeb`,
+    usage: `Template: PREFIXdel role, another role\nExample (One Role): PREFIXdel animal lover\nExamples (Multiple Roles): PREFIXdel animal lover, anime weeb`,
     description: "Type the del command and the names of the roles you want to remove. With the roles separated by commas."
 }
 

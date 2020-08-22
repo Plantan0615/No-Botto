@@ -32,6 +32,6 @@ let valid = isValid.includes(rollType);
 module.exports.help = {
     name: "dndroll",
     category: "fun",
-    usage: `PREFIXdndroll number\nPREFIXdndroll 4\nPREFIXdndroll 6\nPREFIXdndroll 8\nEtcetera..`,
+    usage: `Template: PREFIXdndroll number\n Examples: PREFIXdndroll 4\nPREFIXdndroll 6\nPREFIXdndroll 8\nEtcetera..`,
     description: "Type the roll command and then 4, 6, 8, 10, 12, 20, or 100. I will give you a random number. Please use this command in dnd-chat."
 }

@@ -42,6 +42,6 @@ module.exports.run = async(client, message, args) => {
 module.exports.help = {
     name: "warn",
     category: "admin",
-    usage: `PREFIXwarn userID, reason\n PREFIXwarn 735157583010332723, a good reason (the user ID is my alt acct)`,
+    usage: `Template: PREFIXwarn userID, reason\n Example: PREFIXwarn 735157583010332723, a good reason (the user ID is my alt acct)`,
     description: "For warning members. Type the command followed by the userID and the reason for the warning (MUST BE Separated with a comma)."
 }

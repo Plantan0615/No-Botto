@@ -92,7 +92,7 @@ else {
 
 module.exports.help = {
     name: "uno",
-    category: "fun",
+    category: "blackjack",
     usage: `PREFIXuno number-of-players\n PREFIXuno 3`,
     description: "Uno is a game where you try to get rid of all your cards first. You discard cards that matche the top of the discard pile (in terms of number, colour, or word)."
 };
