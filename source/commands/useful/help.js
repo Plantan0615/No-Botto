@@ -16,7 +16,7 @@ module.exports.run = async(client, message, args) => {
         { name: "~help economy", value: "Type this for help understanding PXTC's economy and level systems."},
         { name: "~help levels", value: "Type this for help understanding PXTC's levels and level roles."},
         { name: "~help admin", value: "Type this to see what features I have for admins."},
-        { name: "Examples:", value: "If you need an example of what to type for any of the commands. Type one of the above followed by usage (i.e. ~help fun usage)"}
+        { name: "Examples:", value: "If you need an example of what to type for any of the commands. Type one of the following '~help fun usage', '~help roles usage', '~help useful usage', '~help economy usage'"}
     );
 
     //role list
@@ -57,12 +57,10 @@ module.exports.run = async(client, message, args) => {
         return message.channel.send(helpEmbed);
     }
     var helpType = args.shift().toLowerCase();
-
     function toCapitalize(input) {
         return input.charAt(0).toUpperCase() + input.slice(1);
     }
     var usageType = (args.length == 1 ? args.shift() : null)
-
     let finalEmbed = new MessageEmbed();
     finalEmbed.setColor("#0b5eaf")
     finalEmbed.setTitle(`Help with ${toCapitalize(helpType)} Commands`)
@@ -145,7 +143,6 @@ module.exports.run = async(client, message, args) => {
             finalEmbed = generateEmbed(finalEmbed, command, h2p)
         }
     }
-
     if (helpType == "admin" && !message.member.hasPermission("ADMINISTRATOR")) {
         let msg = await message.channel.send("You cannot use these commands, so no need to have this info.");
         await msg.delete({timeout: 3000})
@@ -157,8 +154,8 @@ module.exports.run = async(client, message, args) => {
         message.channel.send(finalEmbed)
     } else if (helpType == "levels" && args.length == 0) {
         message.channel.send(levelsEmbed)
-    } else if (helpType == "role" && args.length >= 1) {
-        const next = args.shift().toLowerCase()
+    } else if (helpType == "role" && usageType) {
+        const next = usageType
         if (next == "list") {
             message.channel.send(roleListEmbed)
         } else {
@@ -168,7 +165,7 @@ module.exports.run = async(client, message, args) => {
     } else {
         message.delete();
         message.channel.send(`I'm not sure what you need help with. Type '${client.prefix}help' for all help commands.`).then(msg => msg.delete({timeout: 15000})).catch(err => console.log(err));
-    }
+    } 
 }
 
 module.exports.help = {

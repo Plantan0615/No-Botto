@@ -317,8 +317,9 @@ class TreeNavigation {
 
 module.exports.help = {
   name: "rpg",
-  category: "rpg",
+  category: "fun",
   usage: "Template: PREFIXrpg character\nExamples: PREFIXrpg teenager\nPREFIXrpg hunter\nPREFIXrpg business man\nPREFIXrpg detective",
+  short: `Type 'PREFIXhelp rpg' for more info`,
   description: [
     {name: "~rpg teenager", value: "Type this command to play the story as a female teenager."},
     {name: "~rpg hunter", value: "Type this command to play the story as a male (adult) hunter."},

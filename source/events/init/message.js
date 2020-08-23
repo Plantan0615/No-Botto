@@ -16,7 +16,7 @@ function updateLevel(updatedXP){
     else if(updatedXP > 18000 && updatedXP <= 20000) return 15;
     else if(updatedXP > 20000) return 16; //Epic Gamers (>20000)
 }
-
+const discord = require("discord.js")
 module.exports = async(client, message) => {
     if(message.author.bot) return;
     if(message.content.startsWith(client.prefix)) {
@@ -37,7 +37,7 @@ module.exports = async(client, message) => {
     }
     //if sentence starts with I'm
     let isValid = ["I'm ", "Im ", "i'm ", "im "]
-    if (isValid.some(word => message.content.includes(word))){
+    if (isValid.some(word => message.content.startsWith(word))){
         if(message.channel.id === "649178353471062016"){return;}// if vent and advice channel
         let msgArr = message.content.split(" "); //create array
         if (msgArr.length <= 5){//if array is less than 5 long
@@ -65,7 +65,7 @@ module.exports = async(client, message) => {
             let finalXP = newXp + currentXp
             let finalMoneys = newMoneys + currentMoneys
             let finalLevel = updateLevel(finalXP)
-            
+            const roleChangeEmbed = new discord.MessageEmbed();
             // Logic
             if (currentLevel != finalLevel){
                 if (message.guild.id !== "635980817524326420") {
@@ -74,23 +74,34 @@ module.exports = async(client, message) => {
                     if(finalLevel === 3){
                         message.member.roles.remove("651166068877819916"); //noobz
                         message.member.roles.add("651168912959864870"); //iphone
-                        message.channel.send(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`);
+                        roleChangeEmbed.setTitle(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`)
+                        roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
+                        roleChangeEmbed.setColor(`#e69011`)
+                        message.channel.send(roleChangeEmbed);
                     }
                     else if(finalLevel === 6){
                         message.member.roles.remove("651168912959864870"); //iphone
                         message.member.roles.add("651098747186446346"); //soyboys
-                        message.channel.send(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`);
+                        roleChangeEmbed.setTitle(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`)
+                        roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
+                        roleChangeEmbed.setColor(`#f1ed3f`)
+                        message.channel.send(roleChangeEmbed);
                     }
                     else if(finalLevel === 11){
                         message.member.roles.remove("651098747186446346"); //soyboys
                         message.member.roles.add("651167306398826509"); //Crafty
-                        message.channel.send(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`);
-                        
+                        roleChangeEmbed.setTitle(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`)
+                        roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
+                        roleChangeEmbed.setColor(`#91db0e`)
+                        message.channel.send(roleChangeEmbed);
                     }
                     else if(finalLevel === 16){
                         message.member.roles.remove("651167306398826509"); //crafty
                         message.member.roles.add("651167213490798619"); //epic
-                        message.channel.send(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`);
+                        roleChangeEmbed.setTitle(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`)
+                        roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
+                        roleChangeEmbed.setColor(`#0b7722`)
+                        message.channel.send(roleChangeEmbed);
                     }
                     else{ message.channel.send(`${message.member} has leveled up to ${finalLevel}.`)};
                 }

@@ -1,5 +1,5 @@
 module.exports.run = async(client, message, args) => {
-   let roleNames = args.split (", ");
+    let roleNames = message.content.substring(5).split (", ");
    let roleSet = new Set(roleNames);
     let { cache } = message.guild.roles;
 

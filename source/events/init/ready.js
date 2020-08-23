@@ -1060,7 +1060,7 @@ module.exports = (client) => {
   ]
   let detective= [
     { //main id 1
-    scenario: "",
+    scenario: "You are a detective who has been hired to investigate strange, possibly paranormal activity in the forest. You come to a fork in the road.",
     category: "detective",
     question: "Do you go left or right?",
     leftA: "Left.",

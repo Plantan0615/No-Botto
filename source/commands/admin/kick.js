@@ -26,7 +26,7 @@ module.exports.run = async(client, message, args) => {
         message.delete(); return;
     }
     else {
-        await member.kick(reason).catch(error => message.channel.send(`Sorry ${message.author} I couldn't kick because of : ${error}`));
+        await member.kick({reason: `${reason}`}).catch(error => message.channel.send(`Sorry ${message.author} I couldn't kick because of : ${error}`));
         message.channel.send(kickEmbed)
     }
 }

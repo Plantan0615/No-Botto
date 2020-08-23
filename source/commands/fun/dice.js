@@ -16,9 +16,8 @@ module.exports.run = async(client, message, args) => {
    }
     var compare = isEven();
 // userinput
-let msgArray = message.content.toLowerCase().substring(6).split (" ")
-var evenOdd = (msgArray[0]);
-let wager = (msgArray[1]);
+var evenOdd = (args[0]);
+let wager = (args[1]);
 //if no even/odd provided
     if(!evenOdd){
         message.delete({ timeout: 2000 })
@@ -40,8 +39,16 @@ let wager = (msgArray[1]);
     let userXpObject= prepareStatement.get(`${userID}`)
         let newMoneys = parseInt(wager);
         let currentMoneys = userXpObject["userMoneys"];
+        //if wager is NAN
+        if(isNaN(newMoneys)){
+            message.delete({ timeout: 2000 })
+            message.channel.send("Your wager must be a number!")
+                .then(msg => msg.delete({timeout: 2000}))
+                .catch(err => console.log(err));
+                return;
+        }
         //if wager > moneys
-        if (wager > currentMoneys){
+        else if (newMoneys > currentMoneys){
             message.delete({ timeout: 2000 })
             message.channel.send("Your wager is higher than the Moneys you have!")
                 .then(msg => msg.delete({timeout: 2000}))
@@ -71,9 +78,9 @@ let wager = (msgArray[1]);
         .setDescription("You Lost " + wager + " Moneys!")
         .setColor("#ec2727")
         message.channel.send(loseEmbed)
-                }
-            }
-        };
+        }
+    }
+};
 
 module.exports.help = {
     name: "dice",

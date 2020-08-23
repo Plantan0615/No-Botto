@@ -57,7 +57,7 @@ const playArr = [];
                 data = collected
             }
             //create array of user IDs
-            let collectArr = data.array();
+            let collectArr = data.array(); //converts collected player ID's into collectArr
             for (let i = 0; i < collectArr.length; i++) {
                 userArr.push(collectArr[i].author.id)
                 nameArr.push(collectArr[i].author.username)
@@ -274,7 +274,6 @@ var discard;
     assignCzar();
     //change czar to false
     removeCzar();
-    console.log(players)
     //assign players a new card
     assignNewCards();
     //send new hand embeds
