@@ -175,7 +175,6 @@ var discard;
 var currentPts, newPts
 var posi, czName, currentCzID;
 var newCard;
-var discard;
     //get random black card
     const bDealt = bDeck.draw(1);
     //czar function
@@ -263,11 +262,8 @@ var discard;
     comboEmbed1.addField("White Card:", `${winCard}`)
     await currentEmbed.edit({embed: comboEmbed1});
     await message.channel.bulkDelete(1);
-    //create array of discarded black cards    
-    var blDiscard = []
-        for(i=0; i < 1; i++){
-            blDiscard.push(bDealt)
-        }
+    //put discarded black card on bottom of black deck   
+    bdeck.putOnBottomOfDeck(bDealt)
     //check points
     checkPoints();
     //assign czar to next player
@@ -392,6 +388,7 @@ var result;
             pCard = player.hand[value] //gets the index number of that card in the players hand
             cardsArr.push(player.hand[value]) //creates array of chosen cards
             discard = player.hand.splice(value, 1)//creates discard pile and removes from hand
+            wdeck.putOnBottomOfDeck(discard)//puts discard on bottom of deck
         }
     }
 

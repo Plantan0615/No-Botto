@@ -45,43 +45,43 @@ var colour = pickColour();
                  //check what group number is in
                  function numGroup(){
                     if (num <= 18)
-                        return ("group1");
+                        return ("group1"); //low 
                     else
-                        return ("group2");
+                        return ("group2"); //high
                  }
                  var group = numGroup();
 
 //user input
-let msgArray = args
-let guessType = msgArray[0];
-let guess = msgArray[1];
-let wager = msgArray [2];
+let msgArray = args // sets up array
+let guessType = msgArray[0]; //colour number even/odd
+let guess = msgArray[1]; //black/red even/odd low/high
+let wager = msgArray [2]; //5, 10, Moneys
 //if no guess type
 if(!guessType){
-    message.delete({ timeout: 2000 })
+    message.delete({ timeout: 4000 })
         message.channel.send("No Guess Type Provided. Please type colour, even/odd, or numbers after the roulette command.")
-            .then(msg => msg.delete({timeout: 2000}))
+            .then(msg => msg.delete({timeout: 4000}))
             .catch(err => console.log(err));
 }
 //if invalid guess type
 else if(guessType !== "color" && guessType !== "colour" && guessType !== "even/odd" && guessType !== "numbers"){
-    message.delete({ timeout: 2000 })
+    message.delete({ timeout: 4000 })
         message.channel.send("Invalid Guess Type. Please type colour, even/odd, or numbers after the roulette command.")
-            .then(msg => msg.delete({timeout: 2000}))
+            .then(msg => msg.delete({timeout: 4000}))
             .catch(err => console.log(err));
 }
 //if no guess
 else if(!guess){
-    message.delete({ timeout: 2000 })
+    message.delete({ timeout: 4000 })
     message.channel.send("No Betting Option Provided. Please type red, black, even, odd, group1 (for numbers 1-18), or group2 (for numbers 19-37) after the guess type.")
-        .then(msg => msg.delete({timeout: 2000}))
+        .then(msg => msg.delete({timeout: 4000}))
         .catch(err => console.log(err));
 }
 //if no wager
 else if(!wager){
-    message.delete({ timeout: 2000 })
+    message.delete({ timeout: 4000 })
     message.channel.send("No wager provided. Please type the amount of Moneys you would like to bet (after the Roulette Wheel Number/Betting Option).")
-        .then(msg => msg.delete({timeout: 3000}))
+        .then(msg => msg.delete({timeout: 4000}))
         .catch(err => console.log(err));
 }
 //if guess type and guess
@@ -89,24 +89,24 @@ else if(guessType && guess){
     let isValidColour = ["black", "red"]
     let isValidEvenOdd = ["even", "odd"]
     let isValidNum = ["group1", "group2"]
-        var valid;
-    if(guessType === "colour" || guessType === "color"){valid = isValidColour.includes(guess)}
-    else if(guessType === "even/odd"){valid = isValidEvenOdd.includes(guess)}
-    else if(guessType === "numbers" || guessType === "number"){valid = isValidNum.includes(guess)};
+        var valid; //true/false variable
+    if(guessType === "colour" || guessType === "color"){valid = isValidColour.includes(guess)} //compares guess to isValidColour returns true or false
+    else if(guessType === "even/odd"){valid = isValidEvenOdd.includes(guess)}                       //checks if user input is correct
+    else if(guessType === "numbers" || guessType === "number"){valid = isValidNum.includes(guess)}; //and compares it to the array of "the wheel" (more like the groups on the wheel)
     //if invalid guess
     if (valid === false) {
-        message.delete({ timeout: 2000 })
+        message.delete({ timeout: 4000 })
         message.channel.send("Invalid Betting Option. Please type red, black, even, odd, group1 (for numbers 1-18), or group2 (for numbers 19-37) after the guess type.")
-            .then(msg => msg.delete({timeout: 2000}))
+            .then(msg => msg.delete({timeout: 4000}))
             .catch(err => console.log(err));
             return;
     }
     //if all is well
     else {
         let userID = message.author.id
-        let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")
-        let userXpObject= prepareStatement.get(`${userID}`)
-            let newMoneys = parseInt(wager);
+        let prepareStatement = sql.prepare("SELECT * FROM data WHERE userID = ?")//select all(*) from the table called data (based on the column called userID)
+        let userXpObject= prepareStatement.get(`${userID}`) //creates object with * (all) the user info in, on the row with the matching userID
+            let newMoneys = parseInt(wager);// parseInt turns strings into integers- we are turning the user input into a usable number
             let currentMoneys = userXpObject["userMoneys"];
             //if wager is NAN
             if(isNaN(newMoneys)){

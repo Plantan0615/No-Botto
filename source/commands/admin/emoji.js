@@ -24,8 +24,15 @@ module.exports = {
             })
             return
         }
-
-        const element = args
+        if (Array.isArray(args) && args.length != 1) {
+            await message.channel.send("Too many arguments, provide only 1 message ID").then((msg) => {
+                msg.delete({timeout: 5000}).catch(err => {
+                console.log(err)
+                })
+            })
+            return
+        }
+        const element = args.shift()
         let isNum = /^\d+$/.test(element);
     
         if (!isNum) {
@@ -38,7 +45,7 @@ module.exports = {
         }
         console.log("Fetching....")
         let fetchChannel = await message.channel.fetch()
-        let fetchedMessage = await fetchChannel.messages.fetch(args)
+        let fetchedMessage = await fetchChannel.messages.fetch(element)
         if (fetchedMessage == undefined) {
             console.log(fetchedMessage)
             return message.reply("Unable to find message ID")
