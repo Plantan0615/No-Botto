@@ -74,7 +74,7 @@ module.exports = async(client, message) => {
                     if(finalLevel === 3){
                         message.member.roles.remove("651166068877819916"); //noobz
                         message.member.roles.add("651168912959864870"); //iphone
-                        roleChangeEmbed.setTitle(`${message.member} Just ditched the Noobz Role. iPhone Photographers Role Get!`)
+                        roleChangeEmbed.setTitle(`${message.author.username} Just ditched the Noobz Role. iPhone Photographers Role Get!`)
                         roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
                         roleChangeEmbed.setColor(`#e69011`)
                         message.channel.send(roleChangeEmbed);
@@ -82,7 +82,7 @@ module.exports = async(client, message) => {
                     else if(finalLevel === 6){
                         message.member.roles.remove("651168912959864870"); //iphone
                         message.member.roles.add("651098747186446346"); //soyboys
-                        roleChangeEmbed.setTitle(`${message.member} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`)
+                        roleChangeEmbed.setTitle(`${message.author.username} Just ditched the iPhone Photographers Role. Soy Boys Role Get!`)
                         roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
                         roleChangeEmbed.setColor(`#f1ed3f`)
                         message.channel.send(roleChangeEmbed);
@@ -90,7 +90,7 @@ module.exports = async(client, message) => {
                     else if(finalLevel === 11){
                         message.member.roles.remove("651098747186446346"); //soyboys
                         message.member.roles.add("651167306398826509"); //Crafty
-                        roleChangeEmbed.setTitle(`${message.member} Just ditched the Soy Boys Role. Crafty Crew Role Get!`)
+                        roleChangeEmbed.setTitle(`${message.author.username} Just ditched the Soy Boys Role. Crafty Crew Role Get!`)
                         roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
                         roleChangeEmbed.setColor(`#91db0e`)
                         message.channel.send(roleChangeEmbed);
@@ -98,7 +98,7 @@ module.exports = async(client, message) => {
                     else if(finalLevel === 16){
                         message.member.roles.remove("651167306398826509"); //crafty
                         message.member.roles.add("651167213490798619"); //epic
-                        roleChangeEmbed.setTitle(`${message.member} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`)
+                        roleChangeEmbed.setTitle(`${message.author.username} Just ditched the Crafty Crew Role. Epic Gamers Role Get!`)
                         roleChangeEmbed.setDescription(`They are now level ${finalLevel} and have ${finalXP} XP!!!!`)
                         roleChangeEmbed.setColor(`#0b7722`)
                         message.channel.send(roleChangeEmbed);
