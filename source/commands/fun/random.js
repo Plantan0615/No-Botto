@@ -273,6 +273,12 @@ module.exports.help = {
         { name: "Random Meme", value: "Type meme after the random command to get a random meme."},
         { name: "Random Animal Pictures", value: "Type one of the following animals after the random command to get a random pic of that animal. Cat, dog, panda, red panda, koala, fox, birb, pikachu."},
         { name: "Random Animal Facts", value: "Type one of the following animals and the word fact after the random command to get a random fact about that animal. Cat, dog, panda, koala, fox, bird."},
-        { name: "Random GIFS", value: "Type one of the following after the random command to get a random GIF of it. Hug, pat, wink."}
+        { name: "Random GIFS", value: "Type one of the following after the random command to get a random GIF of it. Hug, pat, wink."},
+        { name: "Examples:", value: "Please type '~help fun usage' for examples of what you need to type."}
+    ]
+}
+module.exports.h2p = {
+    instructions: [
+        { name: "Examples", value: "If you need an example of what to type for any of the random commands type '~help fun usage'."}
     ]
 }

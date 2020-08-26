@@ -74,5 +74,5 @@ module.exports.help = {
     name: "leaderboard",
     category: "economy",
     usage: `Template/Example: PREFIXleaderboard`,
-    description: "Type this to see your place on the leaderboard. (The leaderboards are grouped in 10s.)"
+    description: "Type this to see your place on the leaderboard. (The leaderboards are grouped in 10s. So if you're ranked 15 for instance, you will see the rank 11-20 leaderboard. To see the top 10 XP earners, type '~top10'.)"
 }

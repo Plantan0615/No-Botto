@@ -59,7 +59,7 @@ async function main() {
     await registerEvents()
 
     // Set up MySQL
-    const sql = require("better-sqlite3")("C:\\Users\\chase\\Desktop\\Coding\\No Botto\\source\\userInfo.db");
+    const sql = require("better-sqlite3")("/home/pi/No_Botto/source/userInfo.db");
     client.sql = sql
 
     // Start Bot

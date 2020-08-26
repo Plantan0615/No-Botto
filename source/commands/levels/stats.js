@@ -24,5 +24,5 @@ module.exports.help = {
     name: "stats",
     category: "economy",
     usage: `Template/Example: PREFIXstats`,
-    description: "Type this to see your current XP, Level, and Moneys. (Your rank cannot be viewed here.)"
+    description: "Type this to see your current XP, Level, and Moneys. (Your rank cannot be viewed here. Type '~rank' to see your rank.)"
 }

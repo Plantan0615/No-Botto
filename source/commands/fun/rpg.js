@@ -319,14 +319,5 @@ module.exports.help = {
   name: "rpg",
   category: "fun",
   usage: "Template: PREFIXrpg character\nExamples: PREFIXrpg teenager\nPREFIXrpg hunter\nPREFIXrpg business man\nPREFIXrpg detective",
-  short: `Type 'PREFIXhelp rpg' for more info`,
-  description: [
-    {name: "~rpg teenager", value: "Type this command to play the story as a female teenager."},
-    {name: "~rpg hunter", value: "Type this command to play the story as a male (adult) hunter."},
-    {name: "~rpg business man", value: "Type this command to play the story as a male (adult) business man."},
-    {name: "~rpg detective", value: "Type this command to play the story as a female (adult) detective."}
-  ]
-}
-module.exports.h2p = {
-  instructions: "Simply type one of the above commands, and I will send a message. Wait for me to react to the message with A and B, then make your decision (by selecting either A or B), at which point I will edit the message. After 4 decisions you will know the outcome of the story."
+  description: `Type 'PREFIXrpg' followed by the character you want to play as, and I will send a message. Wait for me to react to the message with A and B, then make your decision (by selecting either A or B), at which point I will edit the message. After 4 decisions you will know the outcome of the story. (If your reaction doesn't register with the bot, simply unreact and react again.)`
 }

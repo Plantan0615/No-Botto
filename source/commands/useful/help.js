@@ -9,7 +9,6 @@ module.exports.run = async(client, message, args) => {
         { name: "~help fun", value: "Type this command to see what fun features I have."},
         { name: "~help poll", value: "Type this to learn how to set up a poll."},
         { name: "~help random", value: "Type this to learn how to get a random meme, image, animal fact, or GIF."},
-        { name: "~help rpg", value: "Type this to learn how to play the RPGs/Choose Your Own Adventure Stories."},
         { name: "~help roles", value: "Type this for help with adding and remove roles from yourself."},
         { name: "~help role list", value: "Type this for a list of all the roles in the server."},
         { name: "~help useful", value: "Type this to see what useful features I have. (If you need help with the password check #rules-and-info.)"},

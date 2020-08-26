@@ -91,7 +91,8 @@ module.exports.help = {
 
 module.exports.h2p = {
     instructions: [
-        { name: "Various RPGs", value: "Type '~help rpg' for more info"},
-        { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with ⭐ and I will add the post to the Starboard channel for you. (THIS ONLY WORKS FOR TEXT AND LINKS, I will not add pictures or link previews.)"}
+        { name: "Starboard", value: "If there is a post that you think is funny or think should be 'immortalised', simply react to it with ⭐ and I will add the post to the Starboard channel for you. (THIS ONLY WORKS FOR TEXT AND LINKS, I will not add pictures or link previews.)"},
+        { name: "Examples", value: "If you need an example of what to type for any of the random commands type '~help fun usage'."},
+        { name: "Note", value: "The commands that require a wager (such as roulette and dice) will only work if you have sent a non-command message."}
     ]
 }

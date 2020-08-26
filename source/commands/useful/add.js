@@ -50,5 +50,7 @@ module.exports.help = {
 module.exports.h2p = {
     instructions: [{ name: "Reacting for Roles", value: "You can add roles to (and remove roles from) yourself by reacting (and unreacting) to the messages in #role-menu (I will only add the role if you react in that channel)."},
         { name: "Level Roles", value: "The I Need to Read the Rules, Noobz, iPhone Photographers, Soy Boys, Crafty Crew, and Epic Gamers Roles are level roles (based on xp, earned by takling). You CANNOT add yourself to (or remove yourself from) these roles."},
-        { name: "Other Roles", value: "Please type ~help role list for info on all of the roles."}]
+        { name: "Other Roles/ Role List", value: "Please type ~help role list for info on all of the roles."},
+        {name: "Examples", value: "If you need an example of what to type for adding or removing roles please type '~help roles usage'."}
+    ]
 }

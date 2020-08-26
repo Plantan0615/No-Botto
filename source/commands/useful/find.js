@@ -13,3 +13,8 @@ module.exports.help = {
     usage: `Template: PREFIXfind channel-name\n Examples: PREFIXfind general-chat\nPREFIXfind vent-and-advice`,
     description: "Type this followed by the channel you want me to find. I will ping you in that channel, then delete the messages after 15 seconds. YOU MUST TYPE THE CHANNEL NAME EXACTLY AS IT APPEARS (dashes and all)."
 }
+module.exports.h2p = {
+    instructions: [
+        { name: "Examples", value: "If you need an example of what to type for any of the useful commands type '~help useful usage'."}
+    ]
+}

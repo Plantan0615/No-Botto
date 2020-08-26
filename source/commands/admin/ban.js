@@ -40,7 +40,8 @@ module.exports.help = {
 
 module.exports.h2p = {
     instructions: [
-        { name: "IMPORTANT NOTE", value: "Users can only be warned (and their warns checked) if they are in the Database(db). This means that they must have sent a message that is not a command. This also applies to currency if anyone is confused, as if they utilise db commands before they have sent an actual message the command will not work."},
+        { name: "IMPORTANT NOTE", value: "Database (db) commands cannot be used before a user has sent a message that is not a command. If a user attempts to use one of these commands, or if a command is applied to a user before they have sent a non-command message it simply will not work."},
+        { name: "Database Commands", value: "Fun db Commands: dice, roulette. Useful db Commands: mywarnings. Economy db Commands: daily, leaderboard, rank, stats. Admin db Commands: userwarns, warn."},
         {name: "Examples", value: "Type '~help admin usage' for examples of what you need to type for all admin commands"}
 ]
 

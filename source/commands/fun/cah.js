@@ -263,7 +263,7 @@ var newCard;
     await currentEmbed.edit({embed: comboEmbed1});
     await message.channel.bulkDelete(1);
     //put discarded black card on bottom of black deck   
-    bdeck.putOnBottomOfDeck(bDealt)
+    bDeck.putOnBottomOfDeck(bDealt)
     //check points
     checkPoints();
     //assign czar to next player
